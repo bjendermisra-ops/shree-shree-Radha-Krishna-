@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/app",
+      "destination": "https://play.google.com/store/apps/details?id=com.iskcon.hadapsar.santosh.in",
+      "permanent": false
+    }
+  ]
+}
