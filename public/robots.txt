@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sriradha.vercel.app/sitemap.xml

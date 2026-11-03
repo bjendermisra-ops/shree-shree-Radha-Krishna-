@@ -1,10 +1,8 @@
 {
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/app",
-      "destination": "https://play.google.com/store/apps/details?id=com.iskcon.hadapsar.santosh.in",
-      "permanent": false
-    }
-  ]
+  "redirects": [{"source":"/app","destination":"https://play.google.com/store/apps/details?id=com.iskcon.hadapsar.santosh.in","permanent":false}],
+  "headers": [{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},{"key":"X-Frame-Options","value":"SAMEORIGIN"}]}]
 }
