@@ -311,3 +311,13 @@ img{max-width:100%}
 @keyframes cin-intro{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media(hover:none){.cin-btn:hover,.cin-shortcuts a:hover,.cin-explore-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cin-hero-copy{animation:none}.cin-btn,.cin-damodar>img,.cin-visit-card>img,.cin-explore-card,.cin-explore-photo img,.cin-shortcuts a{transition:none}}
+
+/* Distinguish authored vector ornamentation from genuine photographic assets. */
+.cin-damodar{background:radial-gradient(circle at 83% 23%,#a55f394a,transparent 35%),linear-gradient(133deg,#5e1324,#2e0d1b)}
+.cin-damodar>img[src^="/visual/"]{left:auto;right:4%;top:3%;width:58%;height:72%;object-fit:contain;opacity:.93;filter:drop-shadow(0 20px 50px #f2b14655)}
+.cin-damodar:has(>img[src^="/visual/"]) .cin-focus-dim{background:linear-gradient(0deg,#2a0715 1%,#2a0715e8 31%,#2a07151a 78%)}
+.cin-visit-card{background:linear-gradient(160deg,#f6dab4,#b77b53)}
+.cin-visit-card>img[src^="/visual/"]{left:0;bottom:0;top:auto;width:100%;height:83%;object-fit:contain;object-position:center bottom;opacity:.92}
+.cin-explore-photo img[src^="/visual/"]{object-fit:contain;padding:22px;background:radial-gradient(ellipse at center,#ffe5b7,#7b2b2e)}
+.cin-reflection:before{content:'';position:absolute;right:0;top:0;width:280px;height:100%;background:url('/visual/peacock-feather.svg') center/contain no-repeat;opacity:.09;pointer-events:none}
+.cin-reflection{position:relative}
