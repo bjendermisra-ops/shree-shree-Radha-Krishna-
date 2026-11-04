@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" fill="none" role="img" aria-label="Antique gold floral divider">
+<defs><linearGradient id="gold" x1="0" x2="1"><stop stop-color="#b77d37"/><stop offset=".5" stop-color="#ffdfa0"/><stop offset="1" stop-color="#ae702c"/></linearGradient></defs>
+<g stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round">
+<path d="M8 24h73m78 0h73" stroke-width="1.2"/><path d="M82 24q18-17 38 0-19 17-38 0Zm76 0q-18-17-38 0 19 17 38 0Z" stroke-width="1.5"/>
+<path d="M120 5q-11 12 0 19 11-7 0-19Zm0 38q-11-12 0-19 11 7 0 19Z" stroke-width="1.4"/>
+<path d="M105 12q3 12 15 12m15-12q-3 12-15 12m-15 12q3-12 15-12m15 12q-3-12-15-12"/>
+<circle cx="120" cy="24" r="3.5" fill="#dba54c"/>
+<circle cx="81" cy="24" r="2" fill="#bd8b50"/><circle cx="159" cy="24" r="2" fill="#bd8b50"/>
+</g></svg>
