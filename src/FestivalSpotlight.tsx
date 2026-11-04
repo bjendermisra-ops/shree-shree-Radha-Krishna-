@@ -18,7 +18,7 @@ function puneDate(){
 }
 function isValid(item:SpotlightItem,day:string){
  return !!item && item.enabled===true && (!item.startDate||item.startDate<=day) && (!item.endDate||item.endDate>=day)
-   && /^\/(images|visual)\/[a-zA-Z0-9_./-]+$/.test(item.image)
+   && /^\/(images|visual|media)\/[a-zA-Z0-9_./-]+$/.test(item.image)
    && /^\/(?!\/)[a-zA-Z0-9_/#-]+$/.test(item.href)
    && !!item.title?.en && !!item.title?.hi && !!item.title?.mr;
 }
@@ -38,7 +38,7 @@ export default function FestivalSpotlight({lang,fallback}:{lang:SiteLang;fallbac
  const title=item?.title?.[lang]||fallback.title;
  const description=item?.description?.[lang]||fallback.description;
  const cta=item?.cta?.[lang]||fallback.cta;
- const image=item?.image||'/visual/diya-gold.svg';
+ const image=item?.image||'/media/krishna-moon.webp';
  const href=item?.href||'/damodar-ashtakam';
  const alt=item?.artworkType==='verified-photo'?'Verified festival photograph':'Artistic devotional illustration; not a documentary photograph';
  return <a className="cin-damodar cin-focus-card" href={href}>
