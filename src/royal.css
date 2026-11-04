@@ -68,3 +68,13 @@ body{background:var(--bg);overflow-x:hidden}
 @media(max-width:370px){.royal-hero h1{font-size:54px}.royal-hero-content{padding-top:245px}.royal-button{font-size:10px;padding:12px}.royal-quick-card{min-height:218px;padding:15px 11px}.royal-quick-content strong{font-size:22px}.royal-quick-content>span{font-size:9px}.royal-mantra{font-size:10px}.royal-inner-intro h2{font-size:41px}}
 @media(prefers-reduced-motion:reduce){.royal-hero-image,.royal-hero-copy{animation:none!important}.royal-button,.royal-quick-card,.royal-experience,.royal-experience img,.royal-inline{transition:none!important}}
 @media print{.royal-hero{min-height:0}.royal-hero-content{min-height:0}.royal-hero-image,.royal-hero-veil{display:none}.royal-hero h1{color:#1e302f}.royal-quick{display:block}.royal-kartik{background:white;color:black}.royal-kartik h2{color:black}.royal-mantra,.royal-hero-bottom{display:none}}
+
+/* Collapse navigation early enough for tablets and narrow laptops. */
+@media(max-width:1120px){
+ .site-header .nav-bar nav{display:none;position:absolute;top:83px;left:0;right:0;background:#0b292c;padding:15px max(20px,5vw) 25px;flex-direction:column;gap:0;box-shadow:0 24px 48px #06171977;z-index:49}
+ .site-header .nav-bar nav.nav-open{display:flex}
+ .site-header .nav-bar nav a{padding:13px 6px;color:#f4e6d2;font-size:14px;border-bottom:1px solid #ffffff15}
+ .site-header .nav-bar nav a[aria-current]{color:#f5c980}
+ .site-header .menu-toggle{display:inline-flex}
+}
+@media(max-width:700px){.site-header .nav-bar nav{top:76px}}
