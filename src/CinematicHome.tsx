@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {ArrowRight,ArrowUpRight,BookOpen,CalendarDays,Check,ChevronRight,Clock,Flame,Flower2,GraduationCap,Heart,MapPin,Music2,Smartphone,Sun,Users,Image as ImageIcon} from 'lucide-react';
 import {PLAY,MAP,features,languageIndex} from './content';
 import type {SiteLang} from './Palace';
+import FestivalSpotlight from './FestivalSpotlight';
 
 /**
  * Visual direction: user-approved cinematic mobile + desktop references.
@@ -125,11 +126,7 @@ export function CinematicHome({lang}:{lang:SiteLang}){
    <section className="cin-intro-section wrap">
      <div className="cin-intro-heading"><span className="cin-label">{w.navTitle}</span><h2>{w.featureTitle}</h2><p>{w.navSubtitle}</p></div>
      <div className="cin-highlights">
-       <a className="cin-damodar cin-focus-card" href="/damodar-ashtakam">
-         <img src="/images/sacred-night.webp" width="1100" height="800" loading="lazy" alt="Artistic devotional illustration for Kartik reading"/>
-         <span className="cin-focus-dim"/>
-         <div className="cin-damodar-copy"><span className="cin-chip"><Flame size={14}/>{w.festivalTag}</span><h3>{w.festivalTitle}</h3><p>{w.festivalDesc}</p><span className="cin-small-cta">{w.festivalCta}<ArrowRight size={17}/></span></div>
-       </a>
+       <FestivalSpotlight lang={lang} fallback={{label:w.festivalTag,title:w.festivalTitle,description:w.festivalDesc,cta:w.festivalCta}}/>
        <div className="cin-schedule-card">
          <div className="cin-schedule-top"><span className="cin-label"><Clock size={17}/>{w.today}</span><h3>{w.schedule}</h3><p>{w.todaySub}</p></div>
          <div className="cin-schedule-row"><Sun size={23}/><span>{w.morning}</span><strong>4:30 AM – 1 PM</strong></div>
