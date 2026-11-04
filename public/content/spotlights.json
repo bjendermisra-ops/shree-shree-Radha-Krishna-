@@ -1,7 +1,7 @@
 {
   "version": 1,
   "timeZone": "Asia/Kolkata",
-  "instructions": "Edit this JSON to publish festival artwork. Use local /images/... or /visual/... asset paths and actual verified Pune dates. Entries are shown only when enabled and inside their optional startDate/endDate window. Do not treat illustrative artwork as a photo of the temple.",
+  "instructions": "Edit this manifest to show verified current festival content. Assets must be local /media/, /images/, or /visual/. Artwork must not be called an actual temple photo. Dates are Pune local.",
   "items": [
     {
       "id": "damodar-ashtakam-reading",
@@ -10,12 +10,12 @@
       "startDate": null,
       "endDate": null,
       "artworkType": "illustration",
-      "image": "/visual/diya-gold.svg",
+      "image": "/media/krishna-moon.webp",
       "href": "/damodar-ashtakam",
       "label": {
-        "en": "KARTIK · DEVOTIONAL READING",
-        "hi": "कार्तिक · भक्ति पाठ",
-        "mr": "कार्तिक · भक्तिपाठ"
+        "en": "DEVOTIONAL READING · 8 VERSES",
+        "hi": "भक्ति पाठ · आठ श्लोक",
+        "mr": "भक्तिपाठ · आठ श्लोक"
       },
       "title": {
         "en": "Sri Damodar Ashtakam",
