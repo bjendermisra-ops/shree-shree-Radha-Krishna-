@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "timeZone": "Asia/Kolkata",
+  "instructions": "Edit this JSON to publish festival artwork. Use local /images/... asset paths and actual verified Pune dates. Entries are shown only when enabled and inside their optional startDate/endDate window. Do not treat illustrative artwork as a photo of the temple.",
+  "items": [
+    {
+      "id": "damodar-ashtakam-reading",
+      "enabled": true,
+      "priority": 10,
+      "startDate": null,
+      "endDate": null,
+      "artworkType": "illustration",
+      "image": "/images/sacred-night.webp",
+      "href": "/damodar-ashtakam",
+      "label": {
+        "en": "KARTIK · DEVOTIONAL READING",
+        "hi": "कार्तिक · भक्ति पाठ",
+        "mr": "कार्तिक · भक्तिपाठ"
+      },
+      "title": {
+        "en": "Sri Damodar Ashtakam",
+        "hi": "श्री दामोदर अष्टकम्",
+        "mr": "श्री दामोदर अष्टकम्"
+      },
+      "description": {
+        "en": "Eight beautiful prayers remembering Krishna, lovingly bound by Mother Yashoda.",
+        "hi": "माता यशोदा के प्रेम में बँधे श्रीकृष्ण की आठ मनमोहक प्रार्थनाएँ।",
+        "mr": "माता यशोदेच्या प्रेमाने बद्ध झालेल्या श्रीकृष्णाच्या आठ सुंदर प्रार्थना."
+      },
+      "cta": {
+        "en": "Read the eight verses",
+        "hi": "आठों श्लोक पढ़ें",
+        "mr": "आठही श्लोक वाचा"
+      }
+    }
+  ]
+}
