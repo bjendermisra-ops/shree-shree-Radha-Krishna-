@@ -4,6 +4,7 @@ import {ArrowRight,ArrowUpRight,BookOpen,CalendarDays,Check,ChevronRight,Clock,F
 import {PLAY,MAP,features,languageIndex} from './content';
 import type {SiteLang} from './Palace';
 import FestivalSpotlight from './FestivalSpotlight';
+import {StoreBadge} from './StoreBadge';
 
 /**
  * Visual direction: user-approved cinematic mobile + desktop references.
@@ -83,12 +84,12 @@ const shortcuts=[
 ] as const;
 
 const discovery=[
-  {title:'feat1',desc:'feat1sub',href:'/aarti',image:'/images/prayers.webp',Icon:BookOpen},
-  {title:'feat2',desc:'feat2sub',href:'/festivals',image:'/images/calendar.webp',Icon:CalendarDays},
-  {title:'feat3',desc:'feat3sub',href:'/learning',image:'/images/learning.webp',Icon:GraduationCap},
-  {title:'feat4',desc:'feat4sub',href:'/seva',image:'/images/reader.webp',Icon:Heart},
+  {title:'feat1',desc:'feat1sub',href:'/aarti',image:'/media/prayer-scripture.webp',Icon:BookOpen},
+  {title:'feat2',desc:'feat2sub',href:'/festivals',image:'/media/yamuna-moon.webp',Icon:CalendarDays},
+  {title:'feat3',desc:'feat3sub',href:'/learning',image:'/media/gita-chariot.webp',Icon:GraduationCap},
+  {title:'feat4',desc:'feat4sub',href:'/seva',image:'/media/puja-thali.webp',Icon:Heart},
   {title:'feat5',desc:'feat5sub',href:'/gallery',image:'/images/temple.webp',Icon:ImageIcon},
-  {title:'feat6',desc:'feat6sub',href:'/sunday-feast',image:'/visual/diya-gold.svg',Icon:Music2}
+  {title:'feat6',desc:'feat6sub',href:'/sunday-feast',image:'/media/lotus-sunrise.webp',Icon:Music2}
 ] as const;
 
 export function CinematicHome({lang}:{lang:SiteLang}){
@@ -135,7 +136,7 @@ export function CinematicHome({lang}:{lang:SiteLang}){
          <a className="cin-btn cin-btn-maroon" href="/visit">{w.scheduleCta}<ArrowRight size={18}/></a>
        </div>
        <a className="cin-visit-card" href={MAP}>
-         <img src="/visual/temple-silhouette.svg" width="1000" height="300" loading="lazy" alt="Decorative temple silhouette; not a photograph of the mandir"/>
+         <img src="/media/temple-architecture-art.webp" width="1000" height="300" loading="lazy" alt="Artistic Indian temple architecture; not a photograph of the Hadapsar mandir"/>
          <span className="cin-visit-overlay"><MapPin size={20}/><strong>{w.directions}</strong><ArrowUpRight size={19}/></span>
        </a>
      </div>
@@ -152,7 +153,7 @@ export function CinematicHome({lang}:{lang:SiteLang}){
    <section className="cin-reflection">
      <div className="wrap cin-reflection-grid">
        <div><span className="cin-label">{w.devotional}</span><h2>{w.devotionalSub}</h2><p>{w.devotionalDesc}</p><a href="/temple" className="cin-text-action">{w.seeMore}<ArrowRight size={18}/></a></div>
-       <div className="cin-reflection-art"><img src="/images/temple.webp" width="900" height="675" loading="lazy" alt="Darshan of Sri Sri Radha Krishna Chandra"/></div>
+       <div className="cin-reflection-art"><img src="/media/krishna-flute.webp" width="900" height="675" loading="lazy" alt="Devotional illustration of Krishna flute and peacock feather"/></div>
      </div>
    </section>
 
@@ -161,7 +162,7 @@ export function CinematicHome({lang}:{lang:SiteLang}){
      <div className="cin-app-showcase">
        <div className="cin-app-tabs" role="tablist" aria-label={w.appShort}>{features.map((item,i)=><button key={item.id} id={'cin-tab-'+i} aria-selected={selected===i} aria-controls="cin-feature-panel" role="tab" tabIndex={selected===i?0:-1} onClick={()=>setSelected(i)} onKeyDown={e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const next=(i+(e.key==='ArrowDown'?1:-1)+features.length)%features.length;setSelected(next);document.getElementById('cin-tab-'+next)?.focus()}}}><span>0{i+1}</span>{item.name[idx]}<ChevronRight size={18}/></button>)}</div>
        <div className="cin-feature-panel" id="cin-feature-panel" role="tabpanel" aria-labelledby={'cin-tab-'+selected}>
-         <div className="cin-feature-copy"><span className="cin-label">{w.actual}</span><h3>{f.title[idx]}</h3><p>{f.description[idx]}</p><ul>{f.points.map((point,i)=><li key={i}><Check size={16}/>{point[idx]}</li>)}</ul><a href={PLAY} className="cin-btn cin-btn-gold">{w.download}<ArrowUpRight size={17}/></a></div>
+         <div className="cin-feature-copy"><span className="cin-label">{w.actual}</span><h3>{f.title[idx]}</h3><p>{f.description[idx]}</p><ul>{f.points.map((point,i)=><li key={i}><Check size={16}/>{point[idx]}</li>)}</ul><StoreBadge lang={lang}/></div>
          <div className="cin-phone-stage"><div className="cin-phone"><span className="cin-phone-camera"/><img key={f.image} src={'/images/'+f.image+'.webp'} width="360" height="780" loading="lazy" alt={f.name[idx]+' actual Android application screenshot'}/></div></div>
        </div>
      </div>
