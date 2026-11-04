@@ -87,8 +87,8 @@ const discovery=[
   {title:'feat2',desc:'feat2sub',href:'/festivals',image:'/images/calendar.webp',Icon:CalendarDays},
   {title:'feat3',desc:'feat3sub',href:'/learning',image:'/images/learning.webp',Icon:GraduationCap},
   {title:'feat4',desc:'feat4sub',href:'/seva',image:'/images/reader.webp',Icon:Heart},
-  {title:'feat5',desc:'feat5sub',href:'/gallery',image:'/images/devotional-art.webp',Icon:ImageIcon},
-  {title:'feat6',desc:'feat6sub',href:'/sunday-feast',image:'/images/sacred-night.webp',Icon:Music2}
+  {title:'feat5',desc:'feat5sub',href:'/gallery',image:'/images/temple.webp',Icon:ImageIcon},
+  {title:'feat6',desc:'feat6sub',href:'/sunday-feast',image:'/visual/diya-gold.svg',Icon:Music2}
 ] as const;
 
 export function CinematicHome({lang}:{lang:SiteLang}){
@@ -135,7 +135,7 @@ export function CinematicHome({lang}:{lang:SiteLang}){
          <a className="cin-btn cin-btn-maroon" href="/visit">{w.scheduleCta}<ArrowRight size={18}/></a>
        </div>
        <a className="cin-visit-card" href={MAP}>
-         <img src="/images/devotional-art.webp" width="1000" height="700" loading="lazy" alt="Devotional illustrative artwork; not a photograph of the temple exterior"/>
+         <img src="/visual/temple-silhouette.svg" width="1000" height="300" loading="lazy" alt="Decorative temple silhouette; not a photograph of the mandir"/>
          <span className="cin-visit-overlay"><MapPin size={20}/><strong>{w.directions}</strong><ArrowUpRight size={19}/></span>
        </a>
      </div>
