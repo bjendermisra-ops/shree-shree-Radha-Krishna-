@@ -1,0 +1,55 @@
+/* clean.css — main.tsx mein sabse LAST import karo (maximal.css ke baad).
+   Maksad: tiny text, pastel sticker look, squiggle, bhaari letter-spacing hatana. */
+
+:root,[data-theme=light]{
+  --bg:#fbf7ef;--panel:#ffffff;--text:#2b2118;--muted:#5d5248;
+  --gold:#8a3b12;--line:#2b211826;--header:#fbf7efF2;
+  --mx-orange:#b4531d;--mx-ink:#2b2118;--mx-border:#2b211833;
+  --mx-lime:#f3ece0;--mx-lilac:#f3ece0;--mx-rose:#f3ece0;--mx-mint:#f3ece0;--mx-yellow:#f3ece0;
+}
+[data-theme=dark]{--bg:#1d1a16;--panel:#27231e;--text:#f5eee3;--muted:#c9bfb0;--gold:#e6b07a;--line:#f5eee333}
+
+/* 1. Readable text (phone par 7-11px unreadable tha) */
+body{font-size:16px;line-height:1.65}
+p{line-height:1.7}
+.mx-hero-copy>p{font-size:17px;max-width:520px}
+.site-header .nav-bar nav a{font-size:14px}
+.site-header .brand>span,.brand>span{font-size:16px}
+.site-header .brand small,.brand small{font-size:11px;letter-spacing:.04em}
+.mx-eyebrow,.eyebrow,.royal-kicker{font-size:12px;letter-spacing:.06em;font-weight:600}
+.mx-button,.button{font-size:15px;min-height:48px}
+.mx-tile p,.mx-tile small{font-size:15px}
+
+/* 2. Headings: kam bhaari, normal spacing */
+h1,h2,h3,.mx-hero h1{letter-spacing:-.01em;font-weight:700;line-height:1.15}
+.mx-hero h1{font-size:clamp(36px,6vw,60px)}
+h2{font-size:clamp(26px,4vw,38px)}
+
+/* 3. Squiggle underline, stickers, blobs, stars hatao */
+.mx-krishna svg,.mx-blob,.mx-star,.mx-mantra-star,.mx-flower-stamp,.mx-sticker-icon,
+.mx-eight-sticker,.mx-sunday-sticker,.mx-closing-flower,.mx-community-flower,
+.mx-screen-flower,.mx-mini-icons,.mx-heart{display:none!important}
+.mx-krishna{color:var(--gold);padding-bottom:0}
+.mx-dot{box-shadow:none}
+
+/* 4. Rang-birange tiles -> ek jaisa, simple card */
+.mx-tile,.mx-tile[class]{background:var(--panel)!important;border:1px solid var(--line)!important;
+  border-radius:14px!important;box-shadow:none!important;transform:none!important;color:var(--text)}
+.mx-tile:hover{border-color:var(--gold)!important}
+.mx-tile-icon{background:transparent!important;color:var(--gold)!important;border:0!important}
+
+/* 5. Buttons: pill nahi, halka rounded; sirf ek accent */
+.mx-button,.button,.royal-button{border-radius:10px;box-shadow:none;background:var(--gold);border-color:var(--gold);color:#fff}
+.mx-button.secondary,.button.secondary{background:transparent;color:var(--text);border-color:var(--line)}
+
+/* 6. Cards: shadow/tilt/hover-lift hata ke flat */
+.mx-photo-card,.mx-visit-card,.mx-app-panel,.surface,.verse-card{box-shadow:none!important;border-radius:14px}
+.mx-collage *,.mx-photo-card{transform:none!important}
+
+/* 7. Mobile spacing */
+@media(max-width:700px){
+  .wrap{width:min(1200px,calc(100% - 32px))}
+  .mx-section{padding-block:48px}
+  .mx-hero{padding-block:36px 48px;min-height:0;gap:28px}
+  .mx-tiles{grid-template-columns:1fr}
+}
