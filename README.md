@@ -1,118 +1,51 @@
-# Sri Sri Radha Krishna Chandra Mandir website
+# Sri Sri Radha Krishna Chandra Mandir
 
-Official temple-first website for Shree Shree Radha Krishna Chandra Mandir, built with React 19, TypeScript and Vite. The homepage and inner pages are pre-rendered during production builds for crawlable content and a complete first response. The Android app is an optional secondary resource, not the primary website identity.
+[Visit the temple website](https://www.srisriradhakrishnachandra.online/) · [Darshan timings](https://www.srisriradhakrishnachandra.online/visit) · [Read Damodar Ashtakam](https://www.srisriradhakrishnachandra.online/damodar-ashtakam)
 
-## Development
+Temple and Android app information for **15 Number, Hadapsar, Pune, Maharashtra**. The name is also written Shri Shri or Shree Shree Radha Krishna Chandra Mandir.
 
-Requires Node.js 22.12+ (or a supported newer LTS).
+## Run and check
+
+Node.js 22.12+ is required.
 
 ```sh
 npm ci
 npm run dev
-npm run build
-npm run preview
+npm run check
 ```
 
-## Deployment
+React 19, TypeScript and Vite. Production builds pre-render every route into HTML, then hydrate interactive controls. No account, payment processing or contact database is claimed; the contact form prepares a WhatsApp message for the visitor to send.
 
-The root `vercel.json` defines the Vite build and `dist` output. Push to the existing Vercel-connected GitHub branch. The existing `/app` Play Store redirect is retained. `scripts/preserve-app.mjs` copies the original `app/` folder unchanged into build output; the website does not import, depend on or modify its code.
+## Pages
 
-## Content and interactions
+Home, temple information, visit/timings, Damodar Ashtakam, aarti, Ekadashi guidance, Sunday Feast, Android app features, learning, festivals, seva, contact, gallery, community, privacy and terms. The header switches English/Hindi/Marathi in the browser; these are not separate translated search URLs.
 
-- `src/content.ts`: English, Hindi and Marathi feature copy, FAQs, download and maps links.
-- `src/App.tsx`: responsive homepage, keyboard-accessible feature tabs, screenshot dialog, mobile navigation, theme/language preferences, FAQs, address-copy and contact actions.
-- `src/styles.css`: responsive layouts, light/dark palette and reduced-motion support.
-- `public/images`: optimized WebP assets. The screenshot content remains the user's actual app UI; system status/navigation bars are cropped for presentation. Dated information in screenshots is illustrative captured app state, not a live calendar.
-- `public/favicon.svg`: original lotus mark for this website, not a claimed institutional logo.
+## Brand and imagery
 
-App capabilities and program details are based on supplied screenshots and the original repository. No invented ratings, download counts or testimonials. The linked Android listing is `com.iskcon.hadapsar.santosh.in`. Website pages work across devices; no iOS app is claimed.
+- `public/brand/temple-mark.svg`: lightweight original lotus-and-flute website mark, with PNG sizes and matching browser icons. It does not reproduce the institutional ISKCON logo.
+- `public/images/temple.webp`: actual deity photo from the owner's existing repository asset: https://i.ibb.co/3mYLpLN8/IMG-20261013-WA0001.jpg .
+- App screenshots are supplied by the owner. Dates shown in screenshots are captured examples, not a live calendar.
+- Older generated/placeholder artwork remains in source history but is not rendered by the current pages.
 
-## Asset provenance
+## SEO and deployment
 
-- `devotional-art.webp`: original artwork generated with the built-in imagegen tool. Brief: editorial still life of a bansuri, natural peacock feather, brass diya and jasmine on ivory paper/cream silk; warm natural light; no typography, people or specific temple depiction.
-- `temple.webp`: optimized original temple photo from the repository's pre-existing image URL: `https://i.ibb.co/3mYLpLN8/IMG-20261013-WA0001.jpg`.
-- Other WebP files: screenshots supplied by the repository owner.
+`site.config.mjs` uses the verified **www** custom domain. `scripts/prerender.mjs` generates 16 self-canonical pages, unique titles/descriptions, social metadata, temple/site/page/app/prayer/breadcrumb JSON-LD, an image-enabled sitemap, robots.txt and an optional llms.txt navigation summary. The latter is not a ranking guarantee or special search-engine requirement.
 
-## Maintenance
+`vercel.json` retains the app redirect and sends the old Vercel host to corresponding custom-domain paths. The apex domain already redirects to www through the existing hosting setup.
 
-Update event information in `src/App.tsx` and `src/content.ts` when the temple changes its program. Confirm fasting/parana timing with the temple. No personal data is submitted to this website; localStorage holds only selected language and theme. WhatsApp/phone/maps/Play links open their respective services. Privacy and terms links use the temple's existing public site.
+`npm run check` validates TypeScript, HTML structure, canonicals, assets, internal links, sitemap coverage, 8 prayer verses, 404 noindex, all 48 page/language render combinations, and byte-identical preservation of `app/`.
 
-## November 2026 redesign
+For later URL notification:
 
-Cinematic navy/gold design with a CSS perspective device, subtle pointer response,
-reduced-motion support, responsive layouts and persistent light/dark preference.
-The device in the hero is an interactive website presentation, labelled as such;
-the feature explorer below uses actual supplied Android screenshots.
+```sh
+npm run seo:notify            # preview only; contacts no search engine
+npm run seo:notify -- --submit # explicit IndexNow notification after launch
+```
 
-### Website routes
+IndexNow acceptance is not a promise of indexing or ranking, and does not submit to Google Search Console. See [SEO launch checklist](SEO-LAUNCH.md) for owner verification and legitimate link opportunities. Search engine submission has not been performed automatically.
 
-`/`, `/temple`, `/visit`, `/sunday-feast`, `/festivals`, `/seva`, `/features`, `/learning`, `/aarti`,
-`/damodar-ashtakam`, `/ekadashi`, `/contact`, `/privacy`, `/terms`.
-All routes are built to real HTML documents, then hydrated with React. Vercel
-clean URLs serve the corresponding HTML. There is a real noindex 404 document. The Royal Vrindavan redesign adds the standalone /festivals and /seva routes.
-This is an interactive frontend with build-time rendering; there is no account,
-payment, donation processing, or contact database. The contact form prepares a
-WhatsApp draft for the visitor to review/send. No messages are silently sent.
+## Content maintenance
 
-### Content provenance
+The owner app's published schedule supplies morning 04:30–13:00 and evening 16:15–21:00 IST. Sunday Feast is 17:00–20:00; confirm festival changes with organisers. Traditional Damodar Ashtakam Sanskrit was checked against https://www.iskconjamnagar.org/sridamodarashtakam ; English meanings are concise reading aids.
 
-- Daily schedule: owner app repository `bjendermisra-ops/iskcon-mob/schedule.html`,
-  inspected 2026-11-04. Morning 04:30–13:00, evening 16:15–21:00 IST.
-- Sunday Feast, address and contact: supplied temple screenshots and existing
-  project. Festival changes must be confirmed with organisers.
-- Traditional public-domain Damodar Ashtakam Sanskrit checked against
-  https://www.iskconjamnagar.org/sridamodarashtakam . English concise meanings are
-  original reading aids. This site does not reproduce the source's long translation.
-- No unverified dates or live parana calculation are presented. Ekadashi screenshots
-  are labelled as saved examples. The Android app contains the saved planner.
-- No iOS download, invented testimonials, user counts or payment links are claimed.
-
-### Original new image
-
-`public/images/sacred-night.webp` is generated devotional artwork, not a temple
-photograph. Built-in image generation prompt: cinematic luxury devotional still
-life, deep midnight navy atmosphere; peacock feather along lower left, pink lotus
-and brass diya at lower right; dark reflective stone, golden bokeh and subtle blue
-light; negative space above; no buildings, people, text, phones or interface.
-Optimized to WebP (about 132 KB). Real deity photo remains `temple.webp`.
-
-### Discoverability
-
-Build script emits page-specific titles/descriptions, canonicals, Open Graph,
-WebPage/WebSite/HinduTemple/MobileApplication/BreadcrumbList structured data as
-applicable, and a sitemap covering all 14 pages. Important text is present in HTML
-without JavaScript. Temple aliases Sri/Shri/Shree are stated naturally on `/temple`
-and in `alternateName`, rather than repeated keyword stuffing or doorway pages.
-
-Guidance checked: https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
-and https://developers.google.com/search/docs/appearance/ai-features . No markup
-can guarantee ranking or AI recommendations. The website does not pretend that
-`llms.txt` or a special GEO schema provides ranking benefits.
-
-Owner follow-up: verify the domain in Google Search Console, submit `/sitemap.xml`,
-check URL Inspection and indexing, and align the temple's existing verified Google
-Business Profile with the correct website/address. These require owner access and
-are not claimed complete. If moving to a custom domain, update the base URL in
-`scripts/prerender.mjs` and `public/robots.txt`, then redirect the old origin.
-
-### Validation
-
-Run `npm run check`: TypeScript + production builds + output verification of
-all routes, one H1 per page, unique titles, canonicals, JSON-LD, local links and
-assets, sitemap, 8 reader verses, 404 and byte-identical preserved app files.
-Browser QA covers desktop, 768px tablet, 390px mobile and 320px narrow reader,
-menu, tab switching, theme, search, reader script/size and saved-verse persistence.
-
-The root `app/` directory is unchanged. It is copied by the existing preservation
-script only. No screenshot QA wrapper is published.
-
-
-## Royal Vrindavan design pass (4 November 2026)
-
-- The primary brand is **Shree Shree Radha Krishna Chandra Mandir**, not any application or local chapter branding.
-- Real existing temple darshan photography is used as the homepage hero. Devotional still-life images are labeled as illustrations, not photographs of the temple.
-- Mobile-first cinematic home, quick darshan links, daily service schedule, full eight-verse reader, festival discovery and verified seva enquiry.
-- No made-up festival dates, direct payment interface or unverified live darshan claim. Directions and existing schedule remain available.
-- The existing `app/` redirect content and **all files in the separate `iskcon-mob` repository** remain untouched.
-- `src/Royal.tsx` and `src/royal.css` contain the new presentation; original information architecture and app feature pages remain accessible.
-- GitHub Actions runs `npm run check`, including TypeScript build, SSR output and route validation.
+Update `src/pages.ts`, `src/content.ts`, `src/Palace.tsx` and `src/prayers.ts` when information changes. All files in `app/` remain unchanged. No unrelated repository is modified.
