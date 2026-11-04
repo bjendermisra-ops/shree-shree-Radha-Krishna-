@@ -5,6 +5,7 @@ import './styles.css';
 import './royal.css';
 import './palace.css';
 import './maximal.css';
+import './clean.css';
 const root=document.getElementById('root')!;
 const app=<React.StrictMode><App/></React.StrictMode>;
 if(root.hasChildNodes())hydrateRoot(root,app);else createRoot(root).render(app);
