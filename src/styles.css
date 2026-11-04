@@ -6,3 +6,31 @@
 @media(max-width:370px){.wrap{width:calc(100% - 30px)}.brand{gap:8px}.brand>span{font-size:14px}.brand>svg{width:27px}.header-actions{gap:5px}.hero h1{font-size:58px}.hero .actions{gap:14px}.hero-stage{transform:scale(.78);height:540px;margin-bottom:-100px}.float-top{right:-25px}.float-bottom{left:-20px}.hero-grid{gap:25px}.device-caption{bottom:-45px}.hero .button{font-size:10px}.hero .text-link{font-size:10px}.reader-toolbar button{font-size:10px;padding:9px}.surface{padding:21px}.schedule>div{gap:15px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.hero-device{transform:translateX(-50%) rotateZ(3deg)!important}}
 @media print{.site-header,.footer,.reader-toolbar,.verse-nav,.reader-status,.verse-card header>div{display:none}.wrap{width:100%}:root{--bg:#fff;--panel:#fff;--text:#000;--muted:#333;--gold:#76501b;--line:#ddd;background:#fff;color:#000}.verse-card{break-inside:avoid}.page-hero{padding:10px}.page-hero h1{font-size:40px}}
+
+/* Royal Vrindavan: heritage-first temple homepage */
+:root{--gold:#c69a54;--bg:#faf5eb;--panel:#fffaf2;--text:#18363b;--muted:#586b6c;--line:rgba(143,106,55,.22);--header:rgba(12,43,47,.97)}
+[data-theme="dark"]{--bg:#0c2529;--panel:#123239;--text:#f8f1e5;--muted:#c1c8c4;--gold:#ebc27a;--line:rgba(235,194,122,.23);--header:rgba(9,31,36,.97)}
+body{background:var(--bg);color:var(--text)}
+.site-header{box-shadow:0 5px 25px #001b1b14}
+.nav-bar{min-height:78px}.brand>span{font-size:21px}.brand small{letter-spacing:.13em;color:var(--gold)}
+.royal-hero{min-height:660px;background:#0a2529;color:#fff8eb}
+.royal-hero-photo{position:absolute;inset:0;background:url('/images/temple.webp') center 43%/cover no-repeat;transform:scale(1.02);animation:royalReveal 1.5s ease both}
+.royal-hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,28,31,.96) 0%,rgba(5,28,31,.85) 30%,rgba(5,28,31,.24) 67%,rgba(5,28,31,.12)),linear-gradient(0deg,rgba(5,28,31,.32),transparent 38%)}
+.royal-hero-content{position:relative;min-height:660px;display:flex;align-items:center;padding-block:90px}
+.royal-hero-copy{max-width:660px}.royal-hero h1{font-size:clamp(54px,6.5vw,100px);line-height:.95;letter-spacing:-.035em;margin:24px 0}.royal-hero h1 em{color:#e8c47d}
+.royal-kicker{color:#e8c47d!important;letter-spacing:.25em}
+.royal-rule{display:flex;align-items:center;gap:12px;color:#e5c38a;font-size:10px;letter-spacing:.19em;border-top:1px solid #f1d5a054;padding-top:17px;max-width:380px}
+.royal-hero p{max-width:465px;color:#eee4d7;font-size:16px;line-height:1.85;margin:23px 0 30px}
+.royal-outline{display:inline-flex;align-items:center;gap:10px;border:1px solid #eed4a1a8;color:#fff7e6;padding:15px 20px;min-height:50px;border-radius:5px;font-size:13px;transition:background .2s}
+.royal-outline:hover{background:#ffffff20}
+.royal-hero-caption{position:absolute;right:0;bottom:36px;color:#e8c47d;font-family:'Noto Sans Devanagari',sans-serif;font-size:16px;letter-spacing:.1em}
+.royal-quick{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:-35px}
+.royal-quick>a{display:flex;align-items:center;gap:13px;background:#fffaf1;color:#173c3f;border:1px solid #d9bc88;padding:22px 17px;border-radius:8px;box-shadow:0 15px 35px #142a281c;transition:transform .2s,box-shadow .2s}
+.royal-quick>a:hover{transform:translateY(-5px);box-shadow:0 20px 40px #142a2830}
+.royal-quick>a>svg:first-child{color:#ac7932;width:27px;height:27px;flex-shrink:0}.royal-quick>a>svg:last-child{width:15px;color:#ac7932;margin-left:auto;flex-shrink:0}
+.royal-quick strong{display:block;font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.15}.royal-quick small{display:block;color:#66706b;font-size:10px;margin-top:7px}
+.journey-card,.temple-photo,.lamp-art{border-radius:8px}.section-heading h2{letter-spacing:-.025em}
+@keyframes royalReveal{from{opacity:.55;transform:scale(1.07)}to{opacity:1;transform:scale(1.02)}}
+@media(max-width:1000px){.royal-quick{grid-template-columns:repeat(2,minmax(0,1fr))}.royal-hero-shade{background:linear-gradient(90deg,#061f23ee,#061f2370)}}
+@media(max-width:600px){.royal-hero,.royal-hero-content{min-height:660px}.royal-hero-photo{background-position:60% center}.royal-hero-shade{background:linear-gradient(0deg,#061f23 0%,#061f23dc 39%,#061f2360 100%)}.royal-hero-content{align-items:flex-end;padding:70px 0 105px}.royal-hero h1{font-size:clamp(45px,11vw,67px)}.royal-hero p{font-size:14px}.royal-hero-caption{bottom:43px;right:4px;font-size:12px}.royal-quick{margin-top:-25px;gap:9px}.royal-quick>a{padding:15px 11px;gap:9px}.royal-quick strong{font-size:17px}.royal-quick small{font-size:9px}.royal-quick>a>svg:first-child{width:20px}.royal-quick>a>svg:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){.royal-hero-photo{animation:none}.royal-quick>a{transition:none}}
