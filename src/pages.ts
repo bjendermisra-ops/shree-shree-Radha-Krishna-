@@ -12,5 +12,7 @@ export const pages:Record<string,{title:string;description:string;eyebrow:string
 '/seva':{title:'Temple Seva & Volunteering | Radha Krishna Chandra Mandir',description:'Enquire about temple seva, festival volunteering, worship support and spiritual education at Shree Shree Radha Krishna Chandra Mandir in Pune.',eyebrow:'SERVICE WITH HEART'},
 '/contact':{title:'Contact Shree Shree Radha Krishna Chandra Mandir | Pune',description:'Contact the temple for darshan, visiting, directions, classes, Sunday Feast, volunteering and seva enquiries in Hadapsar, Pune.',eyebrow:'LET’S CONNECT'},
 '/privacy':{title:'Website Privacy | Radha Krishna Chandra Mandir',description:'Understand local reading preferences, external links and how this temple website handles privacy and messages.',eyebrow:'YOUR PRIVACY'},
+'/gallery':{title:'Temple Gallery | Shree Shree Radha Krishna Chandra Mandir',description:'See Radha Krishna deity darshan and clearly labelled original devotional artwork, including temple inspiration, aarti, Kartik and seva illustrations.',eyebrow:'DEVOTIONAL GALLERY'},
+'/community':{title:'Devotee Community | Radha Krishna Chandra Mandir Pune',description:'Join the Sunday Feast, kirtan, spiritual learning, temple events, and verified volunteering opportunities in Hadapsar, Pune.',eyebrow:'DEVOTEE COMMUNITY'},
 '/terms':{title:'Website Terms | Radha Krishna Chandra Mandir',description:'Read information on devotional content, temple schedules, external app links and use of the Radha Krishna Chandra Mandir website.',eyebrow:'WEBSITE INFORMATION'}
 };
