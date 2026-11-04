@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-label="Stylised brass diya with flame">
+<defs><linearGradient id="b" x1=".1" y1="0" x2=".9" y2="1"><stop stop-color="#fff1c1"/><stop offset=".46" stop-color="#d99b3d"/><stop offset="1" stop-color="#81501b"/></linearGradient><linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff6be"/><stop offset=".5" stop-color="#ffb94f"/><stop offset="1" stop-color="#b52e16"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="7"/></filter></defs>
+<ellipse cx="128" cy="118" rx="47" ry="68" fill="#ffbc48" opacity=".23" filter="url(#g)"/>
+<path d="M128 35C98 78 99 97 113 113c9 11 23 12 34 2 20-20 9-48-19-80Z" fill="url(#f)"/>
+<path d="M126 78c-11 15-16 32-7 42 11 12 30 0 19-19-3-7-7-14-12-23Z" fill="#fff5c5"/>
+<path d="M38 143q5 73 90 73t90-73q-47 23-90 23t-90-23Z" fill="url(#b)" stroke="#8a4c1a" stroke-width="5"/>
+<path d="M30 140q98 48 196 0" stroke="#f8d382" stroke-width="8" stroke-linecap="round"/>
+<path d="M106 215h44l10 14H96l10-14Z" fill="#b37728"/><path d="M92 231h72" stroke="#e4a950" stroke-width="9" stroke-linecap="round"/>
+<path d="M68 183c32 13 83 15 121 0" stroke="#fff3bd" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+</svg>
