@@ -1,6 +1,7 @@
 import {readFileSync,existsSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {pages} from '../.prerender/entry-server.js';
+assert.equal(Object.keys(pages).length,14,'Expected fourteen website routes');
 const titles=new Set();
 for(const path of Object.keys(pages)){
  const html=readFileSync(path==='/'?'dist/index.html':`dist${path}.html`,'utf8');
