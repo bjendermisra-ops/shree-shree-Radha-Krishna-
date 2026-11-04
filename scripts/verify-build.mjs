@@ -1,7 +1,7 @@
 import {readFileSync,existsSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {pages} from '../.prerender/entry-server.js';
-assert.equal(Object.keys(pages).length,14,'Expected fourteen website routes');
+assert.equal(Object.keys(pages).length,16,'Expected sixteen website routes');
 const titles=new Set();
 for(const path of Object.keys(pages)){
  const html=readFileSync(path==='/'?'dist/index.html':`dist${path}.html`,'utf8');
@@ -18,4 +18,4 @@ const reader=readFileSync('dist/damodar-ashtakam.html','utf8');assert.equal((rea
 const sitemap=readFileSync('dist/sitemap.xml','utf8');assert.equal((sitemap.match(/<loc>/g)||[]).length,Object.keys(pages).length);
 for(const f of ['index.html','vercel.html'])assert(readFileSync('app/'+f).equals(readFileSync('dist/app/'+f)),`app/${f} was changed`);
 assert(readFileSync('dist/404.html','utf8').includes('noindex'));
-console.log('PASS: 14 pages, unique titles, canonical URLs, JSON-LD, internal links/assets, 8 verses, sitemap, 404, unchanged app files.');
+console.log('PASS: 16 pages, unique titles, canonical URLs, JSON-LD, internal links/assets, 8 verses, sitemap, 404, unchanged app files.');
