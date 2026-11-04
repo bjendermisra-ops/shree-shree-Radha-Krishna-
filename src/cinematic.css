@@ -36,6 +36,23 @@ img{max-width:100%}
 .site-header .palace-language select{min-width:45px}
 .site-header .brand:focus-visible,.site-header nav a:focus-visible,.cin-root a:focus-visible,.cin-root button:focus-visible{outline:3px solid #e7a448;outline-offset:4px}
 
+
+/* Existing Royal/Palace themes use !important for the legacy teal navbar.
+ * These exact overrides restore the approved ivory/maroon navigation everywhere. */
+.site-header{background:var(--header)!important;border-color:#b787533d!important}
+.site-header .brand,.site-header .brand>span{color:var(--text)!important}
+.site-header .nav-bar nav a{color:var(--text)!important}
+.site-header .nav-bar nav a:hover,.site-header .nav-bar nav a[aria-current="page"]{color:var(--cin-maroon)!important}
+[data-theme="dark"] .site-header .nav-bar nav a:hover,[data-theme="dark"] .site-header .nav-bar nav a[aria-current="page"]{color:var(--cin-brass)!important}
+.site-header .header-download{display:inline-flex;background:var(--cin-maroon)!important;color:#fff7e7!important;border-color:var(--cin-maroon)}
+.site-header .header-actions .icon-button,.site-header .palace-language{background:var(--panel)!important;color:var(--text)!important;border:1px solid var(--line)!important}
+.site-header .palace-language select{color:var(--text)!important;background:transparent!important}
+.site-header .palace-language select option{color:var(--text);background:var(--panel)}
+:root,[data-theme="light"]{--palace-bg:#fff8ed;--palace-card:#fffdf8;--palace-border:#ead4bd;--palace-copy:#2b201f;--palace-muted:#6d5955;--palace-gold-dark:#9a5228}
+[data-theme="dark"]{--palace-bg:#150e13;--palace-card:#25161e;--palace-border:#e2ae774f;--palace-copy:#f5e4d2;--palace-muted:#d6b8ab;--palace-gold-dark:#f4c386}
+.palace-inner-hero,.royal-inner-intro{border-radius:22px}
+.royal-featured-event,.royal-inner-link-grid a,.palace-program,.palace-inner-links a{border-radius:17px}
+
 /* Narrative homepage */
 .cin-root{overflow:hidden;background:var(--bg);color:var(--text)}
 .cin-root h1,.cin-root h2,.cin-root h3{font-family:'Cormorant Garamond','Noto Sans Devanagari',Georgia,serif;letter-spacing:-.024em;line-height:1.03;margin:0;font-weight:700}
