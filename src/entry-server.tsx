@@ -1,3 +1,4 @@
-import { renderToString } from 'react-dom/server';
+import {renderToString} from 'react-dom/server';
 import App from './App';
-export function render(){return renderToString(<App/>)}
+export {pages} from './pages';
+export function render(path='/'){return renderToString(<App path={path}/>)}

@@ -36,3 +36,72 @@ App capabilities and program details are based on supplied screenshots and the o
 ## Maintenance
 
 Update event information in `src/App.tsx` and `src/content.ts` when the temple changes its program. Confirm fasting/parana timing with the temple. No personal data is submitted to this website; localStorage holds only selected language and theme. WhatsApp/phone/maps/Play links open their respective services. Privacy and terms links use the temple's existing public site.
+
+## November 2026 redesign
+
+Cinematic navy/gold design with a CSS perspective device, subtle pointer response,
+reduced-motion support, responsive layouts and persistent light/dark preference.
+The device in the hero is an interactive website presentation, labelled as such;
+the feature explorer below uses actual supplied Android screenshots.
+
+### Website routes
+
+`/`, `/temple`, `/visit`, `/sunday-feast`, `/features`, `/learning`, `/aarti`,
+`/damodar-ashtakam`, `/ekadashi`, `/contact`, `/privacy`, `/terms`.
+All routes are built to real HTML documents, then hydrated with React. Vercel
+clean URLs serve the corresponding HTML. There is a real noindex 404 document.
+This is an interactive frontend with build-time rendering; there is no account,
+payment, donation processing, or contact database. The contact form prepares a
+WhatsApp draft for the visitor to review/send. No messages are silently sent.
+
+### Content provenance
+
+- Daily schedule: owner app repository `bjendermisra-ops/iskcon-mob/schedule.html`,
+  inspected 2026-11-04. Morning 04:30–13:00, evening 16:15–21:00 IST.
+- Sunday Feast, address and contact: supplied temple screenshots and existing
+  project. Festival changes must be confirmed with organisers.
+- Traditional public-domain Damodar Ashtakam Sanskrit checked against
+  https://www.iskconjamnagar.org/sridamodarashtakam . English concise meanings are
+  original reading aids. This site does not reproduce the source's long translation.
+- No unverified dates or live parana calculation are presented. Ekadashi screenshots
+  are labelled as saved examples. The Android app contains the saved planner.
+- No iOS download, invented testimonials, user counts or payment links are claimed.
+
+### Original new image
+
+`public/images/sacred-night.webp` is generated devotional artwork, not a temple
+photograph. Built-in image generation prompt: cinematic luxury devotional still
+life, deep midnight navy atmosphere; peacock feather along lower left, pink lotus
+and brass diya at lower right; dark reflective stone, golden bokeh and subtle blue
+light; negative space above; no buildings, people, text, phones or interface.
+Optimized to WebP (about 132 KB). Real deity photo remains `temple.webp`.
+
+### Discoverability
+
+Build script emits page-specific titles/descriptions, canonicals, Open Graph,
+WebPage/WebSite/HinduTemple/MobileApplication/BreadcrumbList structured data as
+applicable, and a sitemap covering all 12 pages. Important text is present in HTML
+without JavaScript. Temple aliases Sri/Shri/Shree are stated naturally on `/temple`
+and in `alternateName`, rather than repeated keyword stuffing or doorway pages.
+
+Guidance checked: https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+and https://developers.google.com/search/docs/appearance/ai-features . No markup
+can guarantee ranking or AI recommendations. The website does not pretend that
+`llms.txt` or a special GEO schema provides ranking benefits.
+
+Owner follow-up: verify the domain in Google Search Console, submit `/sitemap.xml`,
+check URL Inspection and indexing, and align the temple's existing verified Google
+Business Profile with the correct website/address. These require owner access and
+are not claimed complete. If moving to a custom domain, update the base URL in
+`scripts/prerender.mjs` and `public/robots.txt`, then redirect the old origin.
+
+### Validation
+
+Run `npm run check`: TypeScript + production builds + output verification of
+all routes, one H1 per page, unique titles, canonicals, JSON-LD, local links and
+assets, sitemap, 8 reader verses, 404 and byte-identical preserved app files.
+Browser QA covers desktop, 768px tablet, 390px mobile and 320px narrow reader,
+menu, tab switching, theme, search, reader script/size and saved-verse persistence.
+
+The root `app/` directory is unchanged. It is copied by the existing preservation
+script only. No screenshot QA wrapper is published.
