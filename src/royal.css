@@ -78,3 +78,11 @@ body{background:var(--bg);overflow-x:hidden}
  .site-header .menu-toggle{display:inline-flex}
 }
 @media(max-width:700px){.site-header .nav-bar nav{top:76px}}
+
+/* Compatibility with earlier styling on main; the new component's design takes precedence. */
+.royal-kicker{color:#ac7f41!important}
+.royal-kartik .royal-kicker,.royal-visit-strip .royal-kicker{color:#e6ba78!important}
+.royal-quick>a.royal-quick-card{display:flex;flex-direction:column;align-items:stretch;padding:25px 22px;gap:12px;border-radius:17px;min-height:210px;background:linear-gradient(140deg,#fffdf7,#f5e9d7);border-color:#ddc7a6}
+.royal-quick>a.royal-quick-card:hover{box-shadow:0 18px 33px #533c1d20}
+@media(max-width:700px){.royal-quick>a.royal-quick-card{min-height:200px;padding:17px 14px;border-radius:12px;gap:8px}}
+@media(max-width:370px){.royal-quick>a.royal-quick-card{min-height:218px;padding:15px 11px}}
