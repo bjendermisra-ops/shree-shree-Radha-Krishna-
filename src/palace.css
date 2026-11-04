@@ -204,3 +204,17 @@ body{font-size:16px;line-height:1.6}
 #palace-cursor{position:fixed;left:0;top:0;z-index:9999;width:34px;height:34px;border:1px solid rgba(240,191,106,.64);box-shadow:0 0 20px rgba(231,174,78,.5),inset 0 0 13px rgba(242,211,151,.18);border-radius:50%;transform:translate3d(-100px,-100px,0);pointer-events:none;transition:width .2s,height .2s,background .2s,border-color .2s;mix-blend-mode:screen}
 #palace-cursor.is-hover{width:49px;height:49px;background:#d6a4551c;border-color:#f4cd80}
 @media(hover:none),(pointer:coarse){#palace-cursor{display:none!important}body{cursor:auto}}
+
+/* Final night-mode contrast and comfortable mobile reading pass. */
+[data-theme=dark] .palace-shortcuts{background:linear-gradient(125deg,#103f42,#08292f);border-color:#92713d}
+[data-theme=dark] .palace-shortcut{color:#fff0d3!important}
+[data-theme=dark] .palace-shortcut:hover{background:#1b5351}
+[data-theme=dark] .palace-shortcut:not(:last-child):after{background:#d7ac6759}
+[data-theme=dark] .palace-shortcut strong{color:#fff3dd}
+[data-theme=dark] .palace-shortcut-arrow{color:#dabb86}
+[data-theme=dark] .palace-seva-tile>div{background:linear-gradient(0deg,#071e21f5,#102f30e5 70%,transparent)}
+[data-theme=dark] .palace-seva-tile h2{color:#f7e7c3}
+[data-theme=dark] .palace-seva-tile p{color:#e9d6b5}
+[data-theme=dark] .palace-reader-tools button[aria-pressed=true]{background:#3c5243;color:#ffe7b5;border-color:#e0b778}
+@media(max-width:750px){.palace-card p{font-size:12.5px;line-height:1.5}.palace-program p{font-size:12.5px}.palace-shortcut strong{font-size:13px}.site-header .nav-bar{padding-bottom:37px}.palace-language{top:auto;bottom:6px;right:calc(50% - 60px)}.site-header .nav-bar nav{top:115px}.palace-pill{font-size:13px}}
+@media(max-width:390px){.palace-shortcut strong{font-size:12px}}
