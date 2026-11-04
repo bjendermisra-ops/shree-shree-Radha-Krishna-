@@ -1,6 +1,6 @@
 # Sri Sri Radha Krishna Chandra Mandir website
 
-Production website for the Android temple app, built with React 19, TypeScript and Vite. The homepage is pre-rendered during the production build for crawlable content and a complete first response.
+Official temple-first website for Shree Shree Radha Krishna Chandra Mandir, built with React 19, TypeScript and Vite. The homepage and inner pages are pre-rendered during production builds for crawlable content and a complete first response. The Android app is an optional secondary resource, not the primary website identity.
 
 ## Development
 
@@ -46,10 +46,10 @@ the feature explorer below uses actual supplied Android screenshots.
 
 ### Website routes
 
-`/`, `/temple`, `/visit`, `/sunday-feast`, `/features`, `/learning`, `/aarti`,
+`/`, `/temple`, `/visit`, `/sunday-feast`, `/festivals`, `/seva`, `/features`, `/learning`, `/aarti`,
 `/damodar-ashtakam`, `/ekadashi`, `/contact`, `/privacy`, `/terms`.
 All routes are built to real HTML documents, then hydrated with React. Vercel
-clean URLs serve the corresponding HTML. There is a real noindex 404 document.
+clean URLs serve the corresponding HTML. There is a real noindex 404 document. The Royal Vrindavan redesign adds the standalone /festivals and /seva routes.
 This is an interactive frontend with build-time rendering; there is no account,
 payment, donation processing, or contact database. The contact form prepares a
 WhatsApp draft for the visitor to review/send. No messages are silently sent.
@@ -80,7 +80,7 @@ Optimized to WebP (about 132 KB). Real deity photo remains `temple.webp`.
 
 Build script emits page-specific titles/descriptions, canonicals, Open Graph,
 WebPage/WebSite/HinduTemple/MobileApplication/BreadcrumbList structured data as
-applicable, and a sitemap covering all 12 pages. Important text is present in HTML
+applicable, and a sitemap covering all 14 pages. Important text is present in HTML
 without JavaScript. Temple aliases Sri/Shri/Shree are stated naturally on `/temple`
 and in `alternateName`, rather than repeated keyword stuffing or doorway pages.
 
@@ -105,3 +105,14 @@ menu, tab switching, theme, search, reader script/size and saved-verse persisten
 
 The root `app/` directory is unchanged. It is copied by the existing preservation
 script only. No screenshot QA wrapper is published.
+
+
+## Royal Vrindavan design pass (4 November 2026)
+
+- The primary brand is **Shree Shree Radha Krishna Chandra Mandir**, not any application or local chapter branding.
+- Real existing temple darshan photography is used as the homepage hero. Devotional still-life images are labeled as illustrations, not photographs of the temple.
+- Mobile-first cinematic home, quick darshan links, daily service schedule, full eight-verse reader, festival discovery and verified seva enquiry.
+- No made-up festival dates, direct payment interface or unverified live darshan claim. Directions and existing schedule remain available.
+- The existing `app/` redirect content and **all files in the separate `iskcon-mob` repository** remain untouched.
+- `src/Royal.tsx` and `src/royal.css` contain the new presentation; original information architecture and app feature pages remain accessible.
+- GitHub Actions runs `npm run check`, including TypeScript build, SSR output and route validation.
