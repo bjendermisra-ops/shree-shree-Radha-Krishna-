@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 540" fill="none" role="img" aria-label="Decorative peacock feather illustration">
+<defs><linearGradient id="stem" x1="0" y1="0" x2=".5" y2="1"><stop stop-color="#d9a850"/><stop offset="1" stop-color="#536f35"/></linearGradient><radialGradient id="eye"><stop stop-color="#161e4f"/><stop offset=".26" stop-color="#2544a2"/><stop offset=".48" stop-color="#14a6a9"/><stop offset=".7" stop-color="#d6a742"/><stop offset="1" stop-color="#3c6b42"/></radialGradient></defs>
+<path d="M54 521Q162 345 168 80" stroke="url(#stem)" stroke-width="5" stroke-linecap="round"/>
+<g stroke="#608b4a" stroke-width="2.7" stroke-linecap="round" opacity=".9">
+<path d="M155 150Q15 75 37 34M158 166Q12 114 19 78M160 187Q9 145 10 112M161 215Q16 191 17 151M162 238Q12 226 19 182M162 260Q18 266 29 217M161 283Q30 318 48 251M160 308Q54 364 65 282"/>
+<path d="M175 150Q285 86 250 31M175 170Q294 127 270 74M175 192Q289 170 282 117M175 213Q283 205 285 161M172 237Q290 254 286 201M170 259Q279 285 276 243M170 288Q274 332 258 283M168 313Q260 361 236 312"/>
+</g>
+<path d="M166 32C104 95 84 149 165 207c78-59 57-121 1-175Z" fill="#477248" stroke="#c69b49" stroke-width="4"/>
+<ellipse cx="165" cy="130" rx="49" ry="65" fill="url(#eye)"/>
+<ellipse cx="166" cy="132" rx="16" ry="35" fill="#12224d"/><ellipse cx="166" cy="120" rx="7" ry="14" fill="#173d8f"/>
+</svg>

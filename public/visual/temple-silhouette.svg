@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" fill="none" role="img" aria-label="Decorative Indian temple silhouette, not a representation of the actual mandir">
+<defs><linearGradient id="sand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3d8a0"/><stop offset=".55" stop-color="#be9055"/><stop offset="1" stop-color="#7c4a2c"/></linearGradient></defs>
+<path d="M0 275h1000v25H0z" fill="#8f5434"/>
+<g fill="url(#sand)" stroke="#7f4426" stroke-width="3">
+<path d="M50 275V198h80v77Zm820 0v-77h80v77Z"/>
+<path d="M65 198v-18h50v18Zm820 0v-18h50v18Z"/>
+<path d="M65 180 90 138l25 42Zm820 0 25-42 25 42Z"/>
+<path d="M160 275V140h160v135Zm520 0V140h160v135Z"/>
+<path d="M182 140v-18h116v18Zm520 0v-18h116v18Z"/>
+<path d="M187 122 240 72l53 50Zm520 0 53-50 53 50Z"/>
+<path d="M340 275V115h320v160Z"/>
+<path d="M364 115 500 14l136 101Z"/>
+<path d="M410 115 500 47l90 68Z" fill="#f7d7a0"/>
+<path d="M456 275v-90q44-52 88 0v90Z" fill="#3f2231"/>
+<path d="M205 275v-60q35-32 70 0v60Zm520 0v-60q35-32 70 0v60Z" fill="#3f2231"/>
+<path d="M475 30v-22h50v22Z"/><path d="M500 8V0" stroke="#c59b54" stroke-width="6"/>
+</g><path d="M10 275h980" stroke="#eed6a2" stroke-width="8"/>
+</svg>
