@@ -28,7 +28,7 @@ const temple={
  ],
  url:base+'/',
  image:base+'/images/temple.webp',
- logo:{'@type':'ImageObject',url:base+'/brand/temple-logo-512.png',width:512,height:512},
+ logo:{'@type':'ImageObject',url:base+'/brand/radha-krishna-seal.svg',width:512,height:512},
  address:{
   '@type':'PostalAddress',
   streetAddress:'15 Number, Hadapsar',addressLocality:'Pune',
