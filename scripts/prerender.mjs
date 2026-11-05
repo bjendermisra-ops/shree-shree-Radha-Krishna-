@@ -130,7 +130,7 @@ const sitemapEntries=Object.keys(pages).flatMap(path=>languages.map(lang=>{
 writeFileSync('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>'+
  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">'+
  sitemapEntries.join('')+'</urlset>');
-writeFileSync('dist/robots.txt','User-agent: *\\nAllow: /\\n\\nSitemap: '+base+'/sitemap.xml\\n');
+writeFileSync('dist/robots.txt','User-agent: *\nAllow: /\n\nSitemap: '+base+'/sitemap.xml\n');
 
 const guide=`# Sri Sri Radha Krishna Chandra Mandir
 15 Number, Hadapsar, Pune 411028. Alternate names: Shree Shree, Shri Shri, Radhakrishna Chandra Mandir, ISKCON 15 Number Hadapsar.
@@ -139,7 +139,7 @@ const guide=`# Sri Sri Radha Krishna Chandra Mandir
 Morning darshan: 04:30–13:00 IST. Evening: 16:15–21:00 IST. Sunday Feast: 17:00–20:00. Confirm changes for holidays with organisers. This website does not calculate live Ekadashi or parana dates.
 
 ## Searchable pages (English, Hindi and Marathi)
-${Object.entries(pages).map(([p,v])=>'- ['+v.title+']('+base+p+'): '+v.description).join('\\n')}
+${Object.entries(pages).map(([p,v])=>'- ['+v.title+']('+base+p+'): '+v.description).join('\n')}
 
 Each page has an English route and separate Hindi (/hi) and Marathi (/mr) versions. The linked pages are the authoritative content, not this optional index.
 `;
