@@ -46,7 +46,7 @@ for(const lang of ['hi','mr']){
   assert(html.includes('<meta name="description"'),file+': description');
   assert(!html.includes('<!--PAGE_META-->'),file+': metadata');
   assert(html.includes('"inLanguage":"'+lang+'"'),file+': JSON-LD language');
-  for(const m of html.matchAll(/<script type="application\\/ld\\+json">(.*?)<\\/script>/gs))JSON.parse(m[1]);
+  const jsonLd=html.split('<script type="application/ld+json">')[1]?.split('</script>')[0];assert(jsonLd,file+': JSON-LD missing');JSON.parse(jsonLd);
   localizedFiles.push(file);
  }
 }
