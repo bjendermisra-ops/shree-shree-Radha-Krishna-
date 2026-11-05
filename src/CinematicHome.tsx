@@ -1,5 +1,5 @@
 
-import {useState} from 'react';
+import {useState,type CSSProperties} from 'react';
 import {ArrowRight,ArrowUpRight,BookOpen,CalendarDays,Check,ChevronRight,Clock,Flame,Flower2,GraduationCap,Heart,MapPin,Music2,Smartphone,Sun,Users,Image as ImageIcon} from 'lucide-react';
 import {PLAY,MAP,features,languageIndex} from './content';
 import type {SiteLang} from './Palace';
@@ -84,12 +84,12 @@ const shortcuts=[
 ] as const;
 
 const discovery=[
-  {title:'feat1',desc:'feat1sub',href:'/aarti',image:'/media/prayer-scripture.webp',Icon:BookOpen},
-  {title:'feat2',desc:'feat2sub',href:'/festivals',image:'/media/yamuna-moon.webp',Icon:CalendarDays},
-  {title:'feat3',desc:'feat3sub',href:'/learning',image:'/media/gita-chariot.webp',Icon:GraduationCap},
-  {title:'feat4',desc:'feat4sub',href:'/seva',image:'/media/puja-thali.webp',Icon:Heart},
-  {title:'feat5',desc:'feat5sub',href:'/gallery',image:'/images/temple.webp',Icon:ImageIcon},
-  {title:'feat6',desc:'feat6sub',href:'/sunday-feast',image:'/media/lotus-sunrise.webp',Icon:Music2}
+  {title:'feat1',desc:'feat1sub',href:'/aarti',image:'/media/prayer-scripture.webp',focus:'50% 67%',Icon:BookOpen},
+  {title:'feat2',desc:'feat2sub',href:'/festivals',image:'/media/yamuna-moon.webp',focus:'50% 74%',Icon:CalendarDays},
+  {title:'feat3',desc:'feat3sub',href:'/learning',image:'/media/gita-chariot.webp',focus:'46% 57%',Icon:GraduationCap},
+  {title:'feat4',desc:'feat4sub',href:'/seva',image:'/media/puja-thali.webp',focus:'50% 51%',Icon:Heart},
+  {title:'feat5',desc:'feat5sub',href:'/gallery',image:'/images/temple.webp',focus:'50% 48%',Icon:ImageIcon},
+  {title:'feat6',desc:'feat6sub',href:'/sunday-feast',image:'/media/lotus-sunrise.webp',focus:'50% 67%',Icon:Music2}
 ] as const;
 
 export function CinematicHome({lang}:{lang:SiteLang}){
@@ -144,8 +144,8 @@ export function CinematicHome({lang}:{lang:SiteLang}){
 
    <section className="cin-explore wrap" aria-labelledby="cin-explore-title">
      <div className="cin-heading-row"><div><span className="cin-label">{w.featureTag}</span><h2 id="cin-explore-title">{w.featureTitle}</h2></div><p>{w.featureIntro}</p></div>
-     <div className="cin-explore-grid">{discovery.map(({title,desc,href,image,Icon})=><a href={href} className="cin-explore-card" key={href}>
-       <div className="cin-explore-photo"><img src={image} alt="" loading="lazy"/><span className="cin-explore-icon"><Icon size={20}/></span></div>
+     <div className="cin-explore-grid">{discovery.map(({title,desc,href,image,focus,Icon},i)=><a href={href} className="cin-explore-card" key={href} style={{'--cin-card-index':i,'--cin-anim-delay':-(i*1200)+'ms'} as CSSProperties}>
+       <div className="cin-explore-photo"><img src={image} alt="" loading="lazy" decoding="async" style={{objectPosition:focus}}/><span className="cin-explore-icon"><Icon size={20}/></span></div>
        <div className="cin-explore-copy"><div><h3>{w[title]}</h3><p>{w[desc]}</p></div><span className="cin-round-arrow" aria-label={w.seeMore}><ArrowUpRight size={19}/></span></div>
      </a>)}</div>
    </section>
