@@ -68,7 +68,7 @@ export default function ExperienceFX(){
       if(!el||!fine.matches||reduced.matches||e.pointerType==='touch'){disable();return;}
       const t=e.target instanceof Element?e.target:null;
       const native=t?.closest('input,textarea,select,[contenteditable="true"]');
-      if(native){el.classList.remove('cin-cursor-active');document.documentElement.classList.remove('cin-fx-pointer');return;}
+      if(native){visible=false;el.classList.remove('cin-cursor-active','cin-cursor-hover');document.documentElement.classList.remove('cin-fx-pointer');return;}
       if(!started){drawX=e.clientX;drawY=e.clientY;started=true;}
       targetX=e.clientX;targetY=e.clientY;
       el.classList.add('cin-cursor-active');
