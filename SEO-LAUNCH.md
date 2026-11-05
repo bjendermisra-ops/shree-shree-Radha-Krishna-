@@ -1,67 +1,55 @@
-# Search launch and genuine discovery
+# Search visibility launch — Sri Sri Radha Krishna Chandra Mandir
 
-Primary website: https://www.srisriradhakrishnachandra.online/
+Canonical website: https://www.srisriradhakrishnachandra.online/
 Sitemap: https://www.srisriradhakrishnachandra.online/sitemap.xml
 
-## Implemented
+## Implemented November 5, 2026
 
-- 16 crawlable, pre-rendered HTML routes with unique titles, descriptions, one H1, canonical and social metadata.
-- Descriptive headings and internal links for temple visits, aarti, Damodar Ashtakam, Ekadashi, Sunday Feast, learning, seva and app features.
-- Sri/Shri/Shree spelling variants and the 15 Number Hadapsar location in visible content and entity aliases.
-- HinduTemple, WebSite, WebPage/AboutPage/ContactPage/CollectionPage, breadcrumbs, Android app and traditional prayer structured data where relevant. No fabricated ratings, reviews, location coordinates or festival dates.
-- Image-enabled sitemap, robots.txt, logo/favicon/apple icon, optional llms.txt summary, IndexNow key and explicit notification script.
-- Old Vercel hostname redirects to corresponding paths on www; no redirect is applied to unrelated hosts.
-- Build/CI validation on every push. Existing app folder is preserved.
+- 16 distinct English pages, 16 Hindi pages at `/hi/`, and 16 Marathi pages at `/mr/`: 48 pre-rendered HTML documents.
+- Per-language, per-page descriptive titles and meta descriptions; one main H1; translated visible content for visitor-facing routes.
+- Self-referential canonical URLs, reciprocal `hreflang` alternates (`en-IN`, `hi-IN`, `mr-IN`) and `x-default` on HTML documents and in the sitemap.
+- Accurate HinduTemple, WebSite, WebPage, breadcrumbs, Android app and hymn structured data where relevant. No fictional reviews, ratings or location coordinates.
+- Temple name variations in structured data and visible explanation on the Visit and About pages: Sri Sri, Shri Shri, Shree Shree, Radha Krishna Chandra, ISKCON 15 Number Hadapsar.
+- Separate user intent and internal links for darshan/aarti, visiting/address, Ekadashi, Damodar Ashtakam, Sunday Feast, kids' learning, seva, festivals, gallery, community, app and contact.
+- The user-supplied Radha-Krishna deity seal replaces the generic lotus favicon. The source photo is optimized to a 48px search icon and reused for the header and an SVG home-screen mark.
+- A canonical sitemap, robots.txt, 404 noindex page, OG/Twitter preview metadata and image URLs.
+- Automated GitHub checks test all 48 localized pages, canonical URLs, JSON-LD and XML sitemap; Vercel preview routes have been checked as 200 OK.
 
-## Submit after reviewing the live site
+## Search Console: important setup step
 
-1. Verify the apex Domain property `srisriradhakrishnachandra.online` in Google Search Console with the exact DNS TXT token Google supplies. A Domain property includes www.
-2. Submit the sitemap above. Inspect the homepage and the visit, prayers, Ekadashi, Sunday Feast and features pages. Check Google's chosen canonical after processing.
-3. Add the same domain to Bing Webmaster Tools, optionally importing the verified Search Console property. Submit the sitemap.
-4. `npm run seo:notify` is a safe dry run. `npm run seo:notify -- --submit` verifies the live public key file before notifying IndexNow's participating engines. It has not been submitted as part of this change.
-5. Check indexing, crawl errors, search queries, clicks and Core Web Vitals after search engines have collected data. Do not repeatedly request indexing or keep changing titles daily.
+The GSC Wizard connected account was checked on November 5, 2026 and returned **no registered Search Console properties**. Trying to register `https://www.srisriradhakrishnachandra.online/` returned **property not found in the Search Console of any Google account connected to the plugin**. Hence no live query, index coverage, CTR or ranking data could be verified, and no Google sitemap submission was made.
 
-## Page intent map
+The site owner should:
+1. Sign into https://search.google.com/search-console with the Google account that owns the domain.
+2. Create and **verify** a Domain property `srisriradhakrishnachandra.online` with the DNS TXT token supplied by Google. This covers both apex and www. Alternatively verify a URL-prefix property for the exact www HTTPS origin.
+3. In the verified property, submit `https://www.srisriradhakrishnachandra.online/sitemap.xml`.
+4. In GSC Wizard, connect that same Google account, register the verified property, and inspect homepage, Visit, Damodar Ashtakam, Ekadashi and language pages.
+5. Inspect performance every few weeks for real query opportunities. Do not repeatedly change titles based on one day's position.
 
-| Page | Visitor need |
+Bing Webmaster data is also not configured through the connected GSC Wizard account. It requires the Bing API key in that service.
+
+## Prioritised intent clusters (natural language, not stuffing)
+
+| Query variants real visitors may use | Most relevant page |
 | --- | --- |
-| / | Temple identity, Sri/Shri/Shree name variations, 15 Number Hadapsar |
-| /temple | About the mandir and local identity |
-| /visit | Temple opening hours, aarti schedule, address, directions |
-| /damodar-ashtakam | Damodarashtakam Sanskrit lyrics, transliteration, meaning |
-| /aarti | Daily aarti and prayer collection |
-| /ekadashi | Pune Ekadashi planner and how to confirm fasting/parana |
-| /sunday-feast | Sunday kirtan, katha, prasad and 5–8 PM programme |
-| /features | Temple Android app features and Google Play download |
-| /learning | Kids Sanskar, Gita classes and spiritual learning enquiries |
-| /festivals | Temple festival and devotional programme information |
-| /seva | Volunteering and seva enquiries |
-| /contact | Temple contact and visitor questions |
-| /gallery | Real temple deity photograph |
-| /community | Community participation |
-| /privacy, /terms | Trust, privacy and website usage information |
+| Sri Sri Radha Krishna Chandra Mandir, Shree Shree Radhakrishna Chandra Mandir, Shri Shri Radha Krishna, 15 Number Mandir Pune, ISKCON 15 No Hadapsar | Home, About |
+| ISKCON 15 Number darshan time, Radha Krishna Chandra Mandir Hadapsar address, morning evening aarti Pune | Visit |
+| Damodar Ashtakam 8 verses, Sri Damodarastakam Sanskrit lyrics, दामोदर अष्टकम्, कार्तिक दामोदराष्टकम् | Damodar Ashtakam |
+| Mangala aarti, Tulasi aarti, Nrsimha pranam, prayers in Hadapsar | Aarti |
+| Ekadashi in Pune, Ekadashi date and parana guidance, एकादशी दिनदर्शिका पुणे | Ekadashi |
+| Sunday Feast Hadapsar, Sunday kirtan Pune, mahaprasad on Sunday, रविवार उत्सव | Sunday Feast |
+| Kids Sanskar Pune, children's Gita study Hadapsar, बाल संस्कार | Learning |
+| Volunteer seva in Hadapsar, temple volunteering Pune, volunteering for festivals | Seva |
+| Krishna Janmashtami events in Hadapsar, Kartik month programs Pune, temple festivals | Festivals |
 
-## Genuine links: priority and action
+These are research themes and intent mapping, **not measured search-volume or actual ranking claims**.
 
-| Source | Action | Status |
-| --- | --- | --- |
-| This project's GitHub README | Visible website, visit and prayer links for repository visitors | Added |
-| Existing Google Business Profile for this exact 15 Number temple | Owner updates its website field and confirms address/name; do not create duplicate listings | Owner action |
-| Temple app's Google Play listing | Owner updates website/support URL and relevant app description | Owner action |
-| Existing temple YouTube/Instagram/Facebook profiles | Owner adds the website to the official profile and relevant real posts | Owner action |
-| iskconhadapsar.com | Ask its administrator whether a relevant community/app resource link is appropriate; its published address differs, so do not imply it is the same location | Not contacted |
-| Real partner temples, schools, community organisers | Request a link only where there is a real collaboration or useful event/resource | Not contacted |
+## Real-world visibility is essential
 
-No backlink outreach messages were sent, paid links purchased, automated directory profiles created or search-engine submissions made. Those external actions need the correct account/recipient and factual relationship. One genuine relevant citation is preferable to a manufactured link campaign.
+Search visibility requires more than code:
+- Keep **one** accurate Google Business Profile for the actual temple, with approved name, address, website, photos, category and verified hours. Do not create duplicate profiles or invent addresses.
+- Put the canonical site URL on the temple's real social accounts, app listing and official event announcements.
+- Publish authentic helpful event updates with validated dates, original temple photos and accurate notices. Avoid doorway pages, paid link spam, keyword stuffing or fabricated testimonials.
+- Fix any indexing and Core Web Vitals issues from **actual** Search Console and field metrics.
 
-## Practical limits
-
-Indexability is not indexing or ranking. No system guarantees #1 for every misspelling or partial name. Google Play search ranking is separate from website ranking. The existing translated views are client-side, so we do not claim 48 independently indexable language pages or emit false hreflang tags.
-
-AI search uses the same accessible, clear and useful source content. llms.txt is a convenient optional summary, not an instruction that forces AI recommendations. Do not use hidden keywords, fake reviews or doorway pages.
-
-References:
-- https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
-- https://developers.google.com/search/docs/essentials/spam-policies
-- https://developers.google.com/search/docs/appearance/site-names
-- https://www.indexnow.org/documentation
+No SEO can legitimately guarantee ranking #1 for every spelling, partial word or search query. Indexability is not indexing or ranking. Google site names and favicons may take days or weeks to update following recrawl.
