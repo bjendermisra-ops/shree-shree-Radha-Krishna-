@@ -133,11 +133,11 @@
   /* Always-on subtle motion, visible only on-screen. No auto-scrolling content. */
   html.cin-fx-motion .cin-explore-card.cin-fx-visible .cin-explore-photo img {
     animation:cin-portrait-breathe 12s ease-in-out infinite alternate;
-    animation-delay:calc(var(--cin-card-index,0) * -900ms);
+    animation-delay:var(--cin-anim-delay,0ms);
   }
   html.cin-fx-motion .cin-explore-card.cin-fx-visible .cin-explore-photo::after {
     animation:cin-light-sweep 11s cubic-bezier(.4,0,.6,1) infinite;
-    animation-delay:calc(var(--cin-card-index,0) * -1600ms);
+    animation-delay:var(--cin-anim-delay,0ms);
   }
   html.cin-fx-motion .cin-explore-card.cin-fx-visible .cin-explore-icon {
     animation:cin-icon-float 4.4s ease-in-out infinite;
