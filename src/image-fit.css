@@ -1,0 +1,263 @@
+/* Responsive image composition patch — Nov 2026
+ * The temple photograph may cover its frame; devotional artwork and app
+ * screenshots must remain visible without cropping their subject/edges.
+ * Loaded after production-polish.css to supersede old object-fit rules.
+ */
+
+/* Main festival spotlight: separate media and text, never cover Krishna with
+   the dark caption gradient. For narrow screens the image gets its own row. */
+.cin-root .cin-damodar {
+  display:grid;
+  grid-template-columns:minmax(0, 1.18fr) minmax(0, .82fr);
+  align-items:stretch;
+  isolation:isolate;
+  min-height:clamp(410px,35vw,500px);
+  background:radial-gradient(ellipse at 76% 40%,#7d3840 0%,#410e22 56%,#230712 100%);
+  border:1px solid #cb98505c;
+}
+.cin-root .cin-damodar>img,
+.cin-root .cin-damodar>img[src^="/media/"],
+.cin-root .cin-damodar>img[src^="/visual/"] {
+  display:block;
+  position:relative;
+  inset:auto;
+  grid-column:2;
+  grid-row:1;
+  z-index:1;
+  width:100%;
+  height:100%;
+  max-height:510px;
+  object-fit:contain;
+  object-position:center center;
+  opacity:1;
+  padding:14px 12px 14px 0;
+  filter:none;
+  transform:none;
+}
+.cin-root .cin-damodar:hover>img {transform:none}
+.cin-root .cin-damodar .cin-focus-dim,
+.cin-root .cin-damodar:has(>img[src^="/visual/"]) .cin-focus-dim {
+  z-index:0;
+  background:radial-gradient(circle at 72% 47%,#e9ab7224,transparent 52%);
+  pointer-events:none;
+}
+.cin-root .cin-damodar .cin-damodar-copy {
+  position:relative;
+  z-index:2;
+  grid-column:1;
+  grid-row:1;
+  justify-content:center;
+  width:auto;
+  min-width:0;
+  min-height:0;
+  max-width:100%;
+  padding:clamp(22px,2.4vw,40px) clamp(16px,2.2vw,35px);
+}
+.cin-root .cin-damodar h3 {
+  font-size:clamp(29px,2.8vw,50px);
+  overflow-wrap:anywhere;
+  line-height:1.04;
+}
+.cin-root .cin-damodar p {
+  font-size:clamp(13px,1.13vw,16px);
+  line-height:1.6;
+  margin:13px 0 20px;
+}
+.cin-root .cin-damodar .cin-small-cta {
+  padding:11px 14px;
+  text-align:left;
+  font-size:clamp(11px,1vw,13px);
+  max-width:100%;
+  overflow-wrap:anywhere;
+}
+.cin-root .cin-damodar .cin-chip {
+  max-width:100%;
+  line-height:1.4;
+  white-space:normal;
+}
+
+/* Editorial inner-page art is a framed image, not a hero background.
+   Fixed-height cover was cutting Krishna's face out of the mobile image. */
+.page-hero.wrap.cinematic-inner-hero {min-width:0}
+.cinematic-inner-hero .cin-page-visual {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  min-height:0;
+  width:100%;
+  height:clamp(340px,37vw,520px);
+  aspect-ratio:auto;
+  background:radial-gradient(circle at 50% 45%,#764e55 0%,#3b1d2b 50%,#29111b 100%);
+  overflow:hidden;
+  box-shadow:0 13px 32px #35111e29;
+}
+.cinematic-inner-hero .cin-page-visual:after {display:none}
+.cinematic-inner-hero .cin-page-visual img,
+.cinematic-inner-hero .cin-page-visual img[src^="/media/"],
+.cinematic-inner-hero .cin-page-visual img[src^="/images/"] {
+  display:block;
+  position:relative;
+  width:100%;
+  flex:1 1 auto;
+  min-height:0;
+  height:calc(100% - 52px);
+  object-fit:contain;
+  object-position:center center;
+  padding:10px;
+  transform:none;
+}
+.cinematic-inner-hero .cin-page-visual:hover img {transform:none}
+.cinematic-inner-hero .cin-page-visual[data-media-kind="temple-photo"] img {
+  object-fit:cover;
+  padding:0;
+  object-position:center 40%;
+}
+.cinematic-inner-hero .cin-page-visual figcaption {
+  display:flex;
+  align-items:center;
+  flex:0 0 auto;
+  position:static;
+  z-index:1;
+  min-height:48px;
+  padding:11px 17px;
+  background:#381420;
+  color:#fff5e9;
+  font-size:clamp(10px,.9vw,13px);
+  line-height:1.45;
+  letter-spacing:0;
+}
+
+/* Art-specific subpage treatments: preserve complete illustrative imagery. */
+.palace-inner-image img[src^="/media/"] {
+  min-height:0;
+  width:100%;
+  height:auto;
+  aspect-ratio:4/3;
+  object-fit:contain;
+  object-position:center;
+  padding:10px;
+  background:radial-gradient(circle at 50% 50%,#ddc29b,#3f1c26);
+}
+.palace-inner-image img[src^="/images/temple"] {object-fit:cover}
+.cin-root .cin-explore-photo img[src^="/media/"],
+.cin-root .cin-explore-photo img[src^="/visual/"] {
+  object-fit:contain;
+  object-position:center;
+  background:radial-gradient(circle at center,#f8dfbd,#542734);
+  padding:9px;
+}
+.cin-gallery-grid img[src^="/media/"] {
+  object-fit:contain;
+  object-position:center;
+  background:linear-gradient(130deg,#eacaa8,#3c1526);
+}
+.cin-root .cin-reflection-art img[src^="/media/"] {
+  object-fit:contain;
+  background:radial-gradient(circle at 50% 48%,#b27b5f,#2a0a1a);
+}
+.royal-featured-event>img[src^="/media/"] {
+  object-fit:contain;
+  background:#3e1724;
+}
+.royal-inner-link-grid>a .royal-card-art[src^="/media/"] {
+  object-fit:contain;
+  background:linear-gradient(120deg,#e7c6a6,#4f2231);
+  padding:5px;
+}
+
+/* At laptop width the feature card would otherwise squeeze Hindi/Marathi. */
+@media(max-width:1160px) {
+  .cin-root .cin-damodar {
+    grid-template-columns:minmax(0, 1fr) minmax(0, .8fr);
+  }
+  .cin-root .cin-damodar h3 {font-size:clamp(28px,3.25vw,43px)}
+}
+
+/* Tablet / phone: full visual in the upper panel, all text on its own
+   maroon lower panel. No impossible image crop, clipping or overlay. */
+@media(max-width:900px) {
+  .cin-root .cin-damodar {
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    gap:0;
+  }
+  .cin-root .cin-damodar>img,
+  .cin-root .cin-damodar>img[src^="/media/"],
+  .cin-root .cin-damodar>img[src^="/visual/"] {
+    display:block;
+    width:100%;
+    height:clamp(260px,55vw,400px);
+    min-height:0;
+    max-height:none;
+    object-fit:contain;
+    object-position:center;
+    flex:0 0 auto;
+    padding:18px 24px 4px;
+    background:radial-gradient(ellipse at center,#ad736344,#27071300 75%);
+  }
+  .cin-root .cin-damodar .cin-focus-dim {display:none}
+  .cin-root .cin-damodar .cin-damodar-copy {
+    flex:0 0 auto;
+    display:flex;
+    align-items:flex-start;
+    min-height:0;
+    width:100%;
+    padding:23px 26px 28px;
+    background:linear-gradient(180deg,#350c1b 0%,#240613 100%);
+  }
+  .cin-root .cin-damodar h3 {font-size:clamp(36px,5vw,52px)}
+  .cin-root .cin-damodar p {font-size:15px}
+}
+
+@media(max-width:800px) {
+  .cinematic-inner-hero .cin-page-visual {
+    flex:none;
+    width:100%;
+    min-height:0;
+    height:clamp(320px,62vw,510px);
+    aspect-ratio:auto;
+    align-self:auto;
+    margin:4px 0 0;
+  }
+}
+@media(max-width:580px) {
+  .cin-root .cin-damodar>img,
+  .cin-root .cin-damodar>img[src^="/media/"],
+  .cin-root .cin-damodar>img[src^="/visual/"] {
+    width:100%;
+    height:clamp(290px,84vw,390px);
+    padding:10px 12px 4px;
+    opacity:1;
+  }
+  .cin-root .cin-damodar .cin-damodar-copy {
+    min-height:0;
+    padding:22px 22px 28px;
+  }
+  .cin-root .cin-damodar h3 {
+    font-size:clamp(35px,8.5vw,47px);
+    line-height:1.06;
+  }
+  .cin-root .cin-damodar p {font-size:clamp(13px,3.75vw,16px)}
+  .cinematic-inner-hero .cin-page-visual {
+    height:clamp(320px,110vw,460px);
+  }
+  .cinematic-inner-hero .cin-page-visual figcaption {
+    font-size:11px;
+    padding:10px 13px;
+    min-height:52px;
+  }
+  .cin-root .cin-explore-photo {height:clamp(130px,37vw,170px)}
+  .cin-root .cin-explore-photo img[src^="/media/"] {padding:6px}
+}
+@media(max-width:360px) {
+  .cin-root .cin-damodar .cin-damodar-copy {padding:18px 17px 22px}
+  .cin-root .cin-damodar h3 {font-size:clamp(32px,8.4vw,39px)}
+  .cin-root .cin-damodar>img[src^="/media/"] {height:285px}
+  .cinematic-inner-hero .cin-page-visual {height:340px}
+}
+/* Retain reduced motion and keyboard visibility. */
+@media(prefers-reduced-motion:reduce) {
+ .cin-root .cin-damodar>img,.cinematic-inner-hero .cin-page-visual img{transition:none!important}
+}
