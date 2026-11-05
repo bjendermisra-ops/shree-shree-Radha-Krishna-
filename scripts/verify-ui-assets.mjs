@@ -1,6 +1,14 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 
+const faviconSvg=fs.readFileSync('public/favicon.svg','utf8');
+const emblemSvg=fs.readFileSync('public/brand/radha-krishna-seal.svg','utf8');
+const legacyMark=fs.readFileSync('public/brand/temple-mark.svg','utf8');
+assert.equal(faviconSvg,emblemSvg,'favicon.svg must match approved Radha-Krishna emblem');
+assert.equal(legacyMark,emblemSvg,'legacy temple-mark.svg must no longer show the old mark');
+assert(faviconSvg.includes('data:image/png;base64,'),'Favicon must contain its own artwork with no external dependency');
+assert(fs.readFileSync('index.html','utf8').includes('href="/favicon.svg"'),'Site must advertise updated SVG');
+assert(fs.statSync('public/favicon-48.png').size>1000,'PNG favicon missing or unexpectedly small');
 const media=['gita-chariot.webp','krishna-flute.webp','krishna-moon.webp','lotus-sunrise.webp','prayer-scripture.webp','temple-architecture-art.webp','yamuna-moon.webp','worship-diya.webp','bhagavad-gita-book.webp','puja-thali.webp','tulsi-japa.webp','bal-krishna.webp'];
 for(const file of media){
  const path='public/media/'+file;
