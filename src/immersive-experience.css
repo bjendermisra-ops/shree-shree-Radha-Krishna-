@@ -1,0 +1,314 @@
+/* Immersive temple experience — progressive, accessible, mobile-aware.
+   Last import wins over legacy object-fit:contain portrait strip rules.
+   Sources are authenticated devotional assets already in /media and /images. */
+
+/* Cards: deliberately consistent 4:5 photo art-direction on every viewport.
+   A portrait file always fills its card; per-image object-position protects
+   the subject from cropping. No letterboxing, horizontal bands or blank edges. */
+.cin-root .cin-explore-grid {
+  align-items:stretch;
+  gap:clamp(12px,1.7vw,24px);
+}
+.cin-root .cin-explore-card {
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  position:relative;
+  border-radius:clamp(18px,1.8vw,26px);
+  isolation:isolate;
+  overflow:hidden;
+  background:var(--panel);
+  border:1px solid #b88c5e38;
+  box-shadow:0 10px 33px #3f141c12;
+}
+.cin-root .cin-explore-card .cin-explore-photo {
+  display:block;
+  position:relative;
+  width:100%;
+  height:auto;
+  min-height:0;
+  aspect-ratio:4 / 5;
+  overflow:hidden;
+  flex:none;
+  border-radius:0;
+  background:#371823;
+}
+.cin-root .cin-explore-card .cin-explore-photo img,
+.cin-root .cin-explore-card .cin-explore-photo img[src^="/media/"],
+.cin-root .cin-explore-card .cin-explore-photo img[src^="/images/"] {
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  max-height:none;
+  padding:0;
+  margin:0;
+  object-fit:cover;
+  object-position:var(--cin-focal,50% 50%);
+  background:transparent;
+  filter:none;
+  transform:scale(1.005);
+  will-change:auto;
+  transition:transform 650ms cubic-bezier(.2,.8,.2,1),filter 300ms ease;
+}
+.cin-root .cin-explore-card .cin-explore-photo::before {
+  content:'';
+  position:absolute;
+  z-index:1;
+  pointer-events:none;
+  inset:0;
+  background:linear-gradient(180deg,#27091500 61%,#26091540 100%);
+}
+.cin-root .cin-explore-card .cin-explore-photo::after {
+  content:'';
+  position:absolute;
+  pointer-events:none;
+  z-index:1;
+  inset:0;
+  background:linear-gradient(112deg,transparent 28%,#ffe5b91a 49%,transparent 67%);
+  transform:translateX(-115%);
+}
+.cin-root .cin-explore-card .cin-explore-icon {
+  z-index:3;
+  left:clamp(9px,1.4vw,19px);
+  bottom:clamp(9px,1.4vw,19px);
+  color:#79212f;
+  border-radius:15px;
+  width:clamp(39px,4vw,55px);
+  height:clamp(39px,4vw,55px);
+  border:1px solid #b7864d38;
+  backdrop-filter:blur(8px);
+  box-shadow:0 10px 25px #2309104f;
+}
+.cin-root .cin-explore-card .cin-explore-copy {
+  display:flex;
+  flex:1 1 auto;
+  align-items:end;
+  gap:9px;
+  min-height:120px;
+  padding:clamp(13px,1.6vw,25px);
+}
+.cin-root .cin-explore-card .cin-explore-copy h3 {
+  font-size:clamp(23px,2.1vw,34px);
+  line-height:1.1;
+}
+.cin-root .cin-explore-card .cin-explore-copy p {
+  margin:9px 0 0;
+  font-size:clamp(12px,1vw,15px);
+  line-height:1.55;
+}
+.cin-root .cin-explore-card .cin-round-arrow {
+  flex:none;
+  width:clamp(30px,3.2vw,44px);
+  height:clamp(30px,3.2vw,44px);
+  transition:transform 250ms ease,background 250ms ease;
+}
+.cin-root .cin-explore-card:hover .cin-round-arrow,
+.cin-root .cin-explore-card:focus-visible .cin-round-arrow {
+  transform:rotate(45deg);
+  background:#f2d7ad;
+}
+.cin-root .cin-explore-card:focus-visible {
+  outline:3px solid #e5aa50;
+  outline-offset:5px;
+}
+
+/* Scroll reveals only after JS confirms IntersectionObserver. SSR and no-JS are safe. */
+@media(prefers-reduced-motion:no-preference) {
+  html.cin-fx-motion .cin-fx-reveal {
+    transition-property:opacity,transform;
+    transition-duration:620ms,620ms;
+    transition-timing-function:cubic-bezier(.22,.85,.21,1);
+    transition-delay:var(--cin-stagger,0ms);
+  }
+  html.cin-fx-motion .cin-fx-reveal:not(.cin-fx-visible) {
+    opacity:0;
+    transform:translate3d(0,16px,0);
+  }
+  html.cin-fx-motion .cin-fx-reveal.cin-fx-visible {
+    opacity:1;
+  }
+  /* Always-on subtle motion, visible only on-screen. No auto-scrolling content. */
+  html.cin-fx-motion .cin-explore-card.cin-fx-visible .cin-explore-photo img {
+    animation:cin-portrait-breathe 12s ease-in-out infinite alternate;
+    animation-delay:calc(var(--cin-card-index,0) * -900ms);
+  }
+  html.cin-fx-motion .cin-explore-card.cin-fx-visible .cin-explore-photo::after {
+    animation:cin-light-sweep 11s cubic-bezier(.4,0,.6,1) infinite;
+    animation-delay:calc(var(--cin-card-index,0) * -1600ms);
+  }
+  html.cin-fx-motion .cin-explore-card.cin-fx-visible .cin-explore-icon {
+    animation:cin-icon-float 4.4s ease-in-out infinite;
+    animation-delay:calc(var(--cin-card-index,0) * -620ms);
+  }
+  html.cin-fx-motion .cin-shortcuts a.cin-fx-visible svg {
+    animation:cin-icon-float 5.4s ease-in-out infinite;
+    animation-delay:var(--cin-stagger,0ms);
+  }
+  .cin-root .cin-chant {
+    background:linear-gradient(104deg,#5b1824,#8d3340,#50121d);
+    background-size:240% 100%;
+    animation:cin-chant-glow 18s ease-in-out infinite alternate;
+  }
+  .cin-root .cin-hero:after {
+    animation:cin-hero-aura 11s ease-in-out infinite alternate;
+  }
+  .cin-root .cin-hero-side-note {
+    animation:cin-note-glow 5s ease-in-out infinite alternate;
+  }
+  /* Use a subtle slow glow instead of jumpy animation on the phone. */
+  .cin-root .cin-visit-note>svg {
+    animation:cin-icon-float 6s ease-in-out infinite;
+  }
+}
+@keyframes cin-portrait-breathe {
+  from{transform:scale(1.005)}
+  to{transform:scale(1.055)}
+}
+@keyframes cin-light-sweep {
+  0%,34%{transform:translateX(-125%);opacity:0}
+  47%{opacity:1}
+  60%,100%{transform:translateX(125%);opacity:0}
+}
+@keyframes cin-icon-float {
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(0,-4px,0)}
+}
+@keyframes cin-chant-glow {
+  from{background-position:0% 50%}
+  to{background-position:100% 50%}
+}
+@keyframes cin-hero-aura {
+  from{opacity:.55;transform:scale(1)}
+  to{opacity:.95;transform:scale(1.08)}
+}
+@keyframes cin-note-glow {
+  from{opacity:.55}to{opacity:.9}
+}
+/* Fine-pointer interaction: motion follows the cursor, never mouse-clicks or input. */
+.cin-custom-cursor {
+  position:fixed;
+  top:0;
+  left:0;
+  width:48px;
+  height:48px;
+  z-index:2147483000;
+  pointer-events:none;
+  opacity:0;
+  display:none;
+  isolation:isolate;
+  will-change:transform;
+  transition:opacity 160ms ease;
+}
+.cin-custom-cursor .cin-cursor-ring {
+  position:absolute;
+  inset:2px;
+  border:1.5px solid #d49b4d;
+  border-radius:50%;
+  background:rgba(205,148,61,.07);
+  box-shadow:0 0 0 1px #4c1a261c,0 0 20px #d59c5466;
+  transition:transform 250ms ease,background 250ms ease,border-color 250ms ease;
+}
+.cin-custom-cursor .cin-cursor-core {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:#dba14a;
+  box-shadow:0 0 8px #d49b4d;
+}
+.cin-custom-cursor .cin-cursor-aura {
+  position:absolute;
+  inset:-15px;
+  background:radial-gradient(circle,#d7a45822,transparent 66%);
+  border-radius:50%;
+  opacity:.65;
+  animation:cin-cursor-pulse 3s ease-in-out infinite;
+}
+@keyframes cin-cursor-pulse {
+  0%,100%{transform:scale(.8);opacity:.28}
+  50%{transform:scale(1.15);opacity:.7}
+}
+@media (hover:hover) and (pointer:fine) and (min-width:768px) {
+  .cin-custom-cursor {display:block}
+  .cin-custom-cursor.cin-cursor-active {opacity:1}
+  .cin-custom-cursor.cin-cursor-hover .cin-cursor-ring {
+    transform:scale(1.48);
+    border-color:#f8cb7c;
+    background:#a95d331b;
+    box-shadow:0 0 25px #d49b4d88;
+  }
+  .cin-custom-cursor.cin-cursor-pressed .cin-cursor-ring {transform:scale(.68)}
+  html.cin-fx-pointer body,html.cin-fx-pointer a,html.cin-fx-pointer button,html.cin-fx-pointer summary {
+    cursor:none;
+  }
+  html.cin-fx-pointer input,
+  html.cin-fx-pointer textarea,
+  html.cin-fx-pointer select,
+  html.cin-fx-pointer [contenteditable="true"] {cursor:auto}
+  /* Desktop hover tilts the visual priority without requiring heavy 3D libraries. */
+  .cin-root .cin-explore-card:hover .cin-explore-photo img {
+    animation:none;
+    transform:scale(1.09);
+  }
+}
+@media (max-width:767px),(hover:none),(pointer:coarse) {
+  .cin-custom-cursor {display:none!important}
+  .cin-root .cin-explore-card:hover {transform:none}
+}
+
+/* True 2-column mobile editorial cards, same 4:5 media ratio at every width. */
+@media(max-width:700px) {
+  .cin-root .cin-explore-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(10px,3vw,15px);
+  }
+  .cin-root .cin-explore-card .cin-explore-photo {
+    height:auto;
+    aspect-ratio:4 / 5;
+  }
+  .cin-root .cin-explore-card .cin-explore-copy {
+    min-height:112px;
+    padding:12px 11px 16px;
+    gap:4px;
+  }
+  .cin-root .cin-explore-card .cin-explore-copy h3 {
+    font-size:clamp(18px,4.7vw,23px);
+    line-height:1.13;
+  }
+  .cin-root .cin-explore-card .cin-explore-copy p {
+    font-size:clamp(11px,3.15vw,13px);
+    line-height:1.5;
+  }
+  .cin-root .cin-explore-card .cin-explore-icon {
+    width:39px;
+    height:39px;
+    left:9px;
+    bottom:9px;
+  }
+  .cin-root .cin-explore-card .cin-round-arrow {
+    width:28px;
+    height:28px;
+  }
+  .cin-root .cin-explore-card .cin-round-arrow svg {width:15px}
+}
+@media(max-width:345px){
+  .cin-root .cin-explore-grid {grid-template-columns:1fr 1fr;gap:9px}
+  .cin-root .cin-explore-card .cin-explore-copy {padding:11px 9px 13px}
+  .cin-root .cin-explore-card .cin-explore-copy h3 {font-size:17px}
+  .cin-root .cin-explore-card .cin-explore-copy p {font-size:11px}
+}
+@media(prefers-reduced-motion:reduce) {
+  html.cin-fx-motion .cin-fx-reveal {opacity:1;transform:none;transition:none}
+  .cin-root .cin-explore-photo img,.cin-root .cin-chant,.cin-root .cin-hero:after,
+  .cin-root .cin-shortcuts svg,.cin-custom-cursor *, .cin-visit-note>svg {
+    animation:none!important;transition:none!important
+  }
+  .cin-custom-cursor{display:none!important}
+  html.cin-fx-pointer body,html.cin-fx-pointer a,html.cin-fx-pointer button {cursor:auto}
+}
