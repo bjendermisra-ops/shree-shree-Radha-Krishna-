@@ -1,16 +1,6 @@
-
-import {useState,type CSSProperties} from 'react';
-import {ArrowRight,ArrowUpRight,BookOpen,CalendarDays,Check,ChevronRight,Clock,Flame,Flower2,GraduationCap,Heart,MapPin,Music2,Smartphone,Sun,Users,Image as ImageIcon} from 'lucide-react';
-import {PLAY,MAP,features,languageIndex} from './content';
+import {ArrowUpRight,ArrowRight,BookOpen,CalendarDays,Clock,Flower2,Heart,MapPin,Music2,Smartphone,Sun,Moon} from 'lucide-react';
+import {MAP} from './content';
 import type {SiteLang} from './Palace';
-import FestivalSpotlight from './FestivalSpotlight';
-import {StoreBadge} from './StoreBadge';
-
-/**
- * Visual direction: user-approved cinematic mobile + desktop references.
- * Actual temple deity image and app captures are reused from public/images.
- * Illustrative festival imagery is not represented as a photograph of the mandir.
- */
 const translations:Record<SiteLang,Record<string,string>>={
   en:{
     place:'15 NUMBER · HADAPSAR · PUNE',brand:'SRI SRI RADHA KRISHNA CHANDRA MANDIR',
@@ -74,108 +64,24 @@ const translations:Record<SiteLang,Record<string,string>>={
   }
 };
 
-const shortcuts=[
-  {key:'darshan',href:'/visit',Icon:Flower2},
-  {key:'ekadashi',href:'/ekadashi',Icon:CalendarDays},
-  {key:'prayers',href:'/aarti',Icon:BookOpen},
-  {key:'festivals',href:'/festivals',Icon:Flame},
-  {key:'community',href:'/community',Icon:Users},
-  {key:'appShort',href:'/features',Icon:Smartphone}
-] as const;
 
-const discovery=[
-  {title:'feat1',desc:'feat1sub',href:'/aarti',image:'/media/prayer-scripture.webp',focus:'50% 67%',Icon:BookOpen},
-  {title:'feat2',desc:'feat2sub',href:'/festivals',image:'/media/yamuna-moon.webp',focus:'50% 74%',Icon:CalendarDays},
-  {title:'feat3',desc:'feat3sub',href:'/learning',image:'/media/gita-chariot.webp',focus:'46% 57%',Icon:GraduationCap},
-  {title:'feat4',desc:'feat4sub',href:'/seva',image:'/media/puja-thali.webp',focus:'50% 51%',Icon:Heart},
-  {title:'feat5',desc:'feat5sub',href:'/gallery',image:'/images/temple.webp',focus:'50% 48%',Icon:ImageIcon},
-  {title:'feat6',desc:'feat6sub',href:'/sunday-feast',image:'/media/lotus-sunrise.webp',focus:'50% 67%',Icon:Music2}
-] as const;
-
+const editorialCopy={
+ en:{title1:'Shree Shree',title2:'Radha Krishna',title3:'Chandra Mandir',intro:'A sacred space for devotion, darshan and community.',visit:'Plan your visit',about:'Explore the Mandir',explore:'Your everyday connection.',overline:'EXPLORE THE MANDIR',sunday:'Come together in devotion.',sundayText:'Kirtan, katha and prasadam. Every Sunday, 5–8 PM.',read:'A little time for the eternal.',readText:'Pause, read and reflect with the eight prayers of Sri Damodar Ashtakam.',readCta:'Read Damodar Ashtakam',seva:'An offering, made with love.',sevaText:'Find your place in the temple community through service and shared devotion.',sevaCta:'Explore seva',note:'All timings in IST. Festival timings may vary.',caption:'Sri Sri Radha Krishna Chandra',morning:'Morning',evening:'Evening',temple:'15 Number, Hadapsar, Pune',cards:['Join the daily aarti and prayers to deepen your devotion.','Explore sacred dates and prepare for your observance.','Share an evening of kirtan, katha and prasadam.','Keep darshan, prayers and learning close.']},
+ hi:{title1:'श्री श्री',title2:'राधा कृष्ण',title3:'चंद्र मंदिर',intro:'दर्शन, प्रार्थना और भक्त समुदाय से जुड़ने का पावन स्थान।',visit:'दर्शन की योजना बनाएँ',about:'मंदिर के बारे में',explore:'हर दिन, भक्ति से जुड़ें।',overline:'मंदिर की जानकारी',sunday:'मिलकर भक्ति का आनंद लें।',sundayText:'कीर्तन, कथा और प्रसाद। हर रविवार, शाम 5–8 बजे।',read:'कुछ पल, प्रभु के नाम।',readText:'श्री दामोदर अष्टकम् की आठ प्रार्थनाओं के साथ पढ़ें, ठहरें और चिंतन करें।',readCta:'दामोदर अष्टकम् पढ़ें',seva:'प्रेम से अर्पित एक सेवा।',sevaText:'सेवा और भक्ति के माध्यम से मंदिर के समुदाय से जुड़ें।',sevaCta:'सेवा की जानकारी',note:'भारतीय समय। उत्सव पर समय बदल सकता है।',caption:'श्री श्री राधा कृष्ण चंद्र',morning:'प्रातः',evening:'सायं',temple:'15 नंबर, हडपसर, पुणे',cards:['आरती और प्रार्थनाओं के साथ दिन को भक्तिमय बनाएँ।','पवित्र तिथियों और व्रत की जानकारी पाएँ।','कीर्तन, कथा और प्रसाद में सम्मिलित हों।','दर्शन, प्रार्थना और शिक्षा अपने साथ रखें।']},
+ mr:{title1:'श्री श्री',title2:'राधा कृष्ण',title3:'चंद्र मंदिर',intro:'दर्शन, प्रार्थना आणि भक्तांच्या सहवासासाठी एक पवित्र स्थान.',visit:'दर्शनाचे नियोजन करा',about:'मंदिराची ओळख',explore:'दररोज भक्तीशी जोडा.',overline:'मंदिराची माहिती',sunday:'एकत्र भक्तीचा आनंद घेऊया.',sundayText:'कीर्तन, कथा आणि प्रसाद. दर रविवारी, सायं. 5–8.',read:'काही क्षण, प्रभूच्या नामात.',readText:'श्री दामोदर अष्टकमच्या आठ प्रार्थनांसह वाचन आणि चिंतन करा.',readCta:'दामोदर अष्टकम् वाचा',seva:'प्रेमाने अर्पण केलेली सेवा.',sevaText:'सेवा आणि भक्तीच्या माध्यमातून मंदिराच्या समुदायाशी जोडा.',sevaCta:'सेवेची माहिती',note:'भारतीय वेळ. उत्सवात वेळ बदलू शकते.',caption:'श्री श्री राधा कृष्ण चंद्र',morning:'सकाळ',evening:'सायंकाळ',temple:'15 नंबर, हडपसर, पुणे',cards:['दररोजच्या आरती आणि प्रार्थनेत सहभागी व्हा.','पवित्र दिवस आणि व्रतांची माहिती मिळवा.','कीर्तन, कथा आणि प्रसादाचा आनंद घ्या.','दर्शन, प्रार्थना आणि शिक्षण सदैव जवळ ठेवा.']}
+};
 export function CinematicHome({lang}:{lang:SiteLang}){
- const w=translations[lang];
- const [selected,setSelected]=useState(0);
- const f=features[selected];
- const idx=languageIndex[lang];
-
- return <div className="cin-root" lang={lang}>
-   <section className="cin-hero" aria-labelledby="cin-title">
-     <img className="cin-hero-photo" src="/images/temple.webp" width="900" height="675" fetchPriority="high" decoding="async" alt="Sri Sri Radha Krishna Chandra deities at the mandir"/>
-     <div className="cin-hero-shade" aria-hidden="true"/>
-     <div className="cin-hero-inner wrap">
-       <div className="cin-hero-copy">
-         <span className="cin-overline"><span className="cin-spark">✧</span> {w.place}</span>
-         <h1 id="cin-title"><span>{w.title1}</span><strong>{w.title2}</strong><span>{w.title3}</span></h1>
-         <p className="cin-tagline">{w.tagline}</p>
-         <p className="cin-intro">{w.intro}</p>
-         <div className="cin-buttons">
-           <a className="cin-btn cin-btn-gold" href="/visit">{w.visit}<ArrowUpRight size={19}/></a>
-           <a className="cin-btn cin-btn-outline" href="/features"><Smartphone size={18}/>{w.app}</a>
-         </div>
-       </div>
-       <div className="cin-hero-side-note" aria-hidden="true">॥ राधे राधे ॥</div>
-     </div>
-     <div className="cin-hero-bottom" aria-hidden="true"><img src="/visual/ornament-divider.svg" alt=""/></div>
-   </section>
-
-   <nav className="cin-shortcuts wrap" aria-label={w.navTitle}>
-     {shortcuts.map(({key,href,Icon})=><a href={href} key={href}><Icon size={27} strokeWidth={1.7}/><span>{w[key]}</span></a>)}
-   </nav>
-
-   <div className="cin-chant" aria-label={w.closing}><span>✺</span> हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे <span>✺</span> हरे राम हरे राम राम राम हरे हरे <span>✺</span></div>
-
-   <section className="cin-intro-section wrap">
-     <div className="cin-intro-heading"><span className="cin-label">{w.navTitle}</span><h2>{w.featureTitle}</h2><p>{w.navSubtitle}</p></div>
-     <div className="cin-highlights">
-       <FestivalSpotlight lang={lang} fallback={{label:w.festivalTag,title:w.festivalTitle,description:w.festivalDesc,cta:w.festivalCta}}/>
-       <div className="cin-schedule-card">
-         <div className="cin-schedule-top"><span className="cin-label"><Clock size={17}/>{w.today}</span><h3>{w.schedule}</h3><p>{w.todaySub}</p></div>
-         <div className="cin-schedule-row"><Sun size={23}/><span>{w.morning}</span><strong>4:30 AM – 1 PM</strong></div>
-         <div className="cin-schedule-row"><Flame size={23}/><span>{w.evening}</span><strong>4:15 PM – 9 PM</strong></div>
-         <p className="cin-disclaimer">{w.timeNote}</p>
-         <a className="cin-btn cin-btn-maroon" href="/visit">{w.scheduleCta}<ArrowRight size={18}/></a>
-       </div>
-       <a className="cin-visit-card" href={MAP}>
-         <img src="/media/temple-architecture-art.webp" width="1000" height="300" loading="lazy" alt="Artistic Indian temple architecture; not a photograph of the Hadapsar mandir"/>
-         <span className="cin-visit-overlay"><MapPin size={20}/><strong>{w.directions}</strong><ArrowUpRight size={19}/></span>
-       </a>
-     </div>
-   </section>
-
-   <section className="cin-explore wrap" aria-labelledby="cin-explore-title">
-     <div className="cin-heading-row"><div><span className="cin-label">{w.featureTag}</span><h2 id="cin-explore-title">{w.featureTitle}</h2></div><p>{w.featureIntro}</p></div>
-     <div className="cin-explore-grid">{discovery.map(({title,desc,href,image,focus,Icon},i)=><a href={href} className="cin-explore-card" key={href} style={{'--cin-card-index':i,'--cin-anim-delay':-(i*1200)+'ms'} as CSSProperties}>
-       <div className="cin-explore-photo"><img src={image} alt="" loading="lazy" decoding="async" style={{objectPosition:focus}}/><span className="cin-explore-icon"><Icon size={20}/></span></div>
-       <div className="cin-explore-copy"><div><h3>{w[title]}</h3><p>{w[desc]}</p></div><span className="cin-round-arrow" aria-label={w.seeMore}><ArrowUpRight size={19}/></span></div>
-     </a>)}</div>
-   </section>
-
-   <section className="cin-reflection">
-     <div className="wrap cin-reflection-grid">
-       <div><span className="cin-label">{w.devotional}</span><h2>{w.devotionalSub}</h2><p>{w.devotionalDesc}</p><a href="/temple" className="cin-text-action">{w.seeMore}<ArrowRight size={18}/></a></div>
-       <div className="cin-reflection-art"><img src="/media/krishna-flute.webp" width="900" height="675" loading="lazy" alt="Devotional illustration of Krishna flute and peacock feather"/></div>
-     </div>
-   </section>
-
-   <section className="cin-app-section wrap" aria-labelledby="cin-app-title">
-     <div className="cin-app-head"><span className="cin-label">{w.pocketTag}</span><h2 id="cin-app-title">{w.pocketTitle}</h2><p>{w.pocketDesc}</p></div>
-     <div className="cin-app-showcase">
-       <div className="cin-app-tabs" role="tablist" aria-label={w.appShort}>{features.map((item,i)=><button key={item.id} id={'cin-tab-'+i} aria-selected={selected===i} aria-controls="cin-feature-panel" role="tab" tabIndex={selected===i?0:-1} onClick={()=>setSelected(i)} onKeyDown={e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const next=(i+(e.key==='ArrowDown'?1:-1)+features.length)%features.length;setSelected(next);document.getElementById('cin-tab-'+next)?.focus()}}}><span>0{i+1}</span>{item.name[idx]}<ChevronRight size={18}/></button>)}</div>
-       <div className="cin-feature-panel" id="cin-feature-panel" role="tabpanel" aria-labelledby={'cin-tab-'+selected}>
-         <div className="cin-feature-copy"><span className="cin-label">{w.actual}</span><h3>{f.title[idx]}</h3><p>{f.description[idx]}</p><ul>{f.points.map((point,i)=><li key={i}><Check size={16}/>{point[idx]}</li>)}</ul><StoreBadge lang={lang}/></div>
-         <div className="cin-phone-stage"><div className="cin-phone"><span className="cin-phone-camera"/><img key={f.image} src={'/images/'+f.image+'.webp'} width="360" height="780" loading="lazy" alt={f.name[idx]+' actual Android application screenshot'}/></div></div>
-       </div>
-     </div>
-   </section>
-
-   <section className="cin-community-section wrap">
-     <div className="cin-sunday">
-       <span className="cin-label">{w.sundayTag}</span><h2>{w.sundayTitle}</h2><p>{w.sundayDesc}</p>
-       <a className="cin-btn cin-btn-gold" href="/sunday-feast">{w.sundayCta}<ArrowRight size={18}/></a>
-     </div>
-     <a href="/visit" className="cin-visit-note"><span className="cin-label">{w.today}</span><Flower2 size={40}/><h3>{w.visit}</h3><p>{w.timeNote}</p><span>{w.scheduleCta}<ArrowUpRight size={17}/></span></a>
-   </section>
-
-   <div className="cin-final-chant wrap"><Flower2 size={20}/><span>॥ {w.closing} ॥</span><Flower2 size={20}/></div>
- </div>;
+ const w=translations[lang],c=editorialCopy[lang];
+ const cards=[{title:w.feat1,href:'/aarti',Icon:BookOpen},{title:w.ekadashi,href:'/ekadashi',Icon:CalendarDays},{title:w.feat6,href:'/sunday-feast',Icon:Music2},{title:w.appShort,href:'/features',Icon:Smartphone}];
+ return <div className="editorial-home" lang={lang}>
+  <section className="rkc-hero wrap" aria-labelledby="rkc-title">
+   <div className="rkc-hero-copy"><span className="rkc-label">{w.place}</span><h1 id="rkc-title"><span>{c.title1}</span><em>{c.title2}</em><span>{c.title3}</span></h1><p>{c.intro}</p><div className="rkc-actions"><a className="rkc-button" href="/visit">{c.visit}<ArrowUpRight size={18}/></a><a className="rkc-button rkc-outline" href="/temple">{c.about}</a></div></div>
+   <figure className="rkc-darshan"><div><img src="/images/temple.webp" width="1200" height="901" fetchPriority="high" alt={c.caption}/></div><figcaption><span className="rkc-caption-rule"/>{c.caption}<span className="rkc-caption-rule"/></figcaption></figure>
+  </section>
+  <section className="rkc-schedule" aria-label={w.schedule}><div className="wrap"><h2><Clock size={19}/>{w.darshan}</h2><p><Sun size={21}/><strong>{c.morning}</strong><span>4:30 AM – 1:00 PM</span></p><p><Moon size={20}/><strong>{c.evening}</strong><span>4:15 PM – 9:00 PM</span></p><a href="/visit" aria-label={w.scheduleCta}><ArrowRight size={24}/></a></div></section>
+  <section className="wrap rkc-explore"><div className="rkc-section-head"><div><span className="rkc-label">{c.overline}</span><h2>{c.explore}</h2></div><span className="rkc-timing-note">{c.note}</span></div><div className="rkc-links">{cards.map(({title,href,Icon},i)=><a href={href} key={href}><Icon size={29} strokeWidth={1.4}/><h3>{title}</h3><p>{c.cards[i]}</p><ArrowUpRight className="rkc-card-arrow" size={19}/></a>)}</div>
+  <div className="rkc-sunday"><Flower2 size={52} strokeWidth={1}/><div><h2>{c.sunday}</h2><p>{c.sundayText}</p></div><a className="rkc-button" href="/sunday-feast">{w.sundayCta}<ArrowUpRight size={18}/></a></div></section>
+  <section className="wrap rkc-deeper"><article><span className="rkc-label">{w.festivalTag}</span><h2>{c.read}</h2><p>{c.readText}</p><a className="rkc-text-link" href="/damodar-ashtakam">{c.readCta}<ArrowRight size={18}/></a><BookOpen className="rkc-deeper-icon" size={66} strokeWidth={.8}/></article><article><span className="rkc-label">{w.community}</span><h2>{c.seva}</h2><p>{c.sevaText}</p><a className="rkc-text-link" href="/seva">{c.sevaCta}<ArrowRight size={18}/></a><Heart className="rkc-deeper-icon" size={66} strokeWidth={.8}/></article></section>
+  <div className="wrap rkc-location"><span><MapPin size={18}/>{c.temple}</span><a href={MAP}>{w.directions}<ArrowUpRight size={17}/></a></div>
+ </div>
 }
