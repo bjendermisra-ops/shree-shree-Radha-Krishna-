@@ -1,6 +1,6 @@
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {dirname} from 'node:path';
-import {render,pages,seoLocales,localizedUrl,getPageArtwork} from '../.prerender/entry-server.js';
+import {render,pages,seoLocales,localizedUrl,getPageArtwork,guides,guideDate} from '../.prerender/entry-server.js';
 import {siteUrl as base} from '../site.config.mjs';
 
 const languages=['en','hi','mr'];
@@ -27,6 +27,7 @@ const temple={
   'श्री श्री राधाकृष्ण चंद्र मंदिर'
  ],
  url:base+'/',
+ sameAs:['https://www.youtube.com/@srisriradhakrsnachandraman9892','https://www.instagram.com/shri_shri_radhakrishna_chandra/'],
  image:base+'/images/temple.webp',
  logo:{'@type':'ImageObject',url:base+'/brand/radha-krishna-seal.svg',width:512,height:512},
  address:{
@@ -44,7 +45,8 @@ const website={
  alternateName:['Shree Shree Radha Krishna Chandra Mandir','Shri Shri Radha Krishna Chandra Mandir','ISKCON 15 Number Hadapsar'],
  inLanguage:['en','hi','mr']
 };
-const pageType=path=>path==='/temple'?'AboutPage':path==='/contact'?'ContactPage':['/gallery','/aarti','/festivals'].includes(path)?'CollectionPage':'WebPage';
+const publisher={'@type':'Organization','@id':base+'/#publisher',name:'Sri Sri Radha Krishna Chandra Mandir website team',url:base+'/contact'};
+const pageType=path=>path==='/blog'?'CollectionPage':path==='/temple'?'AboutPage':path==='/contact'?'ContactPage':['/gallery','/aarti','/festivals'].includes(path)?'CollectionPage':'WebPage';
 let count=0;
 for(const [path,english] of Object.entries(pages)){
  for(const lang of languages){
@@ -56,7 +58,7 @@ for(const [path,english] of Object.entries(pages)){
   const sourceImage=getPageArtwork(path);
   const imgUrl=base+sourceImage.src;
   const graph=[
-   temple,website,
+   temple,website,publisher,
    {
     '@type':pageType(path),'@id':url+'#page',url,name:p.title,
     description:p.description,isPartOf:{'@id':base+'/#website'},
@@ -65,11 +67,24 @@ for(const [path,english] of Object.entries(pages)){
     primaryImageOfPage:{'@type':'ImageObject',url:imgUrl}
    }
   ];
+  const article=guides.find(g=>path==='/blog/'+g.slug);
+  if(article)graph.push({
+   '@type':'BlogPosting','@id':url+'#article',headline:article[lang].title,
+   description:article[lang].description,url,inLanguage:lang,
+   datePublished:guideDate,dateModified:guideDate,
+   author:{'@id':base+'/#publisher'},publisher:{'@id':base+'/#publisher'},
+   mainEntityOfPage:{'@id':url+'#page'},image:imgUrl,
+   citation:article.sources.map(([,link])=>link),
+   articleSection:lang==='en'?'Temple guides':lang==='hi'?'मंदिर मार्गदर्शिका':'मंदिर मार्गदर्शिका',
+   isAccessibleForFree:true
+  });
+  if(path==='/blog')graph.push({'@type':'ItemList',itemListElement:guides.map((g,i)=>({'@type':'ListItem',position:i+1,url:absolute('/blog/'+g.slug,lang),name:g[lang].title}))});
   if(path!=='/')graph.push({
     '@type':'BreadcrumbList',
     itemListElement:[
       {'@type':'ListItem',position:1,name:lang==='hi'?'मुख्य पृष्ठ':lang==='mr'?'मुख्यपृष्ठ':'Home',item:absolute('/',lang)},
-      {'@type':'ListItem',position:2,name:p.title,item:url}
+      ...(article?[{'@type':'ListItem',position:2,name:lang==='en'?'Temple journal':'मंदिर मार्गदर्शिका',item:absolute('/blog',lang)}]:[]),
+      {'@type':'ListItem',position:article?3:2,name:p.title,item:url}
     ]
   });
   if(path==='/features'||path==='/')graph.push({
@@ -93,7 +108,8 @@ for(const [path,english] of Object.entries(pages)){
     '<meta name="robots" content="index,follow,max-image-preview:large"/>',
     '<meta property="og:site_name" content="Sri Sri Radha Krishna Chandra Mandir"/>',
     '<meta property="og:locale" content="'+locales[lang]+'"/>',
-    '<meta property="og:type" content="website"/>',
+    '<meta property="og:type" content="'+(article?'article':'website')+'"/>',
+    '<link rel="alternate" type="application/rss+xml" title="Temple journal" href="'+base+(lang==='en'?'':'/'+lang)+'/feed.xml"/>',
     '<meta property="og:title" content="'+escapeHtml(p.title)+'"/>',
     '<meta property="og:description" content="'+escapeHtml(p.description)+'"/>',
     '<meta property="og:url" content="'+url+'"/>',
@@ -124,7 +140,7 @@ const sitemapEntries=Object.keys(pages).flatMap(path=>languages.map(lang=>{
  const href=absolute(path,lang);
  const altLinks=languages.map(l=>'<xhtml:link rel="alternate" hreflang="'+(l==='en'?'en-IN':l+'-IN')+'" href="'+escapeXml(absolute(path,l))+'"/>').join('')+
   '<xhtml:link rel="alternate" hreflang="x-default" href="'+escapeXml(absolute(path,'en'))+'"/>';
- return '<url><loc>'+escapeXml(href)+'</loc>'+altLinks+
+ return '<url><loc>'+escapeXml(href)+'</loc>'+((path.startsWith('/blog')||path==='/'||path==='/visit')?'<lastmod>'+guideDate+'</lastmod>':'')+altLinks+
   '<image:image><image:loc>'+escapeXml(accessibleImage(path))+'</image:loc></image:image></url>';
 }));
 writeFileSync('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>'+
@@ -145,3 +161,9 @@ Each page has an English route and separate Hindi (/hi) and Marathi (/mr) versio
 `;
 writeFileSync('dist/llms.txt',guide);
 console.log('Pre-rendered '+count+' language-specific pages with canonical, hreflang, structured data, images and sitemap.');
+
+for(const lang of languages){
+ const items=guides.map(g=>'<item><title>'+escapeXml(g[lang].title)+'</title><link>'+absolute('/blog/'+g.slug,lang)+'</link><guid isPermaLink="true">'+absolute('/blog/'+g.slug,lang)+'</guid><description>'+escapeXml(g[lang].description)+'</description><pubDate>'+new Date(guideDate+'T00:00:00Z').toUTCString()+'</pubDate></item>').join('');
+ const feed='<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Sri Sri Radha Krishna Chandra Mandir — '+lang+'</title><link>'+absolute('/blog',lang)+'</link><description>Temple visitor and devotional guides</description><language>'+lang+'-IN</language>'+items+'</channel></rss>';
+ writeFileSync('dist'+(lang==='en'?'':'/'+lang)+'/feed.xml',feed);
+}

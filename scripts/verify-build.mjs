@@ -2,7 +2,7 @@ import {readFileSync,existsSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {siteUrl} from '../site.config.mjs';
 import {pages,render} from '../.prerender/entry-server.js';
-assert.equal(Object.keys(pages).length,16,'Expected sixteen website routes');
+assert.equal(Object.keys(pages).length,20,'Expected twenty website routes');
 const titles=new Set();
 const localizedFiles=[];
 for(const path of Object.keys(pages)){
@@ -20,7 +20,7 @@ const reader=readFileSync('dist/damodar-ashtakam.html','utf8');assert.equal((rea
 const sitemap=readFileSync('dist/sitemap.xml','utf8');assert.equal((sitemap.match(/<loc>/g)||[]).length,Object.keys(pages).length*3,'Sitemap must include English, Hindi and Marathi routes');
 for(const f of ['index.html','vercel.html'])assert(readFileSync('app/'+f).equals(readFileSync('dist/app/'+f)),`app/${f} was changed`);
 assert(readFileSync('dist/404.html','utf8').includes('noindex'));
-console.log('PASS: 16 pages, unique titles, canonical URLs, JSON-LD, internal links/assets, 8 verses, sitemap, 404, unchanged app files.');
+console.log('PASS: 20 pages, unique titles, canonical URLs, JSON-LD, internal links/assets, 8 verses, sitemap, 404, unchanged app files.');
 
 assert(readFileSync('dist/robots.txt','utf8').includes(siteUrl+'/sitemap.xml'));
 for(const path of Object.keys(pages)){const html=readFileSync(path==='/'?'dist/index.html':`dist${path}.html`,'utf8');assert(!/\/images\/rv-/.test(html),`${path}: placeholder artwork remains`);assert(!html.includes('devotional-art.webp')&&!html.includes('sacred-night.webp'),`${path}: generated artwork remains`);}
@@ -31,7 +31,7 @@ for(const lang of ['en','hi','mr'])for(const path of Object.keys(pages)){
  assert(!/\/images\/(rv-|devotional-art|sacred-night)/.test(html),`${path}/${lang}: placeholder artwork`);
  for(const m of html.matchAll(/src="(\/images\/[^"?#]+)"/g))assert(existsSync('dist'+m[1]),`${path}/${lang}: missing image ${m[1]}`);
 }
-console.log('PASS: real imagery and valid headings/assets across all 48 page-language combinations.');
+console.log('PASS: real imagery and valid headings/assets across all 60 page-language combinations.');
 
 for(const lang of ['hi','mr']){
  for(const path of Object.keys(pages)){
@@ -50,7 +50,23 @@ for(const lang of ['hi','mr']){
   localizedFiles.push(file);
  }
 }
-assert.equal(localizedFiles.length,32);
+assert.equal(localizedFiles.length,40);
 assert(sitemap.includes('hreflang="hi-IN"')&&sitemap.includes('hreflang="mr-IN"')&&sitemap.includes('hreflang="x-default"'));
 assert(!sitemap.includes('https://sriradha.vercel.app/'),'Sitemap uses old domain');
-console.log('PASS: 48 distinct indexable multilingual documents, canonical + reciprocal hreflang, sitemap and JSON-LD.');
+console.log('PASS: 60 distinct indexable multilingual documents, canonical + reciprocal hreflang, sitemap and JSON-LD.');
+
+for(const lang of ['en','hi','mr']){
+ const prefix=lang==='en'?'':('/'+lang);
+ for(const slug of ['first-visit-radha-krishna-temple-hadapsar','hare-krishna-maha-mantra-japa-guide','darshan-aarti-kirtan-difference']){
+  const html=readFileSync('dist'+prefix+'/blog/'+slug+'.html','utf8');
+  const graph=JSON.parse(html.split('<script type="application/ld+json">')[1].split('</script>')[0])['@graph'];
+  const article=graph.find(n=>n['@type']==='BlogPosting');
+  assert(article && article.inLanguage===lang,'Article schema and language');
+  assert(article.author['@id']===siteUrl+'/#publisher','Honest publisher identity');
+  assert(html.includes('id="guide-3"'),'Article content is server rendered');
+  assert(html.includes('rel="alternate" type="application/rss+xml"'),'Feed discovery');
+ }
+ const feed=readFileSync('dist'+prefix+'/feed.xml','utf8');
+ assert.equal((feed.match(/<item>/g)||[]).length,3,'Three articles in locale feed');
+}
+console.log('PASS: 9 complete localized articles, BlogPosting author/language, and 3 RSS feeds.');
