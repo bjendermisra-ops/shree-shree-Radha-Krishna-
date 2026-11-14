@@ -1,9 +1,10 @@
+import {guides} from './guides';
 /**
  * Per-locale search snippets for *real*, separately prerendered pages.
  * Avoid keyword stuffing: every route has one primary search intent.
  * Canonical brand is Sri Sri Radha Krishna Chandra Mandir.
  */
-export const seoLocales={
+export const seoLocales:Record<'hi'|'mr',Record<string,{title:string;description:string}>>={
  hi:{
   '/':{title:'श्री श्री राधा कृष्ण चंद्र मंदिर | हडपसर, पुणे',description:'हडपसर, पुणे के 15 नंबर स्थित श्री श्री राधा कृष्ण चंद्र मंदिर में दर्शन, आरती, एकादशी, रविवार उत्सव, भक्ति पाठ और मंदिर जाने की जानकारी।'},
   '/temple':{title:'श्री श्री राधा कृष्ण चंद्र मंदिर का परिचय | हडपसर पुणे',description:'श्री श्री राधा कृष्ण चंद्र मंदिर, हडपसर पुणे के विग्रह दर्शन, भक्ति, कीर्तन, सत्संग, सेवा और आध्यात्मिक शिक्षा के बारे में जानें।'},
@@ -40,7 +41,11 @@ export const seoLocales={
   '/community':{title:'भक्त समुदाय, सत्संग व कीर्तन | राधा कृष्ण मंदिर पुणे',description:'हडपसर पुणे मंदिरातील भक्त समुदाय, कीर्तन, रविवार उत्सव, आध्यात्मिक शिक्षण आणि सेवेत सहभागी व्हा.'},
   '/terms':{title:'संकेतस्थळ वापराच्या अटी | राधा कृष्ण चंद्र मंदिर',description:'मंदिर संकेतस्थळावरील माहिती, उत्सव वेळा, बाह्य लिंक्स आणि सेवांच्या वापराच्या अटी वाचा.'}
  }
-} as const;
+};
+for(const lang of ['hi','mr'] as const){
+ seoLocales[lang]['/blog']={title:lang==='hi'?'मंदिर दर्शन और भक्ति मार्गदर्शिकाएँ | हडपसर पुणे':'मंदिर दर्शन आणि भक्ती मार्गदर्शिका | हडपसर पुणे',description:lang==='hi'?'हडपसर मंदिर की पहली यात्रा, हरे कृष्ण महामंत्र और दर्शन, आरती, कीर्तन की जानकारी हिन्दी में पढ़ें।':'हडपसर मंदिरातील पहिली भेट, हरे कृष्ण महामंत्र आणि दर्शन, आरती, कीर्तन यांची माहिती मराठीत वाचा.'};
+ for(const g of guides)seoLocales[lang]['/blog/'+g.slug]={title:g[lang].title,description:g[lang].description};
+}
 export type SeoLocale='en'|'hi'|'mr';
 export function localizedUrl(path:string,lang:SeoLocale):string{
   return (lang==='en'?'':'/'+lang)+(path==='/'?'/':path);
