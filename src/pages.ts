@@ -1,6 +1,6 @@
 import {guides} from './guides';
 export const pages:Record<string,{title:string;description:string;eyebrow:string}>={
-'/':{title:'Radha Krishna Temple in Hadapsar, Pune | Sri Sri Radha Krishna Chandra Mandir',description:'Visit Sri Sri Radha Krishna Chandra Mandir at 15 Number, Hadapsar, Pune. Explore darshan and aarti timings, Sunday Feast, prayers, Damodar Ashtakam and seva information.',eyebrow:'THE TEMPLE · PUNE'},
+'/':{title:'Radha Krishna Chandra Mandir App | Darshan, Prayers & Japa',description:'Explore the Radha Krishna Chandra Mandir Android app: real screens, daily darshan, aarti, japa, Ekadashi calendar, bhakti videos and stickers. Available in English, Hindi and Marathi.',eyebrow:'THE TEMPLE · PUNE'},
 '/temple':{title:'About Shree Shree Radha Krishna Chandra Mandir | Pune',description:'Learn about the temple community in Hadapsar, Pune: deity darshan, worship, kirtan, community gatherings and spiritual learning.',eyebrow:'OUR TEMPLE'},
 '/visit':{title:'Darshan & Aarti Timings | Radha Krishna Temple, Hadapsar Pune',description:'Morning and evening darshan schedule, aarti timings, address and directions for Shree Shree Radha Krishna Chandra Mandir in Hadapsar, Pune.',eyebrow:'PLAN YOUR VISIT'},
 '/damodar-ashtakam':{title:'Sri Damodar Ashtakam Lyrics in Sanskrit with English Meaning',description:'Read all eight verses of Sri Damodar Ashtakam in Devanagari and transliteration, with simple English meaning and adjustable reading size.',eyebrow:'KARTIK DEVOTION · 8 VERSES'},
