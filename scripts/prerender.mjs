@@ -12,6 +12,7 @@ const template=readFileSync('dist/index.html','utf8');
 const canonicalPath=(path,lang)=>localizedUrl(path,lang);
 const absolute=(path,lang)=>base+canonicalPath(path,lang);
 const accessibleImage=(path)=>base+getPageArtwork(path).src;
+const showcaseDate='2026-11-15';
 
 const temple={
  '@type':'HinduTemple','@id':base+'/#temple',
@@ -92,7 +93,9 @@ for(const [path,english] of Object.entries(pages)){
     name:'Shree Shree Radha Krishna Chandra Mandir',
     operatingSystem:'Android',applicationCategory:'LifestyleApplication',
     installUrl:'https://play.google.com/store/apps/details?id=com.iskcon.hadapsar.santosh.in',
-    inLanguage:['en','hi','mr']
+    inLanguage:['en','hi','mr'],
+    featureList:['Daily darshan','Aarti and prayers','Global Japa','Ekadashi calendar','Bhakti Tube','Devotional stickers','Courses and Kids Sanskar information'],
+    screenshot:['home','prayers','calendar','stickers','learning'].map(name=>base+'/images/'+name+'.webp')
   });
   if(path==='/damodar-ashtakam')graph.push({
     '@type':'CreativeWork','@id':url+'#prayer',name:'Sri Damodar Ashtakam',
@@ -140,7 +143,7 @@ const sitemapEntries=Object.keys(pages).flatMap(path=>languages.map(lang=>{
  const href=absolute(path,lang);
  const altLinks=languages.map(l=>'<xhtml:link rel="alternate" hreflang="'+(l==='en'?'en-IN':l+'-IN')+'" href="'+escapeXml(absolute(path,l))+'"/>').join('')+
   '<xhtml:link rel="alternate" hreflang="x-default" href="'+escapeXml(absolute(path,'en'))+'"/>';
- return '<url><loc>'+escapeXml(href)+'</loc>'+((path.startsWith('/blog')||path==='/'||path==='/visit')?'<lastmod>'+guideDate+'</lastmod>':'')+altLinks+
+ return '<url><loc>'+escapeXml(href)+'</loc>'+((path.startsWith('/blog')||path==='/'||path==='/visit'||path==='/features')?'<lastmod>'+((path==='/'||path==='/features')?showcaseDate:guideDate)+'</lastmod>':'')+altLinks+
   '<image:image><image:loc>'+escapeXml(accessibleImage(path))+'</image:loc></image:image></url>';
 }));
 writeFileSync('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>'+
