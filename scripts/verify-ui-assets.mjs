@@ -40,7 +40,7 @@ assert(polish.includes('prefers-reduced-motion'),'Missing reduced-motion support
 assert(polish.includes('.cin-store-badge'),'Missing Google Play badge styles');
 const provenance=fs.readFileSync('MEDIA-PROVENANCE.md','utf8');
 assert(provenance.includes('not documentary photography'),'Art provenance must be documented');
-const home=fs.readFileSync('src/CinematicHome.tsx','utf8');
+const home=fs.readFileSync('src/AppShowcase.tsx','utf8');
 const app=fs.readFileSync('src/App.tsx','utf8');
 const entry=fs.readFileSync('src/main.tsx','utf8');
 const editorial=fs.readFileSync('src/editorial.css','utf8');
@@ -50,3 +50,4 @@ assert(!app.includes('<ExperienceFX/>'), 'Retired custom cursor must not interce
 assert(entry.includes("import './editorial.css';"), 'Approved theme is not loaded');
 assert(editorial.includes('prefers-reduced-motion'), 'Theme must respect reduced motion');
 console.log('PASS: original temple image, multilingual assets, responsive editorial theme and reduced-motion support.');
+
