@@ -6,10 +6,7 @@
   --frame:#241a19; --print-shadow:4px 5px 0 var(--frame);
   --display:'DM Serif Text',Georgia,'Noto Serif Devanagari',serif;
 }
-:root[data-theme=dark] {
-  --bg:#221c24; --panel:#302831; --text:#fff5df; --muted:#e0cfc3;
-  --rose:#ffacb7; --blush:#493341; --line:#ae8e80; --header:#221c24;
-}
+
 html .site-header.site-header {border-bottom:2px solid var(--frame);backdrop-filter:none}
 .site-header .nav-bar {min-height:68px;padding-block:8px}
 .site-header .brand .rkc-mark {background:var(--poster);border:2px solid var(--frame);border-radius:50%;padding:5px;color:var(--frame)}
@@ -88,4 +85,53 @@ html .show-mobile-download>a {color:var(--frame);background:var(--poster);border
 }
 @media(prefers-reduced-motion:reduce) {
   .mandir-actions a,.mandir-directory a {transition:none;transform:none}
+}
+
+.brand .mandir-logo {width:48px;height:48px;flex:none;border-radius:13px;box-shadow:0 0 0 1px #bc9758}
+html main .cin-page-visual[data-media-kind="app-screenshot"],
+html main .palace-inner-image[data-media-kind="app-screenshot"] {
+  align-self:center;height:auto;min-height:0;max-height:none;overflow:hidden;background:var(--panel)!important;border:1px solid var(--line)
+}
+html main .cin-page-visual[data-media-kind="app-screenshot"] img,
+html main .palace-inner-image[data-media-kind="app-screenshot"] img {
+  display:block;position:static;width:100%;height:auto!important;max-height:none;min-height:0;padding:0!important;object-fit:contain;border-radius:0
+}
+@media(max-width:700px){.site-header .brand .mandir-logo{width:34px;height:34px;border-radius:9px}}
+
+html:root[data-theme=dark] {
+  color-scheme:dark;--bg:#000;--header:#000;--panel:#080808;--blush:#080808;--text:#fff9ec;--muted:#c9c5bf;--line:#45413b;--rose:#ffd06c;--gold:#ffd06c;
+  --show-soft:#080808;--rkc-ink:var(--text);--print-shadow:0 0 0 1px #34312a;
+}
+html[data-theme=dark] :is(.app-showcase,.palace,.site-header,.show-start,.show-blueprint,.show-values,.show-closing,.show-mobile-download,.journal,.footer.footer,.mandir-cover) {background:#000!important;color:var(--text)!important}
+html[data-theme=dark] :is(.mandir-poster,.mandir-title,.mandir-directory a,.show-feature-panel,.show-feature-panel figure,.show-install-steps article,.show-hero-art,.show-art-label,.show-routine-steps article,.show-feature-list article,.show-faq details,.show-start,.show-mobile-download,.related-pages,.reader-toolbar,.temple-search-guide) {background:#080808!important;border-color:var(--line)!important;color:var(--text)!important}
+html[data-theme=dark] .mandir-title {background:#000!important}
+html[data-theme=dark] .mandir-title h1,html[data-theme=dark] .mandir-directory strong {color:var(--text)!important}
+html[data-theme=dark] .mandir-title h1 small,html[data-theme=dark] .mandir-place,html[data-theme=dark] .mandir-directory svg:first-child {color:var(--gold)}
+html[data-theme=dark] .mandir-directory span {color:var(--muted)}
+html[data-theme=dark] .mandir-directory svg:last-child {background:#29251e;color:var(--gold)}
+html[data-theme=dark] :is(.mandir-actions a,.show-share,.show-mobile-download button) {background:#0f0f0f!important;border:1px solid #767063!important;color:var(--text)!important;box-shadow:none}
+html[data-theme=dark] .mandir-actions a:first-child {background:#f5c456!important;color:#171009!important}
+html[data-theme=dark] :is(.journal-card p,.journal-prose p,.journal-heading p,.show-feature-list p,.show-language-note,.show-faq summary,.show-routine-steps h3,.show-feature-panel figcaption) {color:var(--text)!important}
+html[data-theme=dark] .show-values span {color:var(--gold)}
+html[data-theme=dark] .show-orbit {background:radial-gradient(ellipse,#423822,transparent 67%)}
+html[data-theme=dark] :is(.cinematic-inner-hero,.palace-inner-hero,.surface,.verse-card,.journal-card,.journal-layout aside,.royal-inner-note,.show-install-steps article) {border-color:var(--line)!important}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  :is(.mandir-poster,.mandir-directory a,.cin-page-visual,.journal-card,.show-feature-panel) {
+    position:relative;isolation:isolate;transition:transform .28s ease-out,box-shadow .28s ease-out
+  }
+  :is(.mandir-poster,.mandir-directory a,.cin-page-visual,.journal-card,.show-feature-panel)[data-lit] {
+    transform:perspective(1000px) rotateX(var(--pitch)) rotateY(var(--yaw)) translateY(-2px)!important;
+    box-shadow:0 12px 32px #0004;will-change:transform
+  }
+  :is(.mandir-poster,.mandir-directory a,.cin-page-visual,.journal-card,.show-feature-panel)[data-lit]::after {
+    content:'';display:block!important;position:absolute;inset:0;z-index:2;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(ellipse 240px 150px at var(--beam-x) var(--beam-y),#fff5cd38,transparent)
+  }
+  .mandir-poster {animation:poster-arrive .75s cubic-bezier(.2,.7,.15,1) backwards}
+  .mandir-directory a {animation:print-arrive .52s ease-out .12s backwards}
+  .mandir-directory a:nth-child(2) {animation-delay:.20s}
+  .mandir-directory a:nth-child(3) {animation-delay:.28s}
+  @keyframes poster-arrive {from{opacity:.55;transform:perspective(1100px) rotateX(3deg) translateY(15px)}}
+  @keyframes print-arrive {from{opacity:.4;transform:translateY(12px)}}
 }

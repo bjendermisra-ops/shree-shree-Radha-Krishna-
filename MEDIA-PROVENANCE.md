@@ -39,3 +39,5 @@ A public website necessarily transmits images and code to visitors, so technical
 An additional generated six-piece cinematic concept-art pack exists as a separate ChatGPT artifact and was not added to this repository. It is concept art only; do not present generated building exteriors as verified photos of the real Hadapsar mandir.
 
 The homepage Krishna shrine and lotus lamp are original generated devotional illustrations. The temple photograph in the daily practice section is the existing deity photograph.
+
+Contact, daily schedule and aarti images are browser captures of contact.html, schedule.html and aarti-pustak.html from bjendermisra-ops/iskcon-mob at ae14331b5ade10210834eaf2440760518a29fdd9. They show cropped mobile web screens. The peacock-feather and flute brand mark is custom generated artwork.
