@@ -1,0 +1,91 @@
+/* Pigmented paper, enamel details and short print-like shadows. */
+:root, :root[data-theme=light] {
+  --bg:#fff8e9; --panel:#fffdf5; --text:#241a19; --muted:#574541;
+  --rose:#96334d; --blush:#ffe7c0; --line:#5c453b; --header:#fff8e9;
+  --poster:#ffcc38; --jade:#9ce1be; --petal:#ffa2b4; --lilac:#cdb5f9;
+  --frame:#241a19; --print-shadow:4px 5px 0 var(--frame);
+  --display:'DM Serif Text',Georgia,'Noto Serif Devanagari',serif;
+}
+:root[data-theme=dark] {
+  --bg:#221c24; --panel:#302831; --text:#fff5df; --muted:#e0cfc3;
+  --rose:#ffacb7; --blush:#493341; --line:#ae8e80; --header:#221c24;
+}
+html .site-header.site-header {border-bottom:2px solid var(--frame);backdrop-filter:none}
+.site-header .nav-bar {min-height:68px;padding-block:8px}
+.site-header .brand .rkc-mark {background:var(--poster);border:2px solid var(--frame);border-radius:50%;padding:5px;color:var(--frame)}
+.site-header .brand>span {border:0;padding:0}
+.site-header .header-actions .header-download,html .show-actions .show-button,html .show-start .show-button {
+  background:var(--poster)!important;color:var(--frame)!important;border:2px solid var(--frame)!important;border-radius:9px!important;box-shadow:3px 3px 0 var(--frame)!important
+}
+.mandir-cover {padding-block:24px 10px}
+.mandir-poster {display:grid;grid-template-columns:1.32fr 1fr;background:var(--poster);border:2px solid var(--frame);border-radius:22px;overflow:hidden;box-shadow:var(--print-shadow)}
+.mandir-title {color:var(--frame);display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:clamp(24px,3.6vw,62px);min-width:0;background-image:radial-gradient(#7f460029 .85px,transparent 1px);background-size:7px 7px}
+.mandir-place {display:inline-flex;align-items:center;gap:6px;font:700 14px/1.4 'DM Sans',sans-serif}
+html .mandir-title h1 {font:700 clamp(44px,5.5vw,87px)/.99 var(--display);letter-spacing:-.065em;color:var(--frame);margin:28px 0;text-align:left}
+.mandir-title h1 small {display:block;font:italic 500 .47em/1.35 Georgia,serif;letter-spacing:-.03em}
+.mandir-title h1 span {display:block}
+html:not([lang=en]) .mandir-title h1 {line-height:1.2;letter-spacing:-.035em}
+.mandir-portrait {display:block;width:100%;height:clamp(330px,34vw,515px);object-fit:cover;object-position:50% 38%;border-left:2px solid var(--frame)}
+.mandir-actions {display:flex;gap:10px;flex-wrap:wrap}
+.mandir-actions a,.mandir-directory a {color:var(--frame)!important;text-decoration:none!important}
+.mandir-actions a {display:inline-flex;align-items:center;gap:8px;padding:10px 14px;min-height:44px;font:700 15px/1.35 'DM Sans',sans-serif;background:#fffaf0;border:2px solid var(--frame);border-radius:9px;box-shadow:3px 3px var(--frame)}
+.mandir-actions a:first-child {background:var(--frame);color:#fffaf0!important;box-shadow:3px 3px #a76c18}
+.mandir-actions svg {width:17px}
+.mandir-directory {display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:13px;margin-top:18px}
+.mandir-directory a {position:relative;overflow:hidden;display:grid;align-content:center;gap:6px;min-height:138px;padding:18px 44px 18px 20px;border:2px solid var(--frame);border-radius:14px;background:var(--jade);box-shadow:var(--print-shadow)}
+.mandir-directory a:nth-child(2) {background:var(--petal);padding-right:34%}
+.mandir-directory a:nth-child(3) {background:var(--lilac)}
+.mandir-directory a svg:last-child {position:absolute;top:12px;right:12px;width:21px;background:#fffaed;border-radius:50%;height:24px;width:24px;padding:3px}
+.mandir-directory strong {font:700 clamp(19px,1.7vw,27px)/1.18 'DM Sans',sans-serif;letter-spacing:-.04em;position:relative;z-index:1}
+.mandir-directory span {font:600 14px/1.45 'DM Sans',sans-serif}
+.mandir-directory img {position:absolute;right:0;top:0;width:32%;height:100%;object-fit:cover;border-left:2px solid var(--frame)}
+@media(hover:hover) {
+  .mandir-actions a:hover,.mandir-directory a:hover {transform:translate(-2px,-2px);box-shadow:6px 7px var(--frame)}
+}
+html .app-showcase {--show-rose:var(--rose);--show-soft:var(--blush);--show-ink:var(--text);--show-muted:var(--muted);font-family:'DM Sans','Noto Sans Devanagari',sans-serif}
+html .show-section {padding-block:clamp(38px,5vw,70px)}
+html .show-heading {margin-bottom:22px}
+html .app-showcase :is(.show-heading h2,.show-faq h2,.show-closing h2),html main :is(.journal-heading h1,.journal-article h1,.page-hero h1,.palace-inner-hero h1) {font-family:var(--display)!important;font-weight:700!important;font-size:clamp(31px,3.8vw,58px)!important;letter-spacing:-.045em;line-height:1.13}
+html .app-showcase :is(.show-heading p,.show-feature-copy p,.show-routine-steps p),html main>section p,html main>.wrap p {font-size:clamp(16px,1.2vw,18px)!important;line-height:1.6!important}
+html .show-tabs button,html .show-share,html .related-pages nav a {border:2px solid var(--frame)!important;border-radius:8px!important;box-shadow:2px 3px var(--frame);background:var(--panel)!important;color:var(--text)!important}
+html .show-tabs button[aria-selected=true] {background:var(--poster)!important;color:var(--frame)!important}
+html .show-feature-panel {border:2px solid var(--frame);border-radius:16px;background:var(--panel);box-shadow:var(--print-shadow)}
+html .show-feature-panel figure {background:var(--jade);border:2px solid var(--frame);border-radius:12px}
+html .show-feature-panel figcaption {color:var(--frame)}
+html .show-blueprint {background:#302338}
+html .show-feature-list article {border-color:#aa98aa}
+html .show-install-steps article {padding:20px;border:2px solid var(--frame);border-radius:12px;background:var(--panel);box-shadow:var(--print-shadow)}
+html .show-start {border-block:2px solid var(--frame)}
+html main :is(.page-hero.wrap.cinematic-inner-hero,.palace-inner-hero[class],.royal-seva.royal-inner-seva) {background:var(--blush)!important;border:2px solid var(--frame)!important;border-radius:16px!important;box-shadow:var(--print-shadow)!important}
+html main :is(.surface,.verse-card,.journal-card,.palace-program,.palace-verses article,.royal-inner-link-grid>a,.cin-gallery-grid figure,.temple-search-guide,.related-pages) {border:2px solid var(--frame)!important;border-radius:12px!important;background:var(--panel)!important;box-shadow:var(--print-shadow)!important}
+html main .journal-card {padding:20px}
+html .journal-grid .journal-card:nth-child(3n+1) {border-top:10px solid #e19d11!important}
+html .journal-grid .journal-card:nth-child(3n+2) {border-top:10px solid #cd607b!important}
+html .journal-grid .journal-card:nth-child(3n) {border-top:10px solid #338a71!important}
+html .footer.footer {border-top:3px solid var(--frame);background:var(--blush)!important}
+html .show-mobile-download>a {color:var(--frame);background:var(--poster);border:2px solid var(--frame);box-shadow:2px 2px var(--frame)}
+@media(max-width:760px) {
+  .mandir-cover {padding-top:15px}
+  .mandir-poster {grid-template-columns:minmax(0,1fr) 34%;border-radius:15px}
+  .mandir-title {padding:18px 12px}
+  html .mandir-title h1 {font-size:clamp(28px,6.6vw,47px);margin:20px 0}
+  .mandir-portrait {height:100%;min-height:230px;object-position:47% 36%}
+  .mandir-actions {gap:8px}
+  .mandir-actions a {font-size:13px;padding:7px 10px}
+  .mandir-directory {grid-template-columns:1fr 1fr;gap:11px}
+  .mandir-directory a {min-height:104px;padding:14px}
+  .mandir-directory a:first-child {grid-column:span 2;grid-template-columns:24px 1fr auto;align-items:center;min-height:74px;gap:10px;padding-right:35px}
+  .mandir-directory a:first-child span {font-size:12px}
+  .mandir-directory a:nth-child(2) {padding-right:34%}
+  .mandir-directory strong {font-size:19px}
+  .mandir-place {font-size:12px}
+  .mandir-directory a svg:last-child {right:6px;top:6px}
+  html .site-header .header-actions>.icon-button {display:inline-flex}
+}
+@media(max-width:370px) {
+  .mandir-directory a:first-child {grid-template-columns:20px 1fr}
+  .mandir-directory a:first-child span {grid-column:2}
+}
+@media(prefers-reduced-motion:reduce) {
+  .mandir-actions a,.mandir-directory a {transition:none;transform:none}
+}

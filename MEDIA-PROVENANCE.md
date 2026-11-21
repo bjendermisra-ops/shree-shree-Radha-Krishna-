@@ -37,3 +37,5 @@ A public website necessarily transmits images and code to visitors, so technical
 ## New art pack
 
 An additional generated six-piece cinematic concept-art pack exists as a separate ChatGPT artifact and was not added to this repository. It is concept art only; do not present generated building exteriors as verified photos of the real Hadapsar mandir.
+
+The homepage Krishna shrine and lotus lamp are original generated devotional illustrations. The temple photograph in the daily practice section is the existing deity photograph.
