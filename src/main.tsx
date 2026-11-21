@@ -18,3 +18,4 @@ if(root.hasChildNodes())hydrateRoot(root,app);else createRoot(root).render(app);
 import './editorial.css';
 
 import './showcase.css';
+import './mandir.css';
