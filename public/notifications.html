@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#faf6ed"><title>Notification Centre · Sri Sri Radha Krishna Chandra</title>
+<style>
+:root{color-scheme:light;--paper:#faf6ed;--ink:#30231c;--muted:#67594e;--line:#e5d9c9;--accent:#75351f}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 system-ui,sans-serif}main{max-width:1050px;margin:auto;padding:26px 20px 60px}header{border-bottom:1px solid var(--line);padding:18px 0 24px;margin-bottom:22px}h1,h2{font-family:Georgia,serif;line-height:1.15;margin:8px 0 12px}h1{font-size:clamp(30px,5vw,46px)}h2{font-size:25px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}p{margin:8px 0;color:var(--muted)}.layout{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;align-items:start}.panel{background:#fffdf8;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 28px #57381c0b}label{display:block;margin:15px 0 6px;font-weight:650}input,textarea,select,button{font:inherit}input:not([type=checkbox]),textarea,select{display:block;width:100%;background:white;border:1px solid #c8b9a8;color:var(--ink);border-radius:10px;padding:12px;min-height:46px}textarea{resize:vertical;min-height:100px}button{cursor:pointer;border:0;border-radius:10px;background:var(--accent);color:white;padding:12px 17px;min-height:46px;font-weight:700}button.secondary{background:#ede4d7;color:#43291c}button:disabled{opacity:.55;cursor:not-allowed}input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #b48239;outline-offset:2px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.toggle{display:flex;gap:10px;align-items:center;min-height:44px}.toggle input{width:20px;height:20px}.preview{border-radius:14px;background:#f1ece3;padding:16px;margin:14px 0;overflow-wrap:anywhere}.preview strong{display:block;margin-top:7px}.preview p{white-space:pre-wrap;color:var(--ink)}.small{font-size:12px;color:var(--muted)}#result{white-space:pre-wrap;overflow-wrap:anywhere;padding:13px;border-radius:10px;background:#f0eae1;margin-top:15px}#result[data-state=ok]{background:#e4efe4;color:#204823}#result[data-state=error]{background:#f9e4e1;color:#792d21}a{color:var(--accent)}[hidden]{display:none!important}@media(max-width:720px){.layout{grid-template-columns:1fr}main{padding:18px 14px 45px}.panel{padding:18px}}
+</style></head><body><main>
+<header><div class="eyebrow">Temple administration · Legacy Firebase project</div><h1>Notification Centre</h1><p>Sri Sri Radha Krishna Chandra Mandir · Send FCM notifications to subscribed app users.</p></header>
+<div class="layout"><section class="panel"><h2>Compose notification</h2><form id="push">
+<label for="key">Private admin access key</label><input id="key" type="password" required minlength="24" autocomplete="off" placeholder="Server admin key"><p class="small">Not stored on this device.</p>
+<label for="title">Title</label><input id="title" maxlength="100" required placeholder="Hare Krishna! 🙏">
+<label for="body">Message</label><textarea id="body" maxlength="500" required placeholder="Write your notification in English, Hindi or Marathi"></textarea>
+<label for="topic">Audience</label><select id="topic"><option value="all">All subscribers · temple_all</option><option value="darshan">Daily darshan</option><option value="test">Test topic</option><option value="custom">Custom topic</option></select>
+<div id="customWrap" hidden><label for="custom">Custom FCM topic</label><input id="custom" maxlength="150" pattern="[A-Za-z0-9_.~%\-]+" placeholder="ekadashi"></div>
+<label for="link">Open on tap</label><input id="link" maxlength="1000" value="home.html" placeholder="home.html or HTTPS URL">
+<label for="image">Image URL (optional)</label><input id="image" type="url" maxlength="1000" placeholder="https://…">
+<label class="toggle"><input type="checkbox" id="loud"> Request alarm notification channel</label><p class="small">Sound depends on Android permissions and the app's notification channel.</p>
+<div class="actions"><button type="submit" id="send">Send notification</button><button type="button" class="secondary" id="check">Check connection</button></div>
+</form></section><aside class="panel"><h2>Preview & status</h2><p class="small">Illustrative Android notification</p><div class="preview"><div class="eyebrow">Sri Sri Radha Krishna Chandra</div><strong id="pt">Notification title</strong><p id="pb">Your message will appear here.</p><div class="small" id="pl">Opens: home.html</div></div>
+<div id="result" role="status" aria-live="polite">Enter your admin key to check the gateway. No message has been sent.</div>
+<p class="small">FCM acceptance is not proof of device delivery. Users must subscribe to the selected topic and have working notification permissions.</p><p class="small">This page sends manually to the legacy project. It does not modify the Hadapsar scheduler.</p><a href="/">Return to temple website</a></aside></div></main>
+<script>
+'use strict';
+const el=id=>document.getElementById(id), form=el('push');
+function preview(){el('pt').textContent=el('title').value||'Notification title';el('pb').textContent=el('body').value||'Your message will appear here.';el('pl').textContent='Opens: '+(el('link').value||'home.html');}
+for(const id of ['title','body','link'])el(id).addEventListener('input',preview);
+el('topic').addEventListener('change',()=>{const custom=el('topic').value==='custom';el('customWrap').hidden=!custom;el('custom').required=custom;});
+function status(message,state=''){el('result').textContent=message;el('result').dataset.state=state;}
+let busy=false;
+async function request(payload){if(busy)return;busy=true;el('send').disabled=el('check').disabled=true;status(payload.action==='status'?'Checking server configuration…':'Submitting to Firebase…');try{
+const response=await fetch('/api/radha-push',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+el('key').value},body:JSON.stringify(payload),cache:'no-store',signal:AbortSignal.timeout(30000)});
+const data=await response.json();
+if(!response.ok||!data.success)throw Error([data.reason||'Gateway error',data.details].filter(Boolean).join(' — '));
+if(payload.action==='status'){status('Server configuration ready: '+data.project+'. No notification sent.','ok');}
+else{status('Accepted by Firebase (device delivery not confirmed).\nTopic: '+data.targetTopic+'\nMessage ID: '+data.messageId+'\nTime: '+new Date(data.timestamp).toLocaleString(),'ok');}
+}catch(e){status('Request unsuccessful: '+(e.message||'Connection failed')+'\nIf a send timed out, verify before trying again.','error');}
+finally{busy=false;el('send').disabled=el('check').disabled=false;}}
+el('check').addEventListener('click',()=>{if(el('key').reportValidity())request({action:'status'});});
+form.addEventListener('submit',e=>{e.preventDefault();if(busy)return;const topic=el('topic').value==='custom'?el('custom').value.trim():el('topic').value;const payload={title:el('title').value.trim(),body:el('body').value.trim(),topic,imageUrl:el('image').value.trim(),actionUrl:el('link').value.trim(),isLoudAlert:el('loud').checked};if(!payload.title||!payload.body||!topic){status('Enter a title, message and topic.','error');return;}if(confirm('Send this notification to '+(topic==='all'?'all temple_all subscribers':topic)+'?'))request(payload);});
+</script></body></html>
