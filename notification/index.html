@@ -1,396 +1,686 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Notification Command Center - Sri Sri Radha Krishna Chandra</title>
-    
-    <!-- Fonts & Bootstrap -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@600;800&family=Cinzel:wght@800;900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notification Command Center - Sri Sri Radha Krishna Chandra</title>
 
-    <style>
-        :root {
-            --primary: #FF9933;
-            --primary-dark: #E65100;
-            --dark-bg: #0C0F17;
-            --dark-card: #141824;
-            --border-dark: #22293A;
-            --success: #10B981;
-            --danger: #EF4444;
-            --warning: #F59E0B;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Hind:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
 
-        body {
-            background: var(--dark-bg);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--text-main);
-            min-height: 100vh;
-            padding: 24px 16px 80px;
-        }
+<style>
+:root{
+  --night:#1A0526;
+  --plum:#2E0B45;
+  --magenta:#E0115F;
+  --marigold:#FFB000;
+  --saffron:#FF6A00;
+  --peacock:#00A6A6;
+  --lotus:#FF8FB8;
+  --cream:#FFF1D0;
+  --ink:#12031C;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Hind',sans-serif;
+  color:var(--cream);
+  min-height:100vh;
+  padding:0 0 60px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(224,17,95,.45), transparent 38%),
+    radial-gradient(circle at 92% 22%, rgba(0,166,166,.35), transparent 36%),
+    radial-gradient(circle at 50% 100%, rgba(255,106,0,.35), transparent 45%),
+    repeating-linear-gradient(45deg, rgba(255,176,0,.06) 0 2px, transparent 2px 18px),
+    repeating-linear-gradient(-45deg, rgba(255,143,184,.05) 0 2px, transparent 2px 18px),
+    var(--night);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
 
-        .header-bar {
-            max-width: 1200px;
-            margin: 0 auto 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            border-bottom: 1px solid var(--border-dark);
-            padding-bottom: 20px;
-        }
+/* ---------- Ticker ---------- */
+.ticker{
+  background:repeating-linear-gradient(90deg,var(--magenta) 0 40px,var(--saffron) 40px 80px,var(--marigold) 80px 120px,var(--peacock) 120px 160px);
+  border-bottom:4px solid var(--ink);
+  overflow:hidden;white-space:nowrap;
+  font-family:'Yatra One',serif;
+  color:var(--ink);font-size:.95rem;padding:7px 0;
+}
+.ticker span{display:inline-block;padding-left:100%;animation:scroll 28s linear infinite}
+@keyframes scroll{to{transform:translateX(-100%)}}
 
-        .brand-title {
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            font-size: 1.4rem;
-            color: var(--primary);
-            letter-spacing: 1px;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+/* ---------- Language switch ---------- */
+.lang-bar{
+  display:flex;justify-content:center;gap:0;
+  max-width:340px;margin:18px auto 0;
+  background:var(--ink);border:3px solid var(--marigold);border-radius:999px;
+  padding:4px;box-shadow:4px 4px 0 var(--magenta);
+  position:relative;z-index:2;
+}
+.lang-bar button{
+  flex:1;font:700 .95rem 'Hind',sans-serif;
+  color:var(--lotus);background:transparent;border:0;border-radius:999px;
+  padding:8px 6px;cursor:pointer;transition:background .15s,color .15s;
+}
+.lang-bar button.on{background:var(--marigold);color:var(--ink)}
 
-        .app-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;text-align:center;
+  padding:30px 18px 30px;
+  max-width:1180px;margin:0 auto;
+}
+.mandala{
+  position:absolute;left:50%;top:50%;
+  width:min(560px,120vw);aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  opacity:.22;z-index:0;pointer-events:none;
+  animation:spin 90s linear infinite;
+}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero>*:not(.mandala){position:relative;z-index:1}
+.hero .om{font-size:2.2rem;filter:drop-shadow(0 0 12px var(--marigold))}
+.hero h1{
+  font-family:'Yatra One',serif;font-weight:400;
+  font-size:clamp(2rem,6.5vw,4.2rem);line-height:1.1;
+  color:var(--marigold);
+  text-shadow:3px 3px 0 var(--magenta),6px 6px 0 var(--ink);
+  margin:6px 0 10px;
+}
+.hero p{
+  display:inline-block;font-weight:700;font-size:1rem;
+  background:var(--ink);color:var(--lotus);
+  border:2px solid var(--marigold);border-radius:999px;padding:6px 20px;
+}
+.status-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:14px;font-weight:700;font-size:.85rem;
+  background:var(--peacock);color:var(--ink);
+  padding:6px 16px;border-radius:999px;border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+.status-chip i{width:10px;height:10px;border-radius:50%;background:#B6FF5C;box-shadow:0 0 0 3px rgba(182,255,92,.35);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(182,255,92,0)}}
 
-        .custom-card {
-            background: var(--dark-card);
-            border: 1px solid var(--border-dark);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            height: 100%;
-        }
+/* ---------- Layout ---------- */
+.wrap{
+  max-width:1180px;margin:0 auto;padding:0 16px;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:28px;
+}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}}
 
-        .card-header-custom {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid var(--border-dark);
-            padding-bottom: 12px;
-        }
+.panel{
+  position:relative;
+  background:linear-gradient(160deg,rgba(255,255,255,.05),transparent 40%),var(--plum);
+  border:3px solid var(--marigold);border-radius:26px;
+  padding:26px 22px 24px;
+  box-shadow:0 0 0 6px var(--ink),0 0 0 9px var(--magenta),10px 14px 0 9px var(--ink);
+  margin-bottom:16px;
+}
+.panel::before,.panel::after{
+  content:"❁";position:absolute;font-size:1.6rem;color:var(--marigold);
+  background:var(--ink);border:2px solid var(--marigold);border-radius:50%;
+  width:38px;height:38px;display:grid;place-items:center;
+}
+.panel::before{top:-20px;left:22px}
+.panel::after{top:-20px;right:22px;color:var(--lotus)}
+.panel h2{
+  font-family:'Yatra One',serif;font-weight:400;
+  font-size:1.5rem;color:var(--lotus);
+  margin:6px 0 20px;padding-bottom:12px;
+  border-bottom:3px dotted var(--marigold);
+  display:flex;align-items:center;gap:10px;
+}
 
-        .form-label {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
+/* ---------- Form ---------- */
+label,.lbl{display:block;font-weight:700;font-size:.95rem;color:var(--marigold);margin:0 0 8px}
+.field{margin-bottom:20px}
+input,textarea{
+  width:100%;font:600 1rem 'Hind',sans-serif;color:var(--ink);
+  background:var(--cream);border:3px solid var(--ink);border-radius:14px;
+  padding:12px 14px;outline:none;
+  box-shadow:4px 4px 0 var(--saffron);
+  transition:box-shadow .15s,transform .15s;
+}
+textarea{resize:vertical;min-height:92px}
+input:focus,textarea:focus{
+  box-shadow:4px 4px 0 var(--magenta),0 0 0 4px var(--marigold);
+  transform:translate(-1px,-1px);
+}
+input::placeholder,textarea::placeholder{color:#8a6a86;font-weight:500}
+.hidden{display:none!important}
+:focus-visible{outline:3px solid var(--lotus);outline-offset:3px}
 
-        .custom-input, .custom-select, .custom-textarea {
-            width: 100%;
-            background: #080A10;
-            border: 1.5px solid var(--border-dark);
-            border-radius: 12px;
-            color: #fff;
-            padding: 12px 14px;
-            font-size: 0.92rem;
-            font-weight: 600;
-            outline: none;
-            transition: all 0.2s;
-            margin-bottom: 16px;
-        }
+/* ---------- Segmented action switch ---------- */
+.seg{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  background:var(--ink);border:3px solid var(--marigold);
+  border-radius:16px;padding:4px;margin-bottom:14px;
+}
+.seg button{
+  font:700 .95rem 'Hind',sans-serif;color:var(--lotus);
+  background:transparent;border:0;border-radius:11px;padding:11px 6px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:background .15s,color .15s;
+}
+.seg button.on{background:linear-gradient(100deg,var(--marigold),var(--saffron));color:var(--ink)}
 
-        .custom-input:focus, .custom-select:focus, .custom-textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.2);
-            background: #0E121B;
-        }
+/* ---------- Native-style app screen picker ---------- */
+.appshell{
+  background:#F6EEFB;color:#1B1030;
+  border:3px solid var(--ink);border-radius:22px;overflow:hidden;
+  box-shadow:5px 5px 0 var(--peacock);
+}
+.appbar{
+  display:flex;align-items:center;gap:10px;
+  background:linear-gradient(100deg,var(--saffron),var(--magenta));
+  color:#fff;padding:12px 14px;
+}
+.appbar .logo{
+  width:30px;height:30px;border-radius:50%;background:#fff;
+  display:grid;place-items:center;font-size:1rem;
+}
+.appbar b{font-family:'Yatra One',serif;font-weight:400;font-size:1.05rem;flex:1;line-height:1.1}
+.appbar small{font-size:.7rem;font-weight:700;opacity:.9;background:rgba(0,0,0,.22);border-radius:999px;padding:3px 9px}
+.apphint{padding:12px 14px 4px;font-size:.82rem;font-weight:700;color:#6b4d86}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 14px 16px}
+.tile{
+  position:relative;text-align:left;cursor:pointer;
+  font-family:'Hind',sans-serif;color:#1B1030;
+  background:#fff;border:2.5px solid #E4D5F0;border-radius:18px;
+  padding:14px 12px 12px;
+  box-shadow:0 3px 0 #E4D5F0;
+  transition:transform .12s,box-shadow .12s,border-color .12s,background .12s;
+}
+.tile:active{transform:scale(.95)}
+.tile .ic{
+  width:46px;height:46px;border-radius:14px;
+  display:grid;place-items:center;font-size:1.5rem;margin-bottom:9px;
+}
+.tile .nm{font-weight:700;font-size:.92rem;line-height:1.25}
+.tile .ck{
+  position:absolute;top:9px;right:9px;width:22px;height:22px;border-radius:50%;
+  background:#E4D5F0;color:transparent;display:grid;place-items:center;font-size:.75rem;font-weight:700;
+}
+.tile.on{border-color:var(--magenta);background:#FFF0F6;box-shadow:0 3px 0 var(--magenta)}
+.tile.on .ck{background:var(--magenta);color:#fff}
+.tile:nth-child(1) .ic{background:#FFE3C2}
+.tile:nth-child(2) .ic{background:#FFD3E3}
+.tile:nth-child(3) .ic{background:#CFF3F1}
+.tile:nth-child(4) .ic{background:#E3DAFF}
+.tile:nth-child(5) .ic{background:#FFF0B8}
 
-        .send-btn {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border: none;
-            color: white;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            width: 100%;
-            cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 6px 20px rgba(230, 81, 0, 0.4);
-        }
+/* ---------- Send ---------- */
+.send{
+  width:100%;margin-top:6px;
+  font:400 1.35rem 'Yatra One',serif;color:var(--ink);
+  background:linear-gradient(100deg,var(--marigold),var(--saffron) 50%,var(--magenta));
+  border:3px solid var(--ink);border-radius:18px;padding:16px;cursor:pointer;
+  box-shadow:6px 6px 0 var(--ink),6px 6px 0 3px var(--marigold);
+  transition:transform .12s,box-shadow .12s;
+  display:flex;justify-content:center;align-items:center;gap:10px;
+}
+.send:hover{transform:translate(-2px,-2px)}
+.send:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.send:disabled{opacity:.65;cursor:not-allowed}
 
-        .send-btn:active { transform: scale(0.97); }
-        .send-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+/* ---------- Diagnostics ---------- */
+.diag{
+  margin-top:20px;padding:14px 16px;border-radius:16px;
+  border:3px solid var(--ink);background:var(--cream);color:var(--ink);
+  box-shadow:5px 5px 0 var(--peacock);font-weight:600;
+}
+.diag.ok{box-shadow:5px 5px 0 #2DBE60}
+.diag.err{box-shadow:5px 5px 0 var(--magenta);background:#FFE1E8}
+.diag strong{font-family:'Yatra One',serif;font-weight:400;font-size:1.1rem;display:block}
+.diag small{display:block;margin-top:4px;opacity:.8}
 
-        /* Mobile Mockup Preview */
-        .preview-box {
-            background: #000;
-            border: 2px solid #2B3346;
-            border-radius: 32px;
-            padding: 18px 14px;
-            max-width: 340px;
-            margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
+/* ---------- Phone preview ---------- */
+.phone{
+  max-width:340px;margin:0 auto;background:var(--ink);
+  border:4px solid var(--marigold);border-radius:38px;padding:16px 12px 20px;
+  box-shadow:0 0 0 5px var(--peacock),8px 10px 0 5px var(--ink);
+  background-image:radial-gradient(circle at 20% 0%,rgba(224,17,95,.5),transparent 55%),radial-gradient(circle at 90% 100%,rgba(0,166,166,.45),transparent 55%);
+}
+.phone .cam{width:14px;height:14px;background:#000;border:2px solid #3b2a50;border-radius:50%;margin:0 auto 12px}
+.phone .clock{text-align:center;font-family:'Rozha One',serif;font-size:2.6rem;color:var(--cream);line-height:1}
+.phone .date{text-align:center;font-size:.8rem;margin:2px 0 14px;color:var(--lotus);font-weight:600}
+.notif{background:#F7EEFF;color:#1B1030;border-radius:20px;padding:12px 14px 14px;box-shadow:0 8px 0 rgba(0,0,0,.35)}
+.notif-top{display:flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;color:#5b4a73;margin-bottom:8px}
+.notif-icon{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--magenta));display:grid;place-items:center;font-size:.7rem;color:#fff}
+.notif-title{font-weight:700;font-size:1rem;line-height:1.3;margin-bottom:3px;word-break:break-word}
+.notif-body{font-size:.86rem;line-height:1.4;color:#43365a;word-break:break-word;white-space:pre-wrap}
+.notif-img{display:none;width:100%;height:150px;object-fit:cover;border-radius:12px;margin-top:10px;background:#d9cbe8}
+.tap-chip{
+  margin:16px auto 0;max-width:300px;background:var(--marigold);color:var(--ink);
+  border:3px solid var(--ink);border-radius:14px;padding:9px 12px;
+  font-weight:700;font-size:.86rem;text-align:center;box-shadow:4px 4px 0 var(--magenta);
+}
 
-        .mock-notch {
-            width: 90px;
-            height: 18px;
-            background: #1E2433;
-            border-radius: 20px;
-            margin: 0 auto 16px;
-        }
+/* ---------- History ---------- */
+.hist-head{display:flex;justify-content:space-between;align-items:center;margin:4px 0 12px}
+.hist-head b{font-family:'Yatra One',serif;font-weight:400;font-size:1.15rem;color:var(--marigold)}
+.hist-head button{font:700 .8rem 'Hind',sans-serif;background:var(--ink);color:var(--lotus);border:2px solid var(--lotus);border-radius:999px;padding:3px 14px;cursor:pointer}
+.hist{display:flex;flex-direction:column;gap:10px;max-height:260px;overflow-y:auto;padding:2px 6px 6px 2px}
+.hist-item{
+  display:flex;justify-content:space-between;gap:10px;align-items:center;
+  background:var(--cream);color:var(--ink);border:3px solid var(--ink);border-radius:14px;
+  padding:9px 12px;box-shadow:3px 3px 0 var(--peacock);
+}
+.hist-item.fail{box-shadow:3px 3px 0 var(--magenta)}
+.hist-item .t{font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px}
+.hist-item .s{font-size:.75rem;font-weight:600;color:#5b4a73}
+.hist-item .tm{font-size:.72rem;font-weight:700;white-space:nowrap}
+.empty{text-align:center;color:var(--lotus);font-weight:600;padding:12px}
 
-        .mock-notification {
-            background: #1C2230;
-            border-radius: 18px;
-            padding: 14px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .mock-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: #CBD5E1;
-            margin-bottom: 8px;
-        }
-
-        .mock-badge {
-            width: 18px;
-            height: 18px;
-            background: var(--primary);
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-size: 0.65rem;
-        }
-
-        .mock-title {
-            font-weight: 800;
-            font-size: 0.95rem;
-            color: #fff;
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .mock-body {
-            font-size: 0.82rem;
-            color: #94A3B8;
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-
-        .mock-image {
-            width: 100%;
-            height: 140px;
-            border-radius: 12px;
-            object-fit: cover;
-            display: none;
-            background: #252D3D;
-        }
-
-        /* Diagnostic Box */
-        .diag-box {
-            background: #080A10;
-            border-radius: 14px;
-            padding: 16px;
-            margin-top: 20px;
-            border-left: 4px solid #334155;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-        }
-
-        .diag-success { border-left-color: var(--success); }
-        .diag-error { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.08); }
-
-        /* History Table */
-        .history-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 8px;
-        }
-
-        .history-table tr {
-            background: #0E121B;
-            border-radius: 10px;
-        }
-
-        .history-table td {
-            padding: 12px 14px;
-            font-size: 0.82rem;
-            vertical-align: middle;
-            border-top: 1px solid var(--border-dark);
-            border-bottom: 1px solid var(--border-dark);
-        }
-
-        .history-table td:first-child { border-left: 1px solid var(--border-dark); border-radius: 10px 0 0 10px; }
-        .history-table td:last-child { border-right: 1px solid var(--border-dark); border-radius: 0 10px 10px 0; }
-    </style>
+@media (prefers-reduced-motion:reduce){
+  .ticker span,.mandala,.status-chip i{animation:none}
+  .ticker span{padding-left:12px}
+}
+</style>
 </head>
 <body>
 
-<div class="header-bar">
-    <div>
-        <h1 class="brand-title">
-            <i class="fas fa-gopuram"></i> RADHA KRISHNA CHANDRA
-        </h1>
-        <small style="color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px;">
-            FCM PUSH NOTIFICATION COMMAND & DIAGNOSTIC SYSTEM
-        </small>
-    </div>
-    <div>
-        <span class="badge bg-success bg-opacity-20 text-success border border-success px-3 py-2 fw-bold">
-            <i class="fas fa-wifi me-1"></i> FCM Gateway: Active
-        </span>
-    </div>
+<div class="ticker"><span id="tickerText"></span></div>
+
+<div class="lang-bar" role="group" aria-label="Language">
+  <button type="button" data-lang="hi" onclick="setLang('hi')">हिंदी</button>
+  <button type="button" data-lang="mr" onclick="setLang('mr')">मराठी</button>
+  <button type="button" data-lang="en" onclick="setLang('en')">English</button>
 </div>
 
-<div class="app-container">
-    <div class="row g-4">
-        
-        <!-- 📝 फॉर्म कंट्रोलर -->
-        <div class="col-12 col-lg-7">
-            <div class="custom-card">
-                <div class="card-header-custom">
-                    <i class="fas fa-paper-plane text-warning"></i> नोटिफिकेशन भेजें (Send Broadcast)
-                </div>
+<header class="hero">
+  <svg class="mandala" viewBox="0 0 200 200" aria-hidden="true">
+    <g fill="none" stroke="#FFB000" stroke-width=".8">
+      <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="78" stroke-dasharray="3 3"/>
+      <circle cx="100" cy="100" r="58"/><circle cx="100" cy="100" r="36" stroke="#E0115F"/>
+      <g id="petal"><path d="M100 4 C118 34 118 64 100 100 C82 64 82 34 100 4Z" stroke="#FF8FB8"/></g>
+      <use href="#petal" transform="rotate(30 100 100)"/><use href="#petal" transform="rotate(60 100 100)"/>
+      <use href="#petal" transform="rotate(90 100 100)"/><use href="#petal" transform="rotate(120 100 100)"/>
+      <use href="#petal" transform="rotate(150 100 100)"/><use href="#petal" transform="rotate(180 100 100)"/>
+      <use href="#petal" transform="rotate(210 100 100)"/><use href="#petal" transform="rotate(240 100 100)"/>
+      <use href="#petal" transform="rotate(270 100 100)"/><use href="#petal" transform="rotate(300 100 100)"/>
+      <use href="#petal" transform="rotate(330 100 100)"/>
+    </g>
+  </svg>
+  <div class="om">🕉️</div>
+  <h1 data-i="temple"></h1>
+  <p data-i="subtitle"></p><br>
+  <span class="status-chip"><i></i> <span data-i="serverOn"></span></span>
+</header>
 
-                <form id="pushForm" onsubmit="handleSendPush(event)">
-                    
-                    <div class="row g-2">
-                        <div class="col-12 col-md-6">
-                            <label class="form-label">टारगेट ऑडियंस (Topic) *</label>
-                            <select id="pushTopic" class="custom-select" required>
-                                <option value="all">🌐 समस्त भक्तगण (Topic: all)</option>
-                                <option value="darshan">🌸 दैनिक दर्शन सब्सक्राइबर (Topic: darshan)</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label class="form-label">क्लिक एक्शन (Deep Link)</label>
-                            <select id="pushAction" class="custom-select">
-                                <option value="daily_darshan.html">Daily Darshan & Seva Screen</option>
-                                <option value="global_jap.html">Live Global Japa Screen</option>
-                                <option value="home.html">Home Dashboard</option>
-                                <option value="calendar.html">Ekadashi Calendar</option>
-                                <option value="dono.html">Donation / Seva Screen</option>
-                            </select>
-                        </div>
-                    </div>
+<main class="wrap">
 
-                    <label class="form-label">नोटिफिकेशन शीर्षक (Title) *</label>
-                    <input type="text" id="pushTitle" class="custom-input" placeholder="e.g. 🌸 श्री श्री राधाकृष्ण चंद्र राजभोग शृंगार दर्शन" required oninput="updatePreview()">
+  <!-- ================= FORM ================= -->
+  <section class="panel">
+    <h2>🔔 <span data-i="sendHead"></span></h2>
 
-                    <label class="form-label">संदेश विवरण (Message Body) *</label>
-                    <textarea id="pushBody" class="custom-textarea" rows="3" placeholder="भक्तों के लिए पावन संदेश लिखें..." required oninput="updatePreview()"></textarea>
+    <form id="pushForm" onsubmit="handleSendPush(event)">
 
-                    <label class="form-label">बैनर फोटो URL (BigPicture Image URL)</label>
-                    <input type="url" id="pushImage" class="custom-input" placeholder="https://.../darshan.jpg (Direct image link)" oninput="updatePreview()">
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: -10px; margin-bottom: 18px;">
-                        <i class="fas fa-info-circle me-1"></i> फोटो का सीधा लिंक (.jpg / .png / .webp) डालें। यदि नहीं है तो खाली छोड़ दें।
-                    </div>
-
-                    <button type="submit" id="submitBtn" class="send-btn">
-                        <i class="fas fa-bolt"></i> अभी नोटिफिकेशन भेजें (Send Push)
-                    </button>
-                </form>
-
-                <!-- 🔬 लाइव डायग्नोस्टिक कंसोल (Error / Reason Display) -->
-                <div id="diagConsole" class="diag-box d-none">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <strong id="diagStatusHead">STATUS</strong>
-                        <span id="diagTimestamp" style="font-size: 0.7rem; opacity: 0.7;"></span>
-                    </div>
-                    <div id="diagMessage" style="margin-top: 6px; font-weight: 600;"></div>
-                    <div id="diagReason" style="margin-top: 6px; color: #FCA5A5;"></div>
-                </div>
-
-            </div>
+      <!-- क्लिक एक्शन -->
+      <div class="field">
+        <span class="lbl" data-i="tapOpens"></span>
+        <div class="seg" role="group">
+          <button type="button" id="segInternal" class="on" onclick="setMode('internal')">📱 <span data-i="appPage"></span></button>
+          <button type="button" id="segExternal" onclick="setMode('external')">🌐 <span data-i="extLink"></span></button>
         </div>
 
-        <!-- 📱 लाइव मोबाइल प्रीव्यू -->
-        <div class="col-12 col-lg-5">
-            <div class="custom-card">
-                <div class="card-header-custom justify-content-between">
-                    <span><i class="fas fa-mobile-screen text-warning"></i> लाइव मोबाइल प्रीव्यू</span>
-                    <small style="font-size: 0.72rem; color: var(--text-muted);">Real-time View</small>
-                </div>
-
-                <div class="preview-box">
-                    <div class="mock-notch"></div>
-                    
-                    <div class="mock-notification">
-                        <div class="mock-header">
-                            <div class="mock-badge"><i class="fas fa-bell"></i></div>
-                            <span>श्री श्री राधाकृष्ण चंद्र</span>
-                            <span style="opacity: 0.5;">• अभी</span>
-                        </div>
-                        <div class="mock-title" id="prevTitle">शीर्षक यहाँ दिखेगा...</div>
-                        <div class="mock-body" id="prevBody">आपका पावन संदेश यहाँ दिखेगा...</div>
-                        <img id="prevImg" class="mock-image" src="" alt="Banner">
-                    </div>
-                </div>
-
-                <!-- 📜 रीसेंट हिस्ट्री लॉग -->
-                <div class="mt-4">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="fw-bold" style="color: var(--text-muted); text-transform: uppercase;">हालिया ब्रॉडकास्ट लॉग्स</small>
-                        <button onclick="clearHistory()" class="btn btn-sm btn-link text-muted p-0 text-decoration-none" style="font-size: 0.75rem;">Clear</button>
-                    </div>
-                    <div style="max-height: 200px; overflow-y: auto;">
-                        <table class="history-table">
-                            <tbody id="historyBody">
-                                <tr><td class="text-center text-muted" colspan="2">कोई हालिया लॉग नहीं है।</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
+        <!-- ऐप के अंदर का पेज (native जैसा) -->
+        <div id="internalBox" class="appshell">
+          <div class="appbar">
+            <div class="logo">🪷</div>
+            <b data-i="temple"></b>
+            <small data-i="appBadge"></small>
+          </div>
+          <div class="apphint" data-i="pickScreen"></div>
+          <div class="tiles" id="tiles"></div>
         </div>
 
+        <!-- बाहरी लिंक -->
+        <div id="externalBox" class="hidden">
+          <input type="url" id="pushCustomUrl" data-ph="urlPh" oninput="updatePreview()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="pushTitle" data-i="titleLbl"></label>
+        <input type="text" id="pushTitle" data-ph="titlePh" required oninput="updatePreview()">
+      </div>
+
+      <div class="field">
+        <label for="pushBody" data-i="bodyLbl"></label>
+        <textarea id="pushBody" rows="3" data-ph="bodyPh" required oninput="updatePreview()"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="pushImage" data-i="imgLbl"></label>
+        <input type="url" id="pushImage" placeholder="https://.../banner.jpg" oninput="updatePreview()">
+      </div>
+
+      <button type="submit" id="submitBtn" class="send"></button>
+    </form>
+
+    <div id="diagConsole" class="diag hidden">
+      <strong id="diagStatusHead"></strong>
+      <div id="diagMessage"></div>
+      <small id="diagReason"></small>
+      <small id="diagTimestamp"></small>
     </div>
-</div>
+  </section>
+
+  <!-- ================= PREVIEW ================= -->
+  <section class="panel">
+    <h2>📱 <span data-i="previewHead"></span></h2>
+
+    <div class="phone">
+      <div class="cam"></div>
+      <div class="clock" id="phoneClock">9:41</div>
+      <div class="date" id="phoneDate"></div>
+
+      <div class="notif">
+        <div class="notif-top">
+          <div class="notif-icon">🪷</div>
+          <span data-i="temple"></span>
+          <span>• <span data-i="now"></span></span>
+        </div>
+        <div class="notif-title" id="prevTitle"></div>
+        <div class="notif-body" id="prevBody"></div>
+        <img id="prevImg" class="notif-img" src="" alt="">
+      </div>
+    </div>
+
+    <div class="tap-chip" id="tapChip"></div>
+
+    <div style="margin-top:28px">
+      <div class="hist-head">
+        <b>📜 <span data-i="histHead"></span></b>
+        <button type="button" onclick="clearHistory()" data-i="clear"></button>
+      </div>
+      <div class="hist" id="historyBody"></div>
+    </div>
+  </section>
+
+</main>
 
 <script>
-    // लाइव प्रीव्यू अपडेटर
+    // ================= भाषाएँ / Languages =================
+    const I18N = {
+        hi: {
+            locale: 'hi-IN',
+            temple: 'श्री श्री राधा कृष्ण चंद्र',
+            subtitle: 'भक्तों को नोटिफिकेशन भेजने का केंद्र',
+            serverOn: 'नोटिफिकेशन सर्वर चालू है',
+            ticker: '🌸 हरे कृष्ण • 🪔 राधे राधे • 🦚 जय श्री राधा कृष्ण चंद्र • 🌺 हर भक्त तक पावन संदेश • 🔔 हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे • 🌸',
+            sendHead: 'सभी भक्तों को नोटिफिकेशन भेजें',
+            tapOpens: 'टैप करने पर क्या खुले?',
+            appPage: 'ऐप का पेज',
+            extLink: 'बाहरी लिंक',
+            appBadge: 'ऐप',
+            pickScreen: 'ऐप का कौन सा पेज खुलना चाहिए? चुनें:',
+            urlPh: 'YouTube / वेबसाइट / प्ले स्टोर लिंक डालें',
+            titleLbl: 'शीर्षक *',
+            titlePh: 'जैसे: 🔴 लाइव महाआरती शुरू हो चुकी है!',
+            bodyLbl: 'संदेश *',
+            bodyPh: 'भक्तों के लिए पावन संदेश लिखें...',
+            imgLbl: 'बैनर फोटो का लिंक (ज़रूरी नहीं)',
+            send: '⚡ सबको अभी भेजें',
+            sending: '⏳ भेजा जा रहा है...',
+            previewHead: 'फोन में ऐसा दिखेगा',
+            now: 'अभी',
+            titleEmpty: 'शीर्षक यहाँ दिखेगा...',
+            bodyEmpty: 'आपका संदेश यहाँ दिखेगा...',
+            tapOn: '👆 टैप करने पर: ',
+            histHead: 'हाल के नोटिफिकेशन',
+            clear: 'मिटाएं',
+            noHist: 'अभी तक कोई नोटिफिकेशन नहीं भेजा गया।',
+            sentOk: '✅ भेजा गया',
+            sentFail: '❌ विफल',
+            sendingHead: 'भेजा जा रहा है...',
+            wait: 'कृपया प्रतीक्षा करें।',
+            okHead: '✅ नोटिफिकेशन सभी भक्तों को भेज दिया गया',
+            opensOn: 'टैप करने पर खुलेगा: ',
+            reached: 'सभी सब्सक्राइबर्स तक पहुंच गया है।',
+            failHead: '❌ नहीं भेजा जा सका',
+            reason: 'कारण: ',
+            unknownErr: 'अज्ञात त्रुटि',
+            netHead: '⚠️ सर्वर से कनेक्ट नहीं हो सका',
+            netMsg: 'इंटरनेट जाँचें और फिर कोशिश करें।',
+            website: 'वेबसाइट',
+            appOpens: 'ऐप खुलेगा',
+            screens: {
+                'index.html': 'होम',
+                'daily_darshan.html': 'दैनिक दर्शन और सेवा',
+                'global_jap.html': 'लाइव ग्लोबल जप',
+                'calendar.html': 'एकादशी कैलेंडर',
+                'dono.html': 'दान / सेवा'
+            }
+        },
+        mr: {
+            locale: 'mr-IN',
+            temple: 'श्री श्री राधा कृष्ण चंद्र',
+            subtitle: 'भक्तांना नोटिफिकेशन पाठवण्याचे केंद्र',
+            serverOn: 'नोटिफिकेशन सर्व्हर सुरू आहे',
+            ticker: '🌸 हरे कृष्ण • 🪔 राधे राधे • 🦚 जय श्री राधा कृष्ण चंद्र • 🌺 प्रत्येक भक्तापर्यंत पावन संदेश • 🔔 हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे • 🌸',
+            sendHead: 'सर्व भक्तांना नोटिफिकेशन पाठवा',
+            tapOpens: 'टॅप केल्यावर काय उघडेल?',
+            appPage: 'अॅपचे पेज',
+            extLink: 'बाहेरील लिंक',
+            appBadge: 'अॅप',
+            pickScreen: 'अॅपमधील कोणते पेज उघडायचे? निवडा:',
+            urlPh: 'YouTube / वेबसाइट / प्ले स्टोअर लिंक टाका',
+            titleLbl: 'शीर्षक *',
+            titlePh: 'उदा.: 🔴 लाईव्ह महाआरती सुरू झाली आहे!',
+            bodyLbl: 'संदेश *',
+            bodyPh: 'भक्तांसाठी पावन संदेश लिहा...',
+            imgLbl: 'बॅनर फोटोची लिंक (गरजेचे नाही)',
+            send: '⚡ सर्वांना आत्ता पाठवा',
+            sending: '⏳ पाठवले जात आहे...',
+            previewHead: 'फोनमध्ये असे दिसेल',
+            now: 'आत्ता',
+            titleEmpty: 'शीर्षक येथे दिसेल...',
+            bodyEmpty: 'तुमचा संदेश येथे दिसेल...',
+            tapOn: '👆 टॅप केल्यावर: ',
+            histHead: 'अलीकडील नोटिफिकेशन',
+            clear: 'पुसा',
+            noHist: 'अजून एकही नोटिफिकेशन पाठवलेले नाही.',
+            sentOk: '✅ पाठवले',
+            sentFail: '❌ अयशस्वी',
+            sendingHead: 'पाठवले जात आहे...',
+            wait: 'कृपया प्रतीक्षा करा.',
+            okHead: '✅ नोटिफिकेशन सर्व भक्तांना पाठवले',
+            opensOn: 'टॅप केल्यावर उघडेल: ',
+            reached: 'सर्व सबस्क्रायबर्सपर्यंत पोहोचले आहे.',
+            failHead: '❌ पाठवता आले नाही',
+            reason: 'कारण: ',
+            unknownErr: 'अज्ञात त्रुटी',
+            netHead: '⚠️ सर्व्हरशी कनेक्ट होता आले नाही',
+            netMsg: 'इंटरनेट तपासा आणि पुन्हा प्रयत्न करा.',
+            website: 'वेबसाइट',
+            appOpens: 'अॅप उघडेल',
+            screens: {
+                'index.html': 'मुख्यपृष्ठ',
+                'daily_darshan.html': 'दैनिक दर्शन आणि सेवा',
+                'global_jap.html': 'लाईव्ह ग्लोबल जप',
+                'calendar.html': 'एकादशी दिनदर्शिका',
+                'dono.html': 'दान / सेवा'
+            }
+        },
+        en: {
+            locale: 'en-IN',
+            temple: 'Sri Sri Radha Krishna Chandra',
+            subtitle: 'Devotee notification center',
+            serverOn: 'Notification server is online',
+            ticker: '🌸 Hare Krishna • 🪔 Radhe Radhe • 🦚 Jai Sri Radha Krishna Chandra • 🌺 A blessed message for every devotee • 🔔 Hare Krishna Hare Krishna Krishna Krishna Hare Hare • 🌸',
+            sendHead: 'Send notification to all devotees',
+            tapOpens: 'What opens when tapped?',
+            appPage: 'App page',
+            extLink: 'External link',
+            appBadge: 'APP',
+            pickScreen: 'Which app page should open? Choose one:',
+            urlPh: 'Paste a YouTube / website / Play Store link',
+            titleLbl: 'Title *',
+            titlePh: 'e.g. 🔴 Live Maha Aarti has started!',
+            bodyLbl: 'Message *',
+            bodyPh: 'Write a blessed message for the devotees...',
+            imgLbl: 'Banner image link (optional)',
+            send: '⚡ Send to everyone now',
+            sending: '⏳ Sending...',
+            previewHead: 'How it looks on the phone',
+            now: 'now',
+            titleEmpty: 'Title will appear here...',
+            bodyEmpty: 'Your message will appear here...',
+            tapOn: '👆 On tap: ',
+            histHead: 'Recent notifications',
+            clear: 'Clear',
+            noHist: 'No notifications sent yet.',
+            sentOk: '✅ Sent',
+            sentFail: '❌ Failed',
+            sendingHead: 'Sending...',
+            wait: 'Please wait.',
+            okHead: '✅ Notification sent to all devotees',
+            opensOn: 'Opens on tap: ',
+            reached: 'Delivered to all subscribers.',
+            failHead: '❌ Could not send',
+            reason: 'Reason: ',
+            unknownErr: 'Unknown error',
+            netHead: '⚠️ Could not reach the server',
+            netMsg: 'Check your internet and try again.',
+            website: 'Website',
+            appOpens: 'Opens the app',
+            screens: {
+                'index.html': 'Home',
+                'daily_darshan.html': 'Daily Darshan & Seva',
+                'global_jap.html': 'Live Global Japa',
+                'calendar.html': 'Ekadashi Calendar',
+                'dono.html': 'Donation / Seva'
+            }
+        }
+    };
+
+    const SCREEN_ICONS = {
+        'index.html': '🏠',
+        'daily_darshan.html': '🌸',
+        'global_jap.html': '📿',
+        'calendar.html': '📅',
+        'dono.html': '🙏'
+    };
+    const SCREEN_ORDER = ['index.html', 'daily_darshan.html', 'global_jap.html', 'calendar.html', 'dono.html'];
+
+    let lang = 'hi';
+    let mode = 'internal';
+    let selectedScreen = 'index.html';
+
+    function t(key) { return I18N[lang][key]; }
+
+    function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, c => (
+            {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+        ));
+    }
+
+    function setLang(l) {
+        lang = I18N[l] ? l : 'hi';
+        try { localStorage.setItem('admin_lang', lang); } catch (e) {}
+        applyLang();
+    }
+
+    function applyLang() {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i]').forEach(el => { el.textContent = t(el.dataset.i); });
+        document.querySelectorAll('[data-ph]').forEach(el => { el.placeholder = t(el.dataset.ph); });
+        document.querySelectorAll('.lang-bar button').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
+        document.getElementById('tickerText').textContent = t('ticker') + '   ' + t('ticker');
+        const btn = document.getElementById('submitBtn');
+        if (!btn.disabled) btn.textContent = t('send');
+        renderTiles();
+        updatePreview();
+        tickPhone();
+        renderHistory();
+    }
+
+    // ================= लिंक का नाम (.html कभी नहीं दिखेगा) =================
+    function friendlyLinkName(link) {
+        if (!link) return t('appOpens');
+        if (I18N.hi.screens[link]) return SCREEN_ICONS[link] + ' ' + t('screens')[link];
+        try {
+            const host = new URL(link).hostname.replace(/^www\./, '');
+            if (host.includes('youtube.com') || host === 'youtu.be') return '▶️ YouTube';
+            if (host.includes('play.google.com')) return '🛍️ Play Store';
+            if (host.includes('instagram.com')) return '📸 Instagram';
+            if (host.includes('facebook.com') || host === 'fb.com') return '👥 Facebook';
+            if (host.includes('wa.me') || host.includes('whatsapp.com')) return '💬 WhatsApp';
+            return '🌐 ' + host;
+        } catch (e) {
+            return '🌐 ' + t('website');
+        }
+    }
+
+    // ================= ऐप पेज चुनने वाले टाइल्स =================
+    function renderTiles() {
+        const box = document.getElementById('tiles');
+        box.innerHTML = SCREEN_ORDER.map(key => `
+            <button type="button" class="tile ${key === selectedScreen ? 'on' : ''}" data-screen="${key}" onclick="selectScreen('${key}')">
+                <span class="ck">✓</span>
+                <div class="ic">${SCREEN_ICONS[key]}</div>
+                <div class="nm">${esc(t('screens')[key])}</div>
+            </button>
+        `).join('');
+    }
+
+    function selectScreen(key) {
+        selectedScreen = key;
+        if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
+        renderTiles();
+        updatePreview();
+    }
+
+    function setMode(m) {
+        mode = m;
+        document.getElementById('segInternal').classList.toggle('on', m === 'internal');
+        document.getElementById('segExternal').classList.toggle('on', m === 'external');
+        document.getElementById('internalBox').classList.toggle('hidden', m !== 'internal');
+        document.getElementById('externalBox').classList.toggle('hidden', m !== 'external');
+        updatePreview();
+    }
+
+    function getSelectedActionUrl() {
+        if (mode === 'external') {
+            return document.getElementById('pushCustomUrl').value.trim() || "https://google.com";
+        }
+        return selectedScreen;
+    }
+
+    // ================= लाइव प्रीव्यू =================
     function updatePreview() {
         const title = document.getElementById('pushTitle').value.trim();
         const body = document.getElementById('pushBody').value.trim();
         const img = document.getElementById('pushImage').value.trim();
+        const link = getSelectedActionUrl();
 
-        document.getElementById('prevTitle').innerText = title || "शीर्षक यहाँ दिखेगा...";
-        document.getElementById('prevBody').innerText = body || "आपका पावन संदेश यहाँ दिखेगा...";
+        document.getElementById('prevTitle').innerText = title || t('titleEmpty');
+        document.getElementById('prevBody').innerText = body || t('bodyEmpty');
+        document.getElementById('tapChip').innerText = t('tapOn') + friendlyLinkName(link);
 
         const prevImg = document.getElementById('prevImg');
         if (img && img.startsWith('http')) {
+            prevImg.onerror = () => { prevImg.style.display = 'none'; };
             prevImg.src = img;
             prevImg.style.display = 'block';
-            prevImg.onerror = () => { prevImg.style.display = 'none'; };
         } else {
             prevImg.style.display = 'none';
         }
     }
 
-    // नोटिफिकेशन सेंडर + डीप डायग्नोस्टिक्स
+    function tickPhone() {
+        const now = new Date();
+        document.getElementById('phoneClock').innerText =
+            now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: false });
+        document.getElementById('phoneDate').innerText =
+            now.toLocaleDateString(t('locale'), { weekday: 'long', day: 'numeric', month: 'long' });
+    }
+
+    // ================= भेजना (हमेशा सभी भक्तों को) =================
     async function handleSendPush(e) {
         e.preventDefault();
 
@@ -404,15 +694,14 @@
         const title = document.getElementById('pushTitle').value.trim();
         const body = document.getElementById('pushBody').value.trim();
         const imageUrl = document.getElementById('pushImage').value.trim();
-        const actionUrl = document.getElementById('pushAction').value;
-        const topic = document.getElementById('pushTopic').value;
+        const actionUrl = getSelectedActionUrl();
+        const topic = 'all';   // एक बार में सबको
 
-        // UI को सेंडिंग मोड में सेट करें
         btn.disabled = true;
-        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> FCM सर्वर से जुड़ रहे हैं...`;
-        diagConsole.classList.remove('d-none', 'diag-success', 'diag-error');
-        diagStatusHead.innerText = "SENDING...";
-        diagMessage.innerText = "अनुरोध भेजा जा रहा है, कृपया प्रतीक्षा करें...";
+        btn.textContent = t('sending');
+        diagConsole.classList.remove('hidden', 'ok', 'err');
+        diagStatusHead.innerText = t('sendingHead');
+        diagMessage.innerText = t('wait');
         diagReason.innerText = "";
         diagTimestamp.innerText = new Date().toLocaleTimeString();
 
@@ -424,84 +713,75 @@
             });
 
             const data = await response.json();
-
             diagTimestamp.innerText = new Date().toLocaleTimeString();
 
             if (response.ok && data.success) {
-                // ✅ सफलता
-                diagConsole.classList.add('diag-success');
-                diagStatusHead.innerHTML = `<i class="fas fa-check-circle text-success me-1"></i> SUCCESS (डिलीवर हो गया)`;
-                diagMessage.innerHTML = `सफलतापूर्वक भेजा गया! <br><small style="color:#A7F3D0;">FCM Message ID: ${data.messageId}</small>`;
-                diagReason.innerText = `Topic: "${data.targetTopic}" के सभी सब्सक्राइबर्स को भेजा जा चुका है।`;
-
-                saveToHistory({ title, body, status: 'Success', time: new Date().toLocaleTimeString() });
+                diagConsole.classList.add('ok');
+                diagStatusHead.innerText = t('okHead');
+                diagMessage.innerText = t('opensOn') + friendlyLinkName(data.targetLink || actionUrl);
+                diagReason.innerText = t('reached');
+                saveToHistory({ title, link: data.targetLink || actionUrl, status: 'Success', time: new Date().toLocaleTimeString() });
             } else {
-                // ❌ असफलता (Failure Diagnosis)
-                diagConsole.classList.add('diag-error');
-                diagStatusHead.innerHTML = `<i class="fas fa-times-circle text-danger me-1"></i> FAILED (नोटिफिकेशन नहीं गया)`;
-                diagMessage.innerHTML = `कारण: <b>${data.reason || "त्रुटि"}</b>`;
-                diagReason.innerHTML = `
-                    <b>विस्तार:</b> ${data.details || "कोई विवरण उपलब्ध नहीं।"}<br>
-                    ${data.diagnosis ? `<b>सुझाव / फिक्स:</b> ${data.diagnosis}` : ''}
-                `;
-
-                saveToHistory({ title, body, status: 'Failed: ' + (data.reason || 'Error'), time: new Date().toLocaleTimeString() });
+                diagConsole.classList.add('err');
+                diagStatusHead.innerText = t('failHead');
+                diagMessage.innerText = t('reason') + (data.reason || t('unknownErr'));
+                diagReason.innerText = data.details || "";
+                saveToHistory({ title, link: actionUrl, status: 'Failed', time: new Date().toLocaleTimeString() });
             }
-
         } catch (netErr) {
-            // 🌐 नेटवर्क या Vercel API एरर
-            diagConsole.classList.add('diag-error');
-            diagStatusHead.innerHTML = `<i class="fas fa-triangle-exclamation text-danger me-1"></i> GATEWAY ERROR`;
-            diagMessage.innerHTML = `Vercel API एंडपॉइंट (/api/send-push) से कनेक्ट नहीं हो सका।`;
-            diagReason.innerHTML = `
-                <b>त्रुटि विवरण:</b> ${netErr.message}<br>
-                <b>संभावित कारण:</b> क्या 'api/send-push.js' फाइल Vercel पर डिप्लॉय है? क्या Vercel प्रोजेक्ट लाइव है?
-            `;
-
-            saveToHistory({ title, body, status: 'Gateway Error', time: new Date().toLocaleTimeString() });
+            diagConsole.classList.add('err');
+            diagStatusHead.innerText = t('netHead');
+            diagMessage.innerText = t('netMsg');
+            diagReason.innerText = netErr.message;
+            saveToHistory({ title, link: actionUrl, status: 'Gateway Error', time: new Date().toLocaleTimeString() });
         } finally {
             btn.disabled = false;
-            btn.innerHTML = `<i class="fas fa-bolt"></i> अभी नोटिफिकेशन भेजें (Send Push)`;
+            btn.textContent = t('send');
         }
     }
 
-    // लोकल हिस्ट्री स्टोरेज
+    // ================= हिस्ट्री =================
     function saveToHistory(item) {
-        let history = JSON.parse(localStorage.getItem('fcm_push_history') || '[]');
+        let history = [];
+        try { history = JSON.parse(localStorage.getItem('fcm_push_history') || '[]'); } catch (e) {}
         history.unshift(item);
         if (history.length > 8) history.pop();
-        localStorage.setItem('fcm_push_history', JSON.stringify(history));
+        try { localStorage.setItem('fcm_push_history', JSON.stringify(history)); } catch (e) {}
         renderHistory();
     }
 
     function renderHistory() {
-        const body = document.getElementById('historyBody');
-        let history = JSON.parse(localStorage.getItem('fcm_push_history') || '[]');
+        const box = document.getElementById('historyBody');
+        let history = [];
+        try { history = JSON.parse(localStorage.getItem('fcm_push_history') || '[]'); } catch (e) {}
+
         if (history.length === 0) {
-            body.innerHTML = `<tr><td class="text-center text-muted" colspan="2">कोई हालिया लॉग नहीं है।</td></tr>`;
+            box.innerHTML = `<div class="empty">${esc(t('noHist'))}</div>`;
             return;
         }
 
-        body.innerHTML = history.map(h => `
-            <tr>
-                <td>
-                    <div class="fw-bold text-white text-truncate" style="max-width: 170px;">${h.title}</div>
-                    <small style="color: ${h.status.startsWith('Success') ? '#34D399' : '#F87171'}; font-weight: 700;">
-                        ${h.status}
-                    </small>
-                </td>
-                <td class="text-end text-muted font-monospace" style="font-size: 0.72rem;">${h.time}</td>
-            </tr>
+        box.innerHTML = history.map(h => `
+            <div class="hist-item ${h.status === 'Success' ? '' : 'fail'}">
+                <div>
+                    <div class="t">${esc(h.title)}</div>
+                    <div class="s">${h.status === 'Success' ? esc(t('sentOk')) : esc(t('sentFail'))} • ${esc(friendlyLinkName(h.link))}</div>
+                </div>
+                <div class="tm">${esc(h.time)}</div>
+            </div>
         `).join('');
     }
 
     function clearHistory() {
-        localStorage.removeItem('fcm_push_history');
+        try { localStorage.removeItem('fcm_push_history'); } catch (e) {}
         renderHistory();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        renderHistory();
+        let saved = 'hi';
+        try { saved = localStorage.getItem('admin_lang') || 'hi'; } catch (e) {}
+        lang = I18N[saved] ? saved : 'hi';
+        applyLang();
+        setInterval(tickPhone, 30000);
     });
 </script>
 </body>
